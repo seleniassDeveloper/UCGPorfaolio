@@ -22,7 +22,9 @@ TEMPLATE = os.path.join(ROOT, "template.html")
 CONFIG = os.path.join(ROOT, "videos.json")
 FOTOS = os.path.join(ROOT, "media", "fotos")
 OUT = os.path.join(ROOT, "dist", "portfolio.html")          # documento completo, para enviar o subir
+OUT_INDEX = os.path.join(ROOT, "dist", "index.html")            # documento principal para Vercel / web hosts
 OUT_ARTIFACT = os.path.join(ROOT, "dist", "artifact.html")  # fragmento, para publicar como Artifact
+
 
 DOC_HEAD = (
     "<!doctype html>\n<html lang=\"es\">\n<head>\n<meta charset=\"utf-8\">\n"
@@ -190,8 +192,11 @@ def main():
         fh.write(page)
 
     cut = page.index("<style>")
+    full_html = DOC_HEAD + page[:cut] + DOC_MID + page[cut:] + DOC_TAIL
     with open(OUT, "w", encoding="utf-8") as fh:
-        fh.write(DOC_HEAD + page[:cut] + DOC_MID + page[cut:] + DOC_TAIL)
+        fh.write(full_html)
+    with open(OUT_INDEX, "w", encoding="utf-8") as fh:
+        fh.write(full_html)
 
     size_mb = os.path.getsize(OUT) / 1048576.0
     n_fotos = len(glob.glob(os.path.join(FOTOS, "*.*")))
