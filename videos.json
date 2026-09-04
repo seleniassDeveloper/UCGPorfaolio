@@ -33,9 +33,14 @@
       "kind_en": "Demo + talking head"
     },
     {
-      "placeholder": true,
-      "title_es": "Tu producto aquí",
-      "title_en": "Your product here",
+      "id": "reel-02",
+      "file": "media/reel-02.mp4",
+      "poster": "media/reel-02.jpg",
+      "duration": "0:42",
+      "views": "",
+      "likes": "",
+      "title_es": "Demo de producto",
+      "title_en": "Product demo",
       "kind_es": "Onboarding",
       "kind_en": "Onboarding"
     },
