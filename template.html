@@ -1,0 +1,300 @@
+<title>Seleedev Reels</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gabarito:wght@600;700;800&family=Figtree:wght@400;500;600;700&display=swap">
+
+<style>
+:root{
+  --ground:#EEDDE2;
+  --band:#DEC5CF;
+  --tile:#E6D0D8;
+  --ink:#5E1F3A;
+  --ink-2:#8A4F65;
+  --line:#D2B4C0;
+  --accent:#B02A5B;
+  --on-band:#5E1F3A;
+  --radius:12px;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --ground:#241019;
+    --band:#331823;
+    --tile:#33191F;
+    --ink:#F6DEE6;
+    --ink-2:#CFA3B4;
+    --line:#4A2733;
+    --accent:#FF83AC;
+    --on-band:#F6DEE6;
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#241019;
+  --band:#331823;
+  --tile:#33191F;
+  --ink:#F6DEE6;
+  --ink-2:#CFA3B4;
+  --line:#4A2733;
+  --accent:#FF83AC;
+  --on-band:#F6DEE6;
+}
+
+*{box-sizing:border-box;}
+body{
+  margin:0;
+  background:var(--ground);
+  color:var(--ink);
+  font-family:"Figtree","Helvetica Neue",Arial,sans-serif;
+  font-size:15px;
+  line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+}
+img,video{max-width:100%;display:block;}
+a{color:inherit;}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:6px;}
+h1,h2,h3{
+  font-family:"Gabarito","Figtree",sans-serif;
+  font-weight:700;line-height:1.12;letter-spacing:-.015em;
+  text-wrap:balance;margin:0;
+}
+p{margin:0;}
+
+.wrap{width:min(980px,100% - 2.5rem);margin-inline:auto;}
+
+/* ---------- banda superior ---------- */
+.band{background:var(--band);color:var(--on-band);}
+.bar{display:flex;align-items:center;gap:1.5rem;padding-block:1.6rem 1.9rem;}
+.brand{
+  font-family:"Gabarito",sans-serif;font-weight:700;
+  font-size:clamp(1.35rem,2.8vw,1.85rem);letter-spacing:-.02em;
+  text-decoration:none;line-height:1.1;
+}
+.nav{display:flex;gap:1.5rem;margin-left:auto;align-items:center;}
+.nav a{font-size:.85rem;font-weight:500;text-decoration:none;padding-bottom:2px;border-bottom:1.5px solid transparent;}
+.nav a:hover,.nav a.on{border-bottom-color:var(--ink);}
+.lang{display:flex;border:1px solid var(--line);border-radius:999px;overflow:hidden;}
+.lang button{
+  font-family:"Figtree",sans-serif;font-size:.7rem;font-weight:600;letter-spacing:.06em;
+  border:0;background:none;color:var(--ink-2);padding:.3rem .55rem;cursor:pointer;
+}
+.lang button[aria-pressed="true"]{background:var(--ink);color:var(--band);}
+
+.hero h1{font-size:clamp(1.7rem,3.6vw,2.4rem);max-width:22ch;font-weight:700;}
+.socials{display:flex;gap:.7rem;margin-top:1.6rem;}
+.socials a{
+  width:26px;height:26px;display:grid;place-items:center;
+  border-radius:6px;color:var(--ink);
+}
+.socials a:hover{background:var(--ink);color:var(--band);}
+.socials svg{width:15px;height:15px;fill:currentColor;}
+
+/* ---------- intro ---------- */
+.intro{
+  display:grid;grid-template-columns:auto 1fr;gap:clamp(2rem,5vw,4rem);
+  align-items:center;padding-block:clamp(2.5rem,5vw,4rem);
+}
+.portrait{
+  width:clamp(160px,20vw,215px);aspect-ratio:1;border-radius:50%;
+  object-fit:cover;border:3px solid var(--accent);
+}
+.bio{
+  font-weight:700;font-size:1rem;max-width:44ch;color:var(--ink);
+}
+
+/* ---------- stats ---------- */
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;padding-bottom:clamp(2.5rem,5vw,4rem);}
+.stat{background:var(--tile);border-radius:var(--radius);padding:1.4rem 1rem;text-align:center;}
+.stat b{
+  display:block;font-family:"Gabarito",sans-serif;font-weight:700;
+  font-size:1.4rem;font-variant-numeric:tabular-nums;
+}
+.stat span{display:block;font-size:.78rem;color:var(--ink-2);margin-top:.2rem;}
+
+/* ---------- banda de rayas detras de los videos ---------- */
+.stripes{
+  background:repeating-linear-gradient(90deg,
+    #B7D86A 0 17px,
+    #E7F0D8 17px 26px);
+  color:#3F1428;
+  padding-block:clamp(2.25rem,4.5vw,3.25rem);
+}
+.stripes section{padding-bottom:0;}
+.stripes .reel{box-shadow:0 0 0 4px rgba(255,255,255,.75);}
+.stripes .reel-cap span{color:#5D3446;}
+.stripes .reel--slot{
+  background:rgba(255,255,255,.62);
+  border-color:rgba(63,20,40,.3);
+  box-shadow:none;
+}
+.stripes .reel--slot p{color:#6C4053;}
+.fotos{padding-top:clamp(2.25rem,4.5vw,3.25rem);}
+
+/* ---------- secciones ---------- */
+section{padding-bottom:clamp(2.5rem,5vw,4rem);}
+.sec-title{text-align:center;font-size:1.15rem;font-weight:700;margin-bottom:1.5rem;}
+
+.reels{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;}
+.reel-item{display:flex;flex-direction:column;}
+.reel{
+  position:relative;aspect-ratio:9/16;background:var(--tile);
+  border-radius:var(--radius);overflow:hidden;
+}
+.reel video{width:100%;height:100%;object-fit:cover;}
+.reel-btn{
+  position:absolute;inset:0;width:100%;height:100%;
+  display:grid;place-items:center;border:0;background:none;cursor:pointer;padding:0;
+}
+.reel-btn i{
+  width:38px;height:38px;border-radius:50%;
+  background:rgba(255,255,255,.82);backdrop-filter:blur(3px);
+  display:grid;place-items:center;transition:transform .18s ease;
+}
+.reel-btn:hover i{transform:scale(1.08);}
+.reel-btn svg{width:13px;height:13px;fill:#5E1F3A;margin-left:2px;}
+.reel-btn.playing i{opacity:0;}
+.reel-btn.playing:hover i{opacity:1;}
+.reel-cap{text-align:center;margin-top:.7rem;}
+.reel-cap b{display:block;font-weight:700;font-size:.9rem;}
+.reel-cap span{display:block;font-size:.75rem;color:var(--ink-2);margin-top:.1rem;}
+
+.reel--slot{
+  border:1.5px dashed var(--line);background:var(--tile);
+  display:grid;place-items:center;text-align:center;padding:1rem;
+}
+.reel--slot p{font-size:.8rem;color:var(--ink-2);max-width:16ch;}
+
+.photos{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;}
+.photos img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:var(--radius);}
+
+/* ---------- pie ---------- */
+.foot{display:grid;grid-template-columns:1fr auto;gap:2rem;padding-block:2.25rem;}
+.foot h3{font-size:1rem;margin-bottom:.4rem;}
+.foot p{font-size:.8rem;color:var(--ink-2);}
+.foot a{font-size:.8rem;}
+.foot-nav{display:flex;flex-direction:column;gap:.35rem;text-align:right;}
+.foot-nav a{text-decoration:none;}
+.foot-nav a:hover{text-decoration:underline;}
+.foot .socials{margin-top:1.1rem;}
+
+@media (prefers-reduced-motion: reduce){
+  *{transition:none !important;animation:none !important;scroll-behavior:auto !important;}
+}
+html{scroll-behavior:smooth;}
+
+@media (max-width:780px){
+  .reels{grid-template-columns:repeat(2,1fr);}
+  .intro{grid-template-columns:1fr;justify-items:start;gap:1.5rem;}
+  .nav a:not(.only-mobile){display:none;}
+  .stats{grid-template-columns:1fr;}
+  .photos{grid-template-columns:repeat(2,1fr);}
+  .foot{grid-template-columns:1fr;}
+  .foot-nav{flex-direction:row;flex-wrap:wrap;gap:1rem;text-align:left;}
+}
+</style>
+
+<div class="band">
+  <div class="wrap">
+    <header class="bar" id="top">
+      <a class="brand" href="#top">Selenia Sánchez</a>
+      <nav class="nav">
+        <a href="#videos" data-es="Vídeos" data-en="Videos">Vídeos</a>
+        <a href="#contacto" data-es="Contacto" data-en="Contact">Contacto</a>
+        <div class="lang" role="group" aria-label="Idioma / Language">
+          <button type="button" data-lang="es" aria-pressed="true">ES</button>
+          <button type="button" data-lang="en" aria-pressed="false">EN</button>
+        </div>
+      </nav>
+    </header>
+  </div>
+</div>
+
+<main>
+
+  <div class="wrap">
+
+  <div class="intro">
+    <img class="portrait" src="{{PORTRAIT}}" alt="Selenia Sánchez">
+    <p class="bio" data-es="Soy Selenia. Programo y grabo. Uso de verdad las apps que enseño, escribo mis propios guiones y monto el vídeo para TikTok e Instagram." data-en="I'm Selenia. I code and I film. I actually use the apps I show, write my own scripts and cut the video for TikTok and Instagram.">Soy Selenia. Programo y grabo. Uso de verdad las apps que enseño, escribo mis propios guiones y monto el vídeo para TikTok e Instagram.</p>
+  </div>
+
+  {{STATS}}
+
+  </div>
+
+  <div class="stripes">
+    <section id="videos" class="wrap">
+      <h2 class="sec-title" data-es="Vídeos que mejor funcionan" data-en="Top performing videos">Vídeos que mejor funcionan</h2>
+      <div class="reels">
+        {{REEL_ITEMS}}
+      </div>
+    </section>
+  </div>
+
+  <div class="wrap">
+    {{PHOTOS}}
+  </div>
+
+</main>
+
+<div class="band" id="contacto">
+  <div class="wrap foot">
+    <div>
+      <h3>Selenia Sánchez</h3>
+      <p data-es="Creadora de UGC para producto tech" data-en="UGC creator for tech products">Creadora de UGC para producto tech</p>
+      <p><a href="mailto:{{EMAIL}}">{{EMAIL}}</a></p>
+      <div class="socials">{{SOCIALS}}</div>
+    </div>
+    <nav class="foot-nav">
+      <a href="#top" data-es="Inicio" data-en="Home">Inicio</a>
+      <a href="#videos" data-es="Vídeos" data-en="Videos">Vídeos</a>
+      <a href="mailto:{{EMAIL}}" data-es="Escríbeme" data-en="Email me">Escríbeme</a>
+    </nav>
+  </div>
+</div>
+
+<script>
+(function(){
+  var DATA = window.__REELS || {};
+  Object.keys(DATA).forEach(function(id){
+    var src = DATA[id], url = src;
+    try{
+      var bin = atob(src.slice(src.indexOf(",") + 1));
+      var bytes = new Uint8Array(bin.length);
+      for(var i=0;i<bin.length;i++){ bytes[i] = bin.charCodeAt(i); }
+      url = URL.createObjectURL(new Blob([bytes], {type:"video/mp4"}));
+    }catch(e){}
+    document.querySelectorAll('video[data-reel="'+id+'"]').forEach(function(v){ v.src = url; });
+  });
+
+  document.querySelectorAll(".reel-btn").forEach(function(btn){
+    var v = btn.closest(".reel").querySelector("video");
+    if(!v) return;
+    btn.addEventListener("click", function(){
+      if(v.paused){
+        document.querySelectorAll(".reel video").forEach(function(o){ if(o !== v) o.pause(); });
+        v.play().catch(function(){});
+      }else{
+        v.pause();
+      }
+    });
+    v.addEventListener("play", function(){ btn.classList.add("playing"); });
+    v.addEventListener("pause", function(){ btn.classList.remove("playing"); });
+  });
+
+  function apply(lang){
+    document.documentElement.lang = lang;
+    document.querySelectorAll("[data-es][data-en]").forEach(function(el){
+      el.textContent = el.dataset[lang];
+    });
+    document.querySelectorAll(".lang button").forEach(function(b){
+      b.setAttribute("aria-pressed", String(b.dataset.lang === lang));
+    });
+    try{ localStorage.setItem("seleedev-lang", lang); }catch(e){}
+  }
+  document.querySelectorAll(".lang button").forEach(function(b){
+    b.addEventListener("click", function(){ apply(b.dataset.lang); });
+  });
+  var saved = null;
+  try{ saved = localStorage.getItem("seleedev-lang"); }catch(e){}
+  apply(saved === "en" ? "en" : "es");
+})();
+</script>

@@ -1,0 +1,57 @@
+{
+  "_nota": "Edita este archivo y ejecuta: python3 build.py",
+
+  "portrait": "media/retrato.jpg",
+
+  "links": {
+    "tiktok": "https://www.tiktok.com/@seleedev",
+    "instagram": "",
+    "youtube": "",
+    "linkedin": "",
+    "email": "hola@tuemail.com"
+  },
+
+  "_stats": "Rellena los tres valores con tus cifras reales. Si los dejas vacios, la fila no aparece.",
+  "stats": [
+    { "value": "", "label_es": "Seguidores", "label_en": "Followers" },
+    { "value": "", "label_es": "Me gusta", "label_en": "Likes" },
+    { "value": "", "label_es": "Visitas al perfil / mes", "label_en": "Monthly profile views" }
+  ],
+
+  "_reels": "views y likes salen en grande debajo de cada video. Si los dejas vacios sale el titulo y el tipo.",
+  "reels": [
+    {
+      "id": "reel-01",
+      "file": "media/reel-01.mp4",
+      "poster": "media/reel-01.jpg",
+      "duration": "0:41",
+      "views": "",
+      "likes": "",
+      "title_es": "App de planificación con IA",
+      "title_en": "AI day-planner app",
+      "kind_es": "Demo + talking head",
+      "kind_en": "Demo + talking head"
+    },
+    {
+      "placeholder": true,
+      "title_es": "Tu producto aquí",
+      "title_en": "Your product here",
+      "kind_es": "Onboarding",
+      "kind_en": "Onboarding"
+    },
+    {
+      "placeholder": true,
+      "title_es": "Tu producto aquí",
+      "title_en": "Your product here",
+      "kind_es": "Testimonio",
+      "kind_en": "Testimonial"
+    },
+    {
+      "placeholder": true,
+      "title_es": "Tu producto aquí",
+      "title_en": "Your product here",
+      "kind_es": "Hook + comparativa",
+      "kind_en": "Hook + comparison"
+    }
+  ]
+}
