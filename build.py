@@ -74,23 +74,40 @@ def socials(links):
     return "".join(out)
 
 
+FLOWER_SVG = (
+    '<svg class="flower-icon" viewBox="0 0 100 100" fill="currentColor" aria-hidden="true">'
+    '<path d="M50 20 C58 8, 73 14, 70 28 C82 26, 89 40, 80 49 C90 59, 80 73, 68 69 C65 82, 50 84, 44 73 C33 80, 21 69, 28 58 C16 51, 20 37, 32 37 C30 23, 44 14, 50 20 Z"/>'
+    '</svg>'
+)
+
+
 def stats_block(stats):
     tiles = [s for s in stats if str(s.get("value", "")).strip()]
     if not tiles:
         return "<!-- sin datos todavia: rellena \"stats\" en videos.json -->"
     cells = "".join(
-        '<div class="stat"><b>{v}</b><span data-es="{l_es}" data-en="{l_en}">{l_es}</span></div>'.format(
-            v=esc(s["value"]), l_es=esc(s.get("label_es", "")), l_en=esc(s.get("label_en", "")))
+        '<div class="service-card">'
+        '{flower}'
+        '<div class="stat-value">{v}</div>'
+        '<div class="service-title" data-es="{l_es}" data-en="{l_en}">{l_es}</div>'
+        '<a href="#videos" class="btn-small-pill" data-es="let\'s go." data-en="let\'s go.">let\'s go.</a>'
+        '</div>'.format(
+            flower=FLOWER_SVG,
+            v=esc(s["value"]),
+            l_es=esc(s.get("label_es", "")),
+            l_en=esc(s.get("label_en", ""))
+        )
         for s in tiles
     )
-    return '<section class="stats">%s</section>' % cells
+    return '<div class="services-cards">%s</div>' % cells
 
 
 def reel_item(reel, poster_uri):
     if reel.get("placeholder"):
         return (
-            '<div class="reel-item">'
+            '<div class="reel-item reel-item--slot">'
             '<div class="reel reel--slot">'
+            '<div class="slot-icon">✦</div>'
             '<p data-es="Espacio libre" data-en="Open slot">Espacio libre</p>'
             "</div>"
             '<div class="reel-cap">'
@@ -111,12 +128,14 @@ def reel_item(reel, poster_uri):
 
     return (
         '<div class="reel-item">'
+        '<div class="reel-frame">'
         '<div class="reel">'
         '<video data-reel="{id}" poster="{poster}" loop playsinline preload="none" '
         'aria-label="{label}"></video>'
         '<button class="reel-btn" type="button" aria-label="Reproducir"><i>'
         '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>'
         "</i></button>"
+        "</div>"
         "</div>"
         '<div class="reel-cap">'
         '<b data-es="{l1_es}" data-en="{l1_en}">{l1_es}</b>'

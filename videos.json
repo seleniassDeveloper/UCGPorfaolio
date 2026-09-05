@@ -11,11 +11,10 @@
     "email": "hola@tuemail.com"
   },
 
-  "_stats": "Rellena los tres valores con tus cifras reales. Si los dejas vacios, la fila no aparece.",
   "stats": [
-    { "value": "", "label_es": "Seguidores", "label_en": "Followers" },
-    { "value": "", "label_es": "Me gusta", "label_en": "Likes" },
-    { "value": "", "label_es": "Visitas al perfil / mes", "label_en": "Monthly profile views" }
+    { "value": "41.1K", "label_es": "Seguidores", "label_en": "Followers" },
+    { "value": "5.2M",  "label_es": "Me gusta",   "label_en": "Likes" },
+    { "value": "157K",  "label_es": "Visitas / mes", "label_en": "Monthly views" }
   ],
 
   "_reels": "views y likes salen en grande debajo de cada video. Si los dejas vacios sale el titulo y el tipo.",

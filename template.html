@@ -1,255 +1,849 @@
-<title>Seleedev Reels</title>
+<title>Seleedev ✦ Portfolio UGC</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gabarito:wght@600;700;800&family=Figtree:wght@400;500;600;700&display=swap">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800&family=Shrikhand&display=swap" rel="stylesheet">
 
 <style>
-:root{
-  --ground:#EEDDE2;
-  --band:#DEC5CF;
-  --tile:#E6D0D8;
-  --ink:#5E1F3A;
-  --ink-2:#8A4F65;
-  --line:#D2B4C0;
-  --accent:#B02A5B;
-  --on-band:#5E1F3A;
-  --radius:12px;
+:root {
+  --bg-cream: #FFF5EA;
+  --orange-main: #FF581A;
+  --orange-dark: #E04308;
+  --pink-main: #FF7BB0;
+  --pink-soft: #FFD8E7;
+  --pink-deep: #E84D8B;
+  --yellow-accent: #FFCE31;
+  --ink-dark: #321019;
+  --ink-muted: #6B3D4A;
+  --white: #FFFFFF;
+  --radius-lg: 32px;
+  --radius-md: 20px;
+  --radius-pill: 9999px;
+  --shadow-retro: 4px 6px 0px rgba(50, 16, 25, 0.15);
 }
-@media (prefers-color-scheme: dark){
-  :root:not([data-theme="light"]){
-    --ground:#241019;
-    --band:#331823;
-    --tile:#33191F;
-    --ink:#F6DEE6;
-    --ink-2:#CFA3B4;
-    --line:#4A2733;
-    --accent:#FF83AC;
-    --on-band:#F6DEE6;
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background-color: var(--bg-cream);
+  color: var(--ink-dark);
+  font-family: "Outfit", -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+img, video { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
+:focus-visible { outline: 3px solid var(--yellow-accent); outline-offset: 3px; border-radius: 8px; }
+
+h1, h2, h3, h4 {
+  font-family: "Fredoka", "Shrikhand", sans-serif;
+  font-weight: 700;
+  line-height: 1.15;
+  margin: 0;
+}
+p { margin: 0; }
+
+.wrap { width: min(1120px, 100% - 3rem); margin-inline: auto; }
+
+/* ---------- TOP HEADER NAV ---------- */
+.top-banner {
+  background-color: var(--orange-main);
+  color: var(--white);
+  padding-block: 1rem;
+  border-bottom: 3px solid var(--ink-dark);
+}
+
+.top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+.brand-logo {
+  font-family: "Shrikhand", "Fredoka", cursive;
+  font-size: clamp(1.5rem, 3vw, 2.2rem);
+  color: var(--white);
+  letter-spacing: 0.02em;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  text-shadow: 2px 2px 0px var(--ink-dark);
+}
+.brand-logo span { color: var(--yellow-accent); }
+
+.top-nav-links {
+  display: flex;
+  align-items: center;
+  gap: 1.8rem;
+}
+
+.top-nav-links a {
+  font-family: "Fredoka", sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--white);
+  transition: transform 0.15s ease, color 0.15s ease;
+}
+
+.top-nav-links a:hover {
+  color: var(--yellow-accent);
+  transform: translateY(-2px);
+}
+
+.lang-switch {
+  display: flex;
+  background: rgba(0, 0, 0, 0.18);
+  border-radius: var(--radius-pill);
+  padding: 3px;
+  border: 1.5px solid rgba(255, 255, 255, 0.3);
+}
+
+.lang-switch button {
+  font-family: "Fredoka", sans-serif;
+  font-weight: 700;
+  font-size: 0.75rem;
+  border: none;
+  background: transparent;
+  color: var(--white);
+  padding: 0.35rem 0.75rem;
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.lang-switch button[aria-pressed="true"] {
+  background: var(--white);
+  color: var(--orange-main);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+/* ---------- HERO SECTION ---------- */
+.hero-wrapper {
+  padding-block: clamp(2.5rem, 6vw, 4.5rem);
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: minmax(280px, 380px) 1fr;
+  gap: clamp(2rem, 5vw, 4rem);
+  align-items: center;
+}
+
+/* Scalloped Wavy Frame for Profile Photo */
+.scallop-frame-wrap {
+  position: relative;
+  display: grid;
+  place-items: center;
+  padding: 1.5rem;
+}
+
+.scallop-bg {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  background-color: var(--pink-main);
+  border-radius: 42% 58% 60% 40% / 45% 45% 55% 55%;
+  animation: floatMorph 8s ease-in-out infinite alternate;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px;
+  box-shadow: 6px 10px 0px rgba(50, 16, 25, 0.12);
+}
+
+@keyframes floatMorph {
+  0% { border-radius: 42% 58% 60% 40% / 45% 45% 55% 55%; transform: rotate(0deg); }
+  50% { border-radius: 55% 45% 40% 60% / 50% 60% 40% 50%; transform: rotate(2deg); }
+  100% { border-radius: 48% 52% 55% 45% / 42% 58% 42% 58%; transform: rotate(-2deg); }
+}
+
+.scallop-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 38% 62% 52% 48% / 42% 52% 48% 58%;
+  border: 4px solid var(--white);
+}
+
+/* Sparkles Floating around */
+.sparkle-icon {
+  position: absolute;
+  color: var(--pink-main);
+  pointer-events: none;
+  filter: drop-shadow(2px 2px 0px rgba(0,0,0,0.1));
+}
+.sparkle-1 { top: -10px; left: 0; font-size: 2.2rem; color: var(--pink-main); }
+.sparkle-2 { bottom: 10px; left: -15px; font-size: 1.8rem; color: var(--yellow-accent); }
+.sparkle-3 { top: 20px; right: -10px; font-size: 1.5rem; color: var(--orange-main); }
+
+/* Orange Hero Content Card */
+.hero-card {
+  background-color: var(--orange-main);
+  color: var(--white);
+  border-radius: var(--radius-lg);
+  padding: clamp(2rem, 5vw, 3.2rem);
+  box-shadow: 6px 10px 0px rgba(50, 16, 25, 0.15);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-card::before {
+  content: "✦";
+  position: absolute;
+  top: 1.2rem;
+  right: 1.8rem;
+  font-size: 2rem;
+  color: var(--yellow-accent);
+  opacity: 0.9;
+}
+
+.hero-title {
+  font-family: "Fredoka", sans-serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+  color: var(--white);
+  margin-bottom: 1.2rem;
+  line-height: 1.1;
+  text-shadow: 2px 2px 0px var(--orange-dark);
+}
+
+.hero-bio {
+  font-size: clamp(1rem, 1.5vw, 1.15rem);
+  line-height: 1.6;
+  margin-bottom: 2rem;
+  color: #FFF0E6;
+  font-weight: 500;
+  max-width: 48ch;
+}
+
+.btn-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--pink-soft);
+  color: var(--ink-dark);
+  font-family: "Fredoka", sans-serif;
+  font-weight: 700;
+  font-size: 1.1rem;
+  padding: 0.75rem 2.2rem;
+  border-radius: var(--radius-pill);
+  border: 2px solid var(--ink-dark);
+  box-shadow: 3px 4px 0px var(--ink-dark);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-pill:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 5px 6px 0px var(--ink-dark);
+  background-color: var(--white);
+}
+
+.btn-pill:active {
+  transform: translate(1px, 1px);
+  box-shadow: 2px 2px 0px var(--ink-dark);
+}
+
+/* ---------- MARQUEE TICKER BANNER ---------- */
+.ticker-wrap {
+  width: 100%;
+  background-color: var(--pink-main);
+  color: var(--white);
+  padding-block: 0.9rem;
+  border-block: 3px solid var(--ink-dark);
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.ticker-move {
+  display: inline-flex;
+  gap: 2rem;
+  animation: tickerScroll 24s linear infinite;
+}
+
+@keyframes tickerScroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.ticker-item {
+  font-family: "Fredoka", sans-serif;
+  font-size: 1.15rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.ticker-item span.star {
+  color: var(--yellow-accent);
+  font-size: 1.2rem;
+}
+
+/* ---------- SERVICES & ROTATING STAMP SECTION ---------- */
+.services-section {
+  background-color: var(--orange-main);
+  color: var(--white);
+  padding-block: 3.5rem;
+  border-bottom: 3px solid var(--ink-dark);
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 3rem;
+  align-items: center;
+}
+
+/* Rotating Retro Stamp */
+.stamp-wrapper {
+  position: relative;
+  width: 160px;
+  height: 160px;
+  display: grid;
+  place-items: center;
+}
+
+.stamp-svg {
+  width: 100%;
+  height: 100%;
+  animation: rotateStamp 20s linear infinite;
+}
+
+@keyframes rotateStamp {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.stamp-center-icon {
+  position: absolute;
+  font-size: 2.2rem;
+  color: var(--yellow-accent);
+  text-shadow: 2px 2px 0px var(--ink-dark);
+}
+
+/* 3 Flower Service Cards */
+.services-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.service-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.6rem;
+}
+
+.flower-icon {
+  width: 72px;
+  height: 72px;
+  color: var(--pink-soft);
+  filter: drop-shadow(2px 3px 0px var(--ink-dark));
+  transition: transform 0.2s ease;
+}
+
+.service-card:hover .flower-icon {
+  transform: scale(1.1) rotate(6deg);
+}
+
+.stat-value {
+  font-family: "Fredoka", sans-serif;
+  font-size: clamp(2.2rem, 3.8vw, 3rem);
+  font-weight: 700;
+  color: var(--white);
+  line-height: 1;
+  text-shadow: 2.5px 2.5px 0px var(--ink-dark);
+}
+
+.service-title {
+  font-family: "Fredoka", sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--white);
+}
+
+.btn-small-pill {
+  background-color: var(--pink-soft);
+  color: var(--ink-dark);
+  font-family: "Fredoka", sans-serif;
+  font-weight: 700;
+  font-size: 0.85rem;
+  padding: 0.4rem 1.2rem;
+  border-radius: var(--radius-pill);
+  border: 1.5px solid var(--ink-dark);
+  box-shadow: 2px 3px 0px var(--ink-dark);
+  transition: transform 0.15s ease, background-color 0.15s ease;
+}
+
+.btn-small-pill:hover {
+  transform: scale(1.06) translateY(-2px);
+  background-color: var(--white);
+}
+
+/* ---------- REELS VIDEO SECTION ---------- */
+.reels-section-wrap {
+  padding-block: 3.5rem 4.5rem;
+}
+
+.section-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 2.5rem;
+}
+
+.sec-title {
+  font-family: "Fredoka", sans-serif;
+  font-size: clamp(2.2rem, 4vw, 3.2rem);
+  color: var(--orange-main);
+  position: relative;
+  display: inline-block;
+}
+
+.sec-title::after {
+  content: "✦";
+  color: var(--pink-main);
+  font-size: 1.5rem;
+  margin-left: 0.4rem;
+  vertical-align: super;
+}
+
+.reels {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.8rem;
+}
+
+.reel-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+.reel-frame {
+  position: relative;
+  border-radius: 28px;
+  padding: 8px;
+  background-color: var(--pink-main);
+  box-shadow: 4px 6px 0px var(--ink-dark);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.reel-item:hover .reel-frame {
+  transform: translateY(-6px);
+  box-shadow: 6px 10px 0px var(--ink-dark);
+}
+
+.reel {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 9 / 16;
+  border-radius: 22px;
+  overflow: hidden;
+  background-color: var(--ink-dark);
+}
+
+.reel video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.reel-btn {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  background: rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  transition: background 0.2s ease;
+}
+
+.reel-btn i {
+  width: 54px;
+  height: 54px;
+  background-color: var(--yellow-accent);
+  border: 2px solid var(--ink-dark);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  box-shadow: 2px 4px 0px var(--ink-dark);
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.reel-btn svg {
+  width: 20px;
+  height: 20px;
+  fill: var(--ink-dark);
+  margin-left: 3px;
+}
+
+.reel-btn:hover i {
+  transform: scale(1.12);
+  background-color: var(--white);
+}
+
+.reel-btn.playing i { opacity: 0; }
+.reel-btn.playing:hover i { opacity: 1; }
+
+.reel-cap {
+  text-align: center;
+}
+
+.reel-cap b {
+  display: block;
+  font-family: "Fredoka", sans-serif;
+  font-size: 1.05rem;
+  color: var(--ink-dark);
+}
+
+.reel-cap span {
+  display: block;
+  font-size: 0.85rem;
+  color: var(--ink-muted);
+  font-weight: 500;
+  margin-top: 0.15rem;
+}
+
+/* Placeholder Slot */
+.reel--slot {
+  border: 2.5px dashed var(--pink-deep);
+  background-color: var(--pink-soft);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  text-align: center;
+}
+
+.slot-icon {
+  font-size: 2rem;
+  color: var(--orange-main);
+  margin-bottom: 0.5rem;
+}
+
+.reel--slot p {
+  font-family: "Fredoka", sans-serif;
+  font-size: 0.95rem;
+  color: var(--ink-dark);
+}
+
+/* ---------- INSTAGRAM PHOTOS SECTION ---------- */
+.photos {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.photos img {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  border-radius: var(--radius-md);
+  border: 2.5px solid var(--ink-dark);
+  box-shadow: 4px 6px 0px var(--pink-main);
+  transition: transform 0.2s ease;
+}
+
+.photos img:hover {
+  transform: scale(1.03);
+}
+
+/* ---------- FOOTER & SOCIALS SECTION ---------- */
+.footer-section {
+  padding-block: 4rem 3rem;
+  background-color: var(--bg-cream);
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 2rem;
+}
+
+/* Left Box: Checkerboard background */
+.checker-card {
+  background-color: var(--orange-main);
+  background-image: repeating-conic-gradient(var(--orange-main) 0% 25%, var(--bg-cream) 0% 50%);
+  background-size: 40px 40px;
+  border-radius: var(--radius-lg);
+  padding: 1.8rem;
+  border: 3px solid var(--ink-dark);
+  box-shadow: 6px 8px 0px var(--ink-dark);
+  display: grid;
+  place-items: center;
+}
+
+.checker-inner {
+  background-color: var(--white);
+  border-radius: var(--radius-md);
+  border: 2.5px solid var(--ink-dark);
+  padding: 2.2rem 1.8rem;
+  text-align: center;
+  width: 100%;
+  box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.1);
+}
+
+.checker-title {
+  font-family: "Fredoka", sans-serif;
+  font-size: 1.8rem;
+  color: var(--orange-main);
+  margin-bottom: 1.2rem;
+}
+
+.socials-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.9rem;
+  margin-bottom: 1.2rem;
+}
+
+.socials-row a {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background-color: var(--pink-soft);
+  border: 2px solid var(--ink-dark);
+  display: grid;
+  place-items: center;
+  color: var(--ink-dark);
+  box-shadow: 2px 3px 0px var(--ink-dark);
+  transition: all 0.2s ease;
+}
+
+.socials-row a:hover {
+  transform: translateY(-3px) scale(1.08);
+  background-color: var(--yellow-accent);
+}
+
+.socials-row svg {
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
+}
+
+.checker-subtext {
+  font-size: 0.85rem;
+  color: var(--ink-muted);
+  font-weight: 500;
+}
+
+/* Right Box: Pink Club Card */
+.club-card {
+  background-color: var(--pink-main);
+  color: var(--white);
+  border-radius: var(--radius-lg);
+  padding: clamp(2.2rem, 4vw, 3.2rem);
+  border: 3px solid var(--ink-dark);
+  box-shadow: 6px 8px 0px var(--ink-dark);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+}
+
+.club-card::after {
+  content: "✦";
+  position: absolute;
+  bottom: 1.5rem;
+  right: 1.8rem;
+  font-size: 2rem;
+  color: var(--yellow-accent);
+}
+
+.club-title {
+  font-family: "Fredoka", sans-serif;
+  font-size: clamp(2rem, 3.5vw, 2.6rem);
+  margin-bottom: 1rem;
+  color: var(--white);
+  text-shadow: 2px 2px 0px var(--pink-deep);
+}
+
+.club-desc {
+  font-size: 1.05rem;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+  color: #FFF0F5;
+}
+
+/* ---------- RESPONSIVE MEDIA QUERIES ---------- */
+@media (max-width: 992px) {
+  .hero-grid { grid-template-columns: 1fr; }
+  .scallop-frame-wrap { max-width: 320px; margin-inline: auto; }
+  .services-grid { grid-template-columns: 1fr; gap: 2rem; }
+  .stamp-wrapper { margin-inline: auto; }
+  .reels { grid-template-columns: repeat(2, 1fr); }
+  .footer-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 640px) {
+  .top-nav-links a:not(.lang-switch) { display: none; }
+  .services-cards { grid-template-columns: 1fr; }
+  .stats { grid-template-columns: 1fr; }
+  .reels { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+  .photos { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
-}
-:root[data-theme="dark"]{
-  --ground:#241019;
-  --band:#331823;
-  --tile:#33191F;
-  --ink:#F6DEE6;
-  --ink-2:#CFA3B4;
-  --line:#4A2733;
-  --accent:#FF83AC;
-  --on-band:#F6DEE6;
-}
-
-*{box-sizing:border-box;}
-body{
-  margin:0;
-  background:var(--ground);
-  color:var(--ink);
-  font-family:"Figtree","Helvetica Neue",Arial,sans-serif;
-  font-size:15px;
-  line-height:1.55;
-  -webkit-font-smoothing:antialiased;
-}
-img,video{max-width:100%;display:block;}
-a{color:inherit;}
-:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:6px;}
-h1,h2,h3{
-  font-family:"Gabarito","Figtree",sans-serif;
-  font-weight:700;line-height:1.12;letter-spacing:-.015em;
-  text-wrap:balance;margin:0;
-}
-p{margin:0;}
-
-.wrap{width:min(980px,100% - 2.5rem);margin-inline:auto;}
-
-/* ---------- banda superior ---------- */
-.band{background:var(--band);color:var(--on-band);}
-.bar{display:flex;align-items:center;gap:1.5rem;padding-block:1.6rem 1.9rem;}
-.brand{
-  font-family:"Gabarito",sans-serif;font-weight:700;
-  font-size:clamp(1.35rem,2.8vw,1.85rem);letter-spacing:-.02em;
-  text-decoration:none;line-height:1.1;
-}
-.nav{display:flex;gap:1.5rem;margin-left:auto;align-items:center;}
-.nav a{font-size:.85rem;font-weight:500;text-decoration:none;padding-bottom:2px;border-bottom:1.5px solid transparent;}
-.nav a:hover,.nav a.on{border-bottom-color:var(--ink);}
-.lang{display:flex;border:1px solid var(--line);border-radius:999px;overflow:hidden;}
-.lang button{
-  font-family:"Figtree",sans-serif;font-size:.7rem;font-weight:600;letter-spacing:.06em;
-  border:0;background:none;color:var(--ink-2);padding:.3rem .55rem;cursor:pointer;
-}
-.lang button[aria-pressed="true"]{background:var(--ink);color:var(--band);}
-
-.hero h1{font-size:clamp(1.7rem,3.6vw,2.4rem);max-width:22ch;font-weight:700;}
-.socials{display:flex;gap:.7rem;margin-top:1.6rem;}
-.socials a{
-  width:26px;height:26px;display:grid;place-items:center;
-  border-radius:6px;color:var(--ink);
-}
-.socials a:hover{background:var(--ink);color:var(--band);}
-.socials svg{width:15px;height:15px;fill:currentColor;}
-
-/* ---------- intro ---------- */
-.intro{
-  display:grid;grid-template-columns:auto 1fr;gap:clamp(2rem,5vw,4rem);
-  align-items:center;padding-block:clamp(2.5rem,5vw,4rem);
-}
-.portrait{
-  width:clamp(160px,20vw,215px);aspect-ratio:1;border-radius:50%;
-  object-fit:cover;border:3px solid var(--accent);
-}
-.bio{
-  font-weight:700;font-size:1rem;max-width:44ch;color:var(--ink);
-}
-
-/* ---------- stats ---------- */
-.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;padding-bottom:clamp(2.5rem,5vw,4rem);}
-.stat{background:var(--tile);border-radius:var(--radius);padding:1.4rem 1rem;text-align:center;}
-.stat b{
-  display:block;font-family:"Gabarito",sans-serif;font-weight:700;
-  font-size:1.4rem;font-variant-numeric:tabular-nums;
-}
-.stat span{display:block;font-size:.78rem;color:var(--ink-2);margin-top:.2rem;}
-
-/* ---------- banda de rayas detras de los videos ---------- */
-.stripes{
-  background:repeating-linear-gradient(90deg,
-    #B7D86A 0 17px,
-    #E7F0D8 17px 26px);
-  color:#3F1428;
-  padding-block:clamp(2.25rem,4.5vw,3.25rem);
-}
-.stripes section{padding-bottom:0;}
-.stripes .reel{box-shadow:0 0 0 4px rgba(255,255,255,.75);}
-.stripes .reel-cap span{color:#5D3446;}
-.stripes .reel--slot{
-  background:rgba(255,255,255,.62);
-  border-color:rgba(63,20,40,.3);
-  box-shadow:none;
-}
-.stripes .reel--slot p{color:#6C4053;}
-.fotos{padding-top:clamp(2.25rem,4.5vw,3.25rem);}
-
-/* ---------- secciones ---------- */
-section{padding-bottom:clamp(2.5rem,5vw,4rem);}
-.sec-title{text-align:center;font-size:1.15rem;font-weight:700;margin-bottom:1.5rem;}
-
-.reels{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;}
-.reel-item{display:flex;flex-direction:column;}
-.reel{
-  position:relative;aspect-ratio:9/16;background:var(--tile);
-  border-radius:var(--radius);overflow:hidden;
-}
-.reel video{width:100%;height:100%;object-fit:cover;}
-.reel-btn{
-  position:absolute;inset:0;width:100%;height:100%;
-  display:grid;place-items:center;border:0;background:none;cursor:pointer;padding:0;
-}
-.reel-btn i{
-  width:38px;height:38px;border-radius:50%;
-  background:rgba(255,255,255,.82);backdrop-filter:blur(3px);
-  display:grid;place-items:center;transition:transform .18s ease;
-}
-.reel-btn:hover i{transform:scale(1.08);}
-.reel-btn svg{width:13px;height:13px;fill:#5E1F3A;margin-left:2px;}
-.reel-btn.playing i{opacity:0;}
-.reel-btn.playing:hover i{opacity:1;}
-.reel-cap{text-align:center;margin-top:.7rem;}
-.reel-cap b{display:block;font-weight:700;font-size:.9rem;}
-.reel-cap span{display:block;font-size:.75rem;color:var(--ink-2);margin-top:.1rem;}
-
-.reel--slot{
-  border:1.5px dashed var(--line);background:var(--tile);
-  display:grid;place-items:center;text-align:center;padding:1rem;
-}
-.reel--slot p{font-size:.8rem;color:var(--ink-2);max-width:16ch;}
-
-.photos{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;}
-.photos img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:var(--radius);}
-
-/* ---------- pie ---------- */
-.foot{display:grid;grid-template-columns:1fr auto;gap:2rem;padding-block:2.25rem;}
-.foot h3{font-size:1rem;margin-bottom:.4rem;}
-.foot p{font-size:.8rem;color:var(--ink-2);}
-.foot a{font-size:.8rem;}
-.foot-nav{display:flex;flex-direction:column;gap:.35rem;text-align:right;}
-.foot-nav a{text-decoration:none;}
-.foot-nav a:hover{text-decoration:underline;}
-.foot .socials{margin-top:1.1rem;}
-
-@media (prefers-reduced-motion: reduce){
-  *{transition:none !important;animation:none !important;scroll-behavior:auto !important;}
-}
-html{scroll-behavior:smooth;}
-
-@media (max-width:780px){
-  .reels{grid-template-columns:repeat(2,1fr);}
-  .intro{grid-template-columns:1fr;justify-items:start;gap:1.5rem;}
-  .nav a:not(.only-mobile){display:none;}
-  .stats{grid-template-columns:1fr;}
-  .photos{grid-template-columns:repeat(2,1fr);}
-  .foot{grid-template-columns:1fr;}
-  .foot-nav{flex-direction:row;flex-wrap:wrap;gap:1rem;text-align:left;}
 }
 </style>
 
-<div class="band">
+<!-- TOP BANNER & NAV -->
+<div class="top-banner">
   <div class="wrap">
-    <header class="bar" id="top">
-      <a class="brand" href="#top">Selenia Sánchez</a>
-      <nav class="nav">
+    <header class="top-bar" id="top">
+      <a class="brand-logo" href="#top">
+        spark & seleedev <span>✦</span>
+      </a>
+      <div class="top-nav-links">
+        <a href="#top" data-es="Inicio" data-en="Home">Inicio</a>
+        <a href="#servicios" data-es="Servicios" data-en="Services">Servicios</a>
         <a href="#videos" data-es="Vídeos" data-en="Videos">Vídeos</a>
         <a href="#contacto" data-es="Contacto" data-en="Contact">Contacto</a>
-        <div class="lang" role="group" aria-label="Idioma / Language">
+        <div class="lang-switch" role="group" aria-label="Idioma / Language">
           <button type="button" data-lang="es" aria-pressed="true">ES</button>
           <button type="button" data-lang="en" aria-pressed="false">EN</button>
         </div>
-      </nav>
+      </div>
     </header>
   </div>
 </div>
 
 <main>
 
-  <div class="wrap">
-
-  <div class="intro">
-    <img class="portrait" src="{{PORTRAIT}}" alt="Selenia Sánchez">
-    <p class="bio" data-es="Soy Selenia. Programo y grabo. Uso de verdad las apps que enseño, escribo mis propios guiones y monto el vídeo para TikTok e Instagram." data-en="I'm Selenia. I code and I film. I actually use the apps I show, write my own scripts and cut the video for TikTok and Instagram.">Soy Selenia. Programo y grabo. Uso de verdad las apps que enseño, escribo mis propios guiones y monto el vídeo para TikTok e Instagram.</p>
-  </div>
-
-  {{STATS}}
-
-  </div>
-
-  <div class="stripes">
-    <section id="videos" class="wrap">
-      <h2 class="sec-title" data-es="Vídeos que mejor funcionan" data-en="Top performing videos">Vídeos que mejor funcionan</h2>
-      <div class="reels">
-        {{REEL_ITEMS}}
+  <!-- HERO SECTION -->
+  <div class="wrap hero-wrapper">
+    <div class="hero-grid">
+      
+      <!-- Left: Wavy Scallop Profile Frame -->
+      <div class="scallop-frame-wrap">
+        <span class="sparkle-icon sparkle-1">✦</span>
+        <span class="sparkle-icon sparkle-2">★</span>
+        <span class="sparkle-icon sparkle-3">✨</span>
+        <div class="scallop-bg">
+          <img src="{{PORTRAIT}}" alt="Selenia Sánchez - UGC Creator & Dev">
+        </div>
       </div>
-    </section>
+
+      <!-- Right: Orange Hero Card -->
+      <div class="hero-card">
+        <h1 class="hero-title" data-es="¡Encontremos el spark de tu marca!" data-en="we're all about finding your spark!">¡Encontremos el spark de tu marca!</h1>
+        <p class="hero-bio" data-es="Soy Selenia (Seleedev). Creadora de contenido UGC & Developer. Guionizo, grabo y edito vídeos de alta conversión para TikTok e Instagram con la voz auténtica que tu producto necesita." data-en="I'm Selenia (Seleedev). UGC Creator & Developer. I write scripts, film, and edit high-converting videos for TikTok and Instagram with the authentic voice your tech product needs.">Soy Selenia (Seleedev). Creadora de contenido UGC & Developer. Guionizo, grabo y edito vídeos de alta conversión para TikTok e Instagram con la voz auténtica que tu producto necesita.</p>
+        <a href="#contacto" class="btn-pill" data-es="spark!" data-en="spark!">spark!</a>
+      </div>
+
+    </div>
   </div>
 
-  <div class="wrap">
+  <!-- MARQUEE TICKER BANNER -->
+  <div class="ticker-wrap">
+    <div class="ticker-move">
+      <div class="ticker-item">
+        <span data-es="Trabaja conmigo para impulsar tu marca" data-en="Work with me to rediscover your inner glow">Trabaja conmigo para impulsar tu marca</span>
+        <span class="star">✦</span>
+        <span data-es="Creadora de UGC & Content Strategy" data-en="UGC Creator & Tech Strategy">Creadora de UGC & Content Strategy</span>
+        <span class="star">★</span>
+        <span data-es="Vídeos de alta conversión para TikTok e Instagram" data-en="High converting videos for TikTok & Instagram">Vídeos de alta conversión para TikTok e Instagram</span>
+        <span class="star">✦</span>
+      </div>
+      <div class="ticker-item" aria-hidden="true">
+        <span data-es="Trabaja conmigo para impulsar tu marca" data-en="Work with me to rediscover your inner glow">Trabaja conmigo para impulsar tu marca</span>
+        <span class="star">✦</span>
+        <span data-es="Creadora de UGC & Content Strategy" data-en="UGC Creator & Tech Strategy">Creadora de UGC & Content Strategy</span>
+        <span class="star">★</span>
+        <span data-es="Vídeos de alta conversión para TikTok e Instagram" data-en="High converting videos for TikTok & Instagram">Vídeos de alta conversión para TikTok e Instagram</span>
+        <span class="star">✦</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- SERVICES & ROTATING STAMP SECTION -->
+  <div class="services-section" id="servicios">
+    <div class="wrap services-grid">
+      
+      <!-- Rotating Circular Stamp -->
+      <div class="stamp-wrapper">
+        <svg class="stamp-svg" viewBox="0 0 200 200">
+          <path id="textPath" d="M 100, 100 m -75, 0 a 75,75 0 1,1 150,0 a 75,75 0 1,1 -150,0" fill="none"/>
+          <text fill="#FFFFFF" font-family="Fredoka" font-size="14.5" font-weight="700" letter-spacing="2">
+            <textPath href="#textPath">
+              SELEE DEV ✦ SINCE 2024 ✦ FIND YOUR SPARK ✦ 
+            </textPath>
+          </text>
+        </svg>
+        <span class="stamp-center-icon">✦</span>
+      </div>
+
+      <!-- 3 Flower Stat Badges -->
+      {{STATS}}
+
+    </div>
+  </div>
+
+  <!-- REELS SHOWCASE SECTION -->
+  <div class="wrap reels-section-wrap" id="videos">
+    <div class="section-head">
+      <h2 class="sec-title" data-es="Mis vídeos destacados" data-en="Featured videos">Mis vídeos destacados</h2>
+    </div>
+    
+    <div class="reels">
+      {{REEL_ITEMS}}
+    </div>
+
     {{PHOTOS}}
   </div>
 
 </main>
 
-<div class="band" id="contacto">
-  <div class="wrap foot">
-    <div>
-      <h3>Selenia Sánchez</h3>
-      <p data-es="Creadora de UGC para producto tech" data-en="UGC creator for tech products">Creadora de UGC para producto tech</p>
-      <p><a href="mailto:{{EMAIL}}">{{EMAIL}}</a></p>
-      <div class="socials">{{SOCIALS}}</div>
+<!-- FOOTER & SOCIALS SECTION -->
+<footer class="footer-section" id="contacto">
+  <div class="wrap footer-grid">
+    
+    <!-- Left: Checkerboard Card -->
+    <div class="checker-card">
+      <div class="checker-inner">
+        <h3 class="checker-title" data-es="¡Conectemos en redes!" data-en="let's hang on socials!">¡Conectemos en redes!</h3>
+        <div class="socials-row">
+          {{SOCIALS}}
+        </div>
+        <p class="checker-subtext" data-es="Sígueme para ver nuevos ejemplos y casos de éxito." data-en="Follow along to see new cases and work.">Sígueme para ver nuevos ejemplos y casos de éxito.</p>
+      </div>
     </div>
-    <nav class="foot-nav">
-      <a href="#top" data-es="Inicio" data-en="Home">Inicio</a>
-      <a href="#videos" data-es="Vídeos" data-en="Videos">Vídeos</a>
-      <a href="mailto:{{EMAIL}}" data-es="Escríbeme" data-en="Email me">Escríbeme</a>
-    </nav>
+
+    <!-- Right: Pink Sparkl Club Card -->
+    <div class="club-card">
+      <h3 class="club-title" data-es="Únete al sparkl club" data-en="join the sparkl club">Únete al sparkl club</h3>
+      <p class="club-desc" data-es="¿Tienes un producto o app genial que quieres lanzar? Trabajemos juntos para crear vídeos auténticos que enganchen a tu audiencia desde el primer segundo." data-en="Ever wanted to surround yourself with fun, uplifting and inspiring content? Let's work together to create authentic videos that engage your audience.">¿Tienes un producto o app genial que quieres lanzar? Trabajemos juntos para crear vídeos auténticos que enganchen a tu audiencia desde el primer segundo.</p>
+      <div>
+        <a href="mailto:{{EMAIL}}" class="btn-pill" data-es="spark!" data-en="spark!">spark!</a>
+      </div>
+    </div>
+
   </div>
-</div>
+</footer>
 
 <script>
 (function(){
@@ -285,12 +879,12 @@ html{scroll-behavior:smooth;}
     document.querySelectorAll("[data-es][data-en]").forEach(function(el){
       el.textContent = el.dataset[lang];
     });
-    document.querySelectorAll(".lang button").forEach(function(b){
+    document.querySelectorAll(".lang-switch button").forEach(function(b){
       b.setAttribute("aria-pressed", String(b.dataset.lang === lang));
     });
     try{ localStorage.setItem("seleedev-lang", lang); }catch(e){}
   }
-  document.querySelectorAll(".lang button").forEach(function(b){
+  document.querySelectorAll(".lang-switch button").forEach(function(b){
     b.addEventListener("click", function(){ apply(b.dataset.lang); });
   });
   var saved = null;
