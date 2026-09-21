@@ -4,7 +4,7 @@
   "portrait": "media/retrato.jpg",
 
   "links": {
-    "tiktok": "https://www.tiktok.com/@seleedev",
+    "tiktok": "https://www.tiktok.com/@seleniasanchez",
     "instagram": "",
     "youtube": "",
     "linkedin": "",
@@ -12,9 +12,9 @@
   },
 
   "stats": [
-    { "value": "41.1K", "label_es": "Seguidores", "label_en": "Followers" },
-    { "value": "5.2M",  "label_es": "Me gusta",   "label_en": "Likes" },
-    { "value": "157K",  "label_es": "Visitas / mes", "label_en": "Monthly views" }
+    { "value": "74", "label_es": "Seguidores", "label_en": "Followers" },
+    { "value": "1.6K", "label_es": "Me gusta", "label_en": "Likes" },
+    { "value": "287", "label_es": "Siguiendo", "label_en": "Following" }
   ],
 
   "_reels": "views y likes salen en grande debajo de cada video. Si los dejas vacios sale el titulo y el tipo.",
@@ -24,6 +24,7 @@
       "file": "media/reel-01.mp4",
       "poster": "media/reel-01.jpg",
       "duration": "0:41",
+      "category": "en",
       "views": "",
       "likes": "",
       "title_es": "App de planificación con IA",
@@ -36,6 +37,7 @@
       "file": "media/reel-02.mp4",
       "poster": "media/reel-02.jpg",
       "duration": "0:42",
+      "category": "en",
       "views": "",
       "likes": "",
       "title_es": "Demo de producto",
@@ -44,18 +46,34 @@
       "kind_en": "Onboarding"
     },
     {
-      "placeholder": true,
-      "title_es": "Tu producto aquí",
-      "title_en": "Your product here",
-      "kind_es": "Testimonio",
-      "kind_en": "Testimonial"
+      "id": "reel-03",
+      "file": "media/reel-03.mp4",
+      "poster": "media/reel-03.jpg",
+      "duration": "0:29",
+      "category": "es",
+      "views": "",
+      "likes": "",
+      "title_es": "Demo de producto",
+      "title_en": "Product demo",
+      "kind_es": "UGC Video",
+      "kind_en": "UGC Video",
+      "lang_es": "Español",
+      "lang_en": "Spanish"
     },
     {
-      "placeholder": true,
-      "title_es": "Tu producto aquí",
-      "title_en": "Your product here",
-      "kind_es": "Hook + comparativa",
-      "kind_en": "Hook + comparison"
+      "id": "reel-04",
+      "file": "media/reel-04.mp4",
+      "poster": "media/reel-04.jpg",
+      "duration": "0:30",
+      "category": "es",
+      "views": "",
+      "likes": "",
+      "title_es": "Demo de producto",
+      "title_en": "Product demo",
+      "kind_es": "UGC Video",
+      "kind_en": "UGC Video",
+      "lang_es": "Español",
+      "lang_en": "Spanish"
     }
   ]
 }

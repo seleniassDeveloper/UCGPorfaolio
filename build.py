@@ -189,7 +189,9 @@ def main():
     portrait_path = os.path.join(ROOT, cfg.get("portrait", "media/retrato.jpg"))
     portrait = data_uri(portrait_path, "image/jpeg") if os.path.exists(portrait_path) else ""
 
-    items = [reel_item(r, posters.get(r.get("id"), "")) for r in reels]
+    items_en = [reel_item(r, posters.get(r.get("id"), "")) for r in reels if r.get("category") == "en"]
+    items_es = [reel_item(r, posters.get(r.get("id"), "")) for r in reels if r.get("category") == "es"]
+    items_all = [reel_item(r, posters.get(r.get("id"), "")) for r in reels]
 
     with open(TEMPLATE, encoding="utf-8") as fh:
         page = fh.read()
@@ -197,7 +199,9 @@ def main():
     page = page.replace("{{SOCIALS}}", socials(links))
     page = page.replace("{{PORTRAIT}}", portrait)
     page = page.replace("{{STATS}}", stats_block(cfg.get("stats", [])))
-    page = page.replace("{{REEL_ITEMS}}", "\n      ".join(items))
+    page = page.replace("{{REEL_ITEMS_EN}}", "\n      ".join(items_en))
+    page = page.replace("{{REEL_ITEMS_ES}}", "\n      ".join(items_es))
+    page = page.replace("{{REEL_ITEMS}}", "\n      ".join(items_all))
     page = page.replace("{{PHOTOS}}", photos_block())
     page = page.replace("{{EMAIL}}", esc(email))
     page = page.replace(

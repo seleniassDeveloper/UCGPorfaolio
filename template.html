@@ -519,6 +519,48 @@ p { margin: 0; }
   margin-top: 0.15rem;
 }
 
+/* Categories Side-by-Side Grid */
+.categories-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2.5rem;
+  align-items: start;
+}
+
+.reel-category {
+  margin-bottom: 2rem;
+}
+
+.reels.reels--2col {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+
+.category-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  background-color: var(--pink-soft);
+  color: var(--ink-dark);
+  padding: 0.5rem 1.4rem;
+  border-radius: var(--radius-pill);
+  border: 2.5px solid var(--ink-dark);
+  box-shadow: 3px 4px 0px var(--ink-dark);
+  margin-bottom: 1.8rem;
+}
+
+.category-badge h3 {
+  font-family: "Fredoka", sans-serif;
+  font-size: 1.3rem;
+  color: var(--ink-dark);
+  margin: 0;
+}
+
+.category-badge .flag {
+  font-size: 1.4rem;
+}
+
 /* Placeholder Slot */
 .reel--slot {
   border: 2.5px dashed var(--pink-deep);
@@ -809,8 +851,28 @@ p { margin: 0; }
       <h2 class="sec-title" data-es="Mis vídeos destacados" data-en="Featured videos">Mis vídeos destacados</h2>
     </div>
     
-    <div class="reels">
-      {{REEL_ITEMS}}
+    <div class="categories-grid">
+      <!-- Category 1: English -->
+      <div class="reel-category">
+        <div class="category-badge">
+          <span class="flag">🇬🇧</span>
+          <h3 data-es="Vídeos en Inglés" data-en="English Videos">Vídeos en Inglés</h3>
+        </div>
+        <div class="reels reels--2col">
+          {{REEL_ITEMS_EN}}
+        </div>
+      </div>
+
+      <!-- Category 2: Spanish -->
+      <div class="reel-category">
+        <div class="category-badge">
+          <span class="flag">🇪🇸</span>
+          <h3 data-es="Vídeos en Español" data-en="Spanish Videos">Vídeos en Español</h3>
+        </div>
+        <div class="reels reels--2col">
+          {{REEL_ITEMS_ES}}
+        </div>
+      </div>
     </div>
 
     {{PHOTOS}}
