@@ -4,17 +4,17 @@
   "portrait": "media/retrato.jpg",
 
   "links": {
-    "tiktok": "https://www.tiktok.com/@seleniasanchez",
-    "instagram": "",
+    "tiktok": "https://www.tiktok.com/@seleedev",
+    "instagram": "https://www.instagram.com/ssseleniadev",
     "youtube": "",
     "linkedin": "",
     "email": "seleniadeveloper@gmail.com"
   },
 
   "stats": [
-    { "value": "74", "label_es": "Seguidores", "label_en": "Followers" },
-    { "value": "1.6K", "label_es": "Me gusta", "label_en": "Likes" },
-    { "value": "287", "label_es": "Siguiendo", "label_en": "Following" }
+    { "value": "170", "label_es": "Seguidores en total", "label_en": "Total Followers" },
+    { "value": "707", "label_es": "Me gusta en TikTok", "label_en": "TikTok Likes" },
+    { "value": "25", "label_es": "Publicaciones", "label_en": "Posts Created" }
   ],
 
   "_reels": "views y likes salen en grande debajo de cada video. Si los dejas vacios sale el titulo y el tipo.",
