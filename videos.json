@@ -12,9 +12,30 @@
   },
 
   "stats": [
-    { "value": "170", "label_es": "Seguidores en total", "label_en": "Total Followers" },
-    { "value": "707", "label_es": "Me gusta en TikTok", "label_en": "TikTok Likes" },
-    { "value": "25", "label_es": "Publicaciones", "label_en": "Posts Created" }
+    {
+      "value": "707",
+      "label_es": "Me gusta en TikTok (@seleedev)",
+      "label_en": "TikTok Likes (@seleedev)",
+      "btn_es": "Ir a TikTok ↗",
+      "btn_en": "Go to TikTok ↗",
+      "url": "https://www.tiktok.com/@seleedev"
+    },
+    {
+      "value": "103",
+      "label_es": "Seguidores Instagram (@ssseleniadev)",
+      "label_en": "Instagram Followers (@ssseleniadev)",
+      "btn_es": "Ir a Instagram ↗",
+      "btn_en": "Go to Instagram ↗",
+      "url": "https://www.instagram.com/ssseleniadev"
+    },
+    {
+      "value": "170",
+      "label_es": "Seguidores Totales en Redes",
+      "label_en": "Total Social Followers",
+      "btn_es": "Ver Redes ↗",
+      "btn_en": "View Socials ↗",
+      "url": "https://www.instagram.com/ssseleniadev"
+    }
   ],
 
   "_reels": "views y likes salen en grande debajo de cada video. Si los dejas vacios sale el titulo y el tipo.",

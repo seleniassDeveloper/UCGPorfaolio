@@ -85,21 +85,30 @@ def stats_block(stats):
     tiles = [s for s in stats if str(s.get("value", "")).strip()]
     if not tiles:
         return "<!-- sin datos todavia: rellena \"stats\" en videos.json -->"
-    cells = "".join(
-        '<div class="service-card">'
-        '{flower}'
-        '<div class="stat-value">{v}</div>'
-        '<div class="service-title" data-es="{l_es}" data-en="{l_en}">{l_es}</div>'
-        '<a href="#videos" class="btn-small-pill" data-es="let\'s go." data-en="let\'s go.">let\'s go.</a>'
-        '</div>'.format(
-            flower=FLOWER_SVG,
-            v=esc(s["value"]),
-            l_es=esc(s.get("label_es", "")),
-            l_en=esc(s.get("label_en", ""))
+    cells = []
+    for s in tiles:
+        url = (s.get("url") or "#videos").strip()
+        blank = ' target="_blank" rel="noopener noreferrer"' if url.startswith("http") else ""
+        btn_es = s.get("btn_es") or s.get("button_es") or "let's go."
+        btn_en = s.get("btn_en") or s.get("button_en") or "let's go."
+        cells.append(
+            '<div class="service-card">'
+            '{flower}'
+            '<div class="stat-value">{v}</div>'
+            '<div class="service-title" data-es="{l_es}" data-en="{l_en}">{l_es}</div>'
+            '<a href="{url}"{blank} class="btn-small-pill" data-es="{b_es}" data-en="{b_en}">{b_es}</a>'
+            '</div>'.format(
+                flower=FLOWER_SVG,
+                v=esc(s["value"]),
+                l_es=esc(s.get("label_es", "")),
+                l_en=esc(s.get("label_en", "")),
+                url=esc(url),
+                blank=blank,
+                b_es=esc(btn_es),
+                b_en=esc(btn_en),
+            )
         )
-        for s in tiles
-    )
-    return '<div class="services-cards">%s</div>' % cells
+    return '<div class="services-cards">%s</div>' % "".join(cells)
 
 
 def reel_item(reel, poster_uri):
