@@ -46,6 +46,19 @@
       "kind_en": "Onboarding"
     },
     {
+      "id": "reel-05",
+      "file": "media/reel-05.mp4",
+      "poster": "media/reel-05.jpg",
+      "duration": "2:18",
+      "category": "en",
+      "views": "",
+      "likes": "",
+      "title_es": "Vídeo UGC en Inglés",
+      "title_en": "UGC English Reel",
+      "kind_es": "Talking Head + Subtítulos",
+      "kind_en": "Talking Head + Captions"
+    },
+    {
       "id": "reel-03",
       "file": "media/reel-03.mp4",
       "poster": "media/reel-03.jpg",
