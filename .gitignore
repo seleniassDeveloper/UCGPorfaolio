@@ -6,3 +6,8 @@ __pycache__/
 *.MOV
 /*.mp4
 
+.env*
+scratch/
+scene_timestamps.txt
+media/0928*.mp4
+IMG_87*.jpg
