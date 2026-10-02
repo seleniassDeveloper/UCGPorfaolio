@@ -149,6 +149,10 @@ def reel_item(reel, poster_uri):
         '<div class="reel-cap">'
         '<b data-es="{l1_es}" data-en="{l1_en}">{l1_es}</b>'
         '<span data-es="{l2_es}" data-en="{l2_en}">{l2_es}</span>'
+        '<a href="#" class="btn-reel-download" data-reel-download="{id}" download="{id}.mp4" aria-label="Descargar vídeo">'
+        '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>'
+        '<span data-es="Descargar vídeo" data-en="Download video">Descargar vídeo</span>'
+        '</a>'
         "</div></div>"
     ).format(
         id=esc(reel["id"]), poster=poster_uri, label=esc(reel.get("title_es", "Reel")),
