@@ -249,6 +249,42 @@ p { margin: 0; }
   box-shadow: 2px 2px 0px var(--ink-dark);
 }
 
+.hero-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.btn-pill-insta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: var(--white);
+  color: var(--ink-dark);
+  font-family: "Fredoka", sans-serif;
+  font-weight: 700;
+  font-size: 0.95rem;
+  padding: 0.75rem 1.6rem;
+  border-radius: var(--radius-pill);
+  border: 2.5px solid var(--ink-dark);
+  box-shadow: 4px 5px 0px var(--ink-dark);
+  text-decoration: none;
+  transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.btn-pill-insta:hover {
+  background-color: var(--yellow-accent);
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 5px 7px 0px var(--ink-dark);
+}
+
+.btn-pill-insta svg {
+  width: 18px;
+  height: 18px;
+  fill: currentColor;
+}
+
 /* ---------- MARQUEE TICKER BANNER ---------- */
 .ticker-wrap {
   width: 100%;
@@ -393,14 +429,31 @@ p { margin: 0; }
 
 /* ---------- REELS VIDEO SECTION ---------- */
 .reels-section-wrap {
-  padding-block: 3.5rem 4.5rem;
+  padding-block: 4rem 5rem;
 }
 
 .section-head {
   display: flex;
-  align-items: baseline;
+  align-items: flex-end;
   justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1.5rem;
   margin-bottom: 2.5rem;
+}
+
+.section-head-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.sec-tagline {
+  font-family: "Fredoka", sans-serif;
+  font-size: 0.88rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: var(--pink-deep);
+  text-transform: uppercase;
 }
 
 .sec-title {
@@ -409,6 +462,7 @@ p { margin: 0; }
   color: var(--orange-main);
   position: relative;
   display: inline-block;
+  line-height: 1.1;
 }
 
 .sec-title::after {
@@ -419,131 +473,382 @@ p { margin: 0; }
   vertical-align: super;
 }
 
-.reels {
+/* Filter Tabs */
+.reels-filter-tabs {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--white);
+  padding: 0.4rem;
+  border-radius: var(--radius-pill);
+  border: 2.5px solid var(--ink-dark);
+  box-shadow: 4px 4px 0px var(--ink-dark);
+}
+
+.filter-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.5rem 1.1rem;
+  border-radius: var(--radius-pill);
+  border: none;
+  background: transparent;
+  color: var(--ink-dark);
+  font-family: "Fredoka", sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.filter-tab:hover {
+  background: var(--pink-soft);
+  transform: translateY(-1px);
+}
+
+.filter-tab.active {
+  background: var(--orange-main);
+  color: var(--white);
+  box-shadow: 2px 2px 0px var(--ink-dark);
+}
+
+.tab-count {
+  display: inline-block;
+  padding: 0.1rem 0.5rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  background: rgba(0, 0, 0, 0.08);
+  color: inherit;
+}
+
+.filter-tab.active .tab-count {
+  background: rgba(255, 255, 255, 0.3);
+  color: var(--white);
+}
+
+/* Modern Video Grid */
+.reels-grid-modern {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1.8rem;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2.4rem 1.8rem;
+  align-items: stretch;
+}
+
+@media (max-width: 960px) {
+  .reels-grid-modern {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.8rem;
+  }
+}
+
+@media (max-width: 620px) {
+  .reels-grid-modern {
+    grid-template-columns: 1fr;
+    max-width: 380px;
+    margin-inline: auto;
+  }
+  .section-head {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .reels-filter-tabs {
+    width: 100%;
+    justify-content: space-between;
+  }
+  .filter-tab {
+    flex: 1;
+    justify-content: center;
+    padding: 0.45rem 0.6rem;
+    font-size: 0.85rem;
+  }
 }
 
 .reel-item {
   display: flex;
   flex-direction: column;
-  gap: 0.9rem;
+  gap: 1rem;
+  transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
+.reel-item.is-filtered-out {
+  display: none !important;
+}
+
+/* Phone Mockup Frame */
 .reel-frame {
   position: relative;
-  border-radius: 28px;
+  border-radius: 34px;
   padding: 8px;
-  background-color: var(--pink-main);
-  box-shadow: 4px 6px 0px var(--ink-dark);
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  background: linear-gradient(135deg, #FFA0C8 0%, #FF581A 100%);
+  border: 2.5px solid var(--ink-dark);
+  box-shadow: 5px 7px 0px var(--ink-dark);
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
 }
 
 .reel-item:hover .reel-frame {
-  transform: translateY(-6px);
-  box-shadow: 6px 10px 0px var(--ink-dark);
+  transform: translateY(-8px) scale(1.015);
+  box-shadow: 8px 15px 0px var(--ink-dark);
 }
 
 .reel {
   position: relative;
   width: 100%;
   aspect-ratio: 9 / 16;
-  border-radius: 22px;
+  border-radius: 26px;
   overflow: hidden;
-  background-color: var(--ink-dark);
+  background-color: #0d080a;
 }
 
 .reel video {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  display: block;
 }
 
+/* Dynamic Island Mockup */
+.reel-island {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 64px;
+  height: 14px;
+  background-color: #000;
+  border-radius: 20px;
+  z-index: 4;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+  pointer-events: none;
+}
+
+/* Floating Badges on Top */
+.reel-badges {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  z-index: 4;
+  pointer-events: none;
+}
+
+.reel-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 3px 8px;
+  border-radius: 999px;
+  font-family: "Outfit", sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  background: rgba(18, 14, 16, 0.72);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: #fff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+.reel-badge.reel-lang {
+  background: rgba(255, 88, 26, 0.88);
+  border-color: rgba(255, 255, 255, 0.45);
+}
+
+/* Floating Sound Button */
+.reel-sound-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(18, 14, 16, 0.75);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1.5px solid rgba(255, 255, 255, 0.35);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 5;
+  opacity: 0;
+  transform: scale(0.85);
+  transition: opacity 0.25s ease, transform 0.25s ease, background 0.2s ease, border-color 0.2s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+  padding: 0;
+}
+
+.reel:hover .reel-sound-btn,
+.reel.is-playing .reel-sound-btn {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.reel-sound-btn:hover {
+  background: rgba(18, 14, 16, 0.95);
+  transform: scale(1.1);
+  border-color: var(--yellow-accent);
+}
+
+.reel-sound-btn svg {
+  width: 18px;
+  height: 18px;
+  fill: #fff;
+  transition: fill 0.2s ease;
+}
+
+.reel-sound-btn:hover svg {
+  fill: var(--yellow-accent);
+}
+
+.reel-sound-btn .sound-on { display: none; }
+.reel-sound-btn .sound-off { display: block; }
+
+.reel.is-unmuted .reel-sound-btn .sound-on { display: block; }
+.reel.is-unmuted .reel-sound-btn .sound-off { display: none; }
+
+/* Center Play Button with Pulse */
 .reel-btn {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   border: none;
-  background: rgba(0, 0, 0, 0.2);
+  background: rgba(0, 0, 0, 0.22);
   cursor: pointer;
   display: grid;
   place-items: center;
-  transition: background 0.2s ease;
+  transition: background 0.3s ease;
+  z-index: 3;
 }
 
 .reel-btn i {
-  width: 54px;
-  height: 54px;
-  background-color: var(--yellow-accent);
-  border: 2px solid var(--ink-dark);
+  width: 58px;
+  height: 58px;
+  background: var(--yellow-accent);
+  border: 2.5px solid var(--ink-dark);
   border-radius: 50%;
   display: grid;
   place-items: center;
-  box-shadow: 2px 4px 0px var(--ink-dark);
-  transition: transform 0.2s ease, opacity 0.2s ease;
+  box-shadow: 3px 5px 0px var(--ink-dark);
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.25s ease, background 0.2s ease;
+  position: relative;
+}
+
+.reel-btn:hover i {
+  transform: scale(1.14);
+  background-color: var(--white);
 }
 
 .reel-btn svg {
-  width: 20px;
-  height: 20px;
+  width: 22px;
+  height: 22px;
   fill: var(--ink-dark);
   margin-left: 3px;
 }
 
-.reel-btn:hover i {
-  transform: scale(1.12);
-  background-color: var(--white);
+.reel.is-playing .reel-btn,
+.reel-btn.playing {
+  background: transparent;
 }
 
-.reel-btn.playing i { opacity: 0; }
-.reel-btn.playing:hover i { opacity: 1; }
+.reel.is-playing .reel-btn i,
+.reel-btn.playing i {
+  opacity: 0;
+  pointer-events: none;
+  transform: scale(0.7);
+}
 
+.reel.is-playing .reel-btn:hover i {
+  opacity: 0;
+}
+
+/* Video Progress Bar at Bottom of Reel */
+.reel-progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 5px;
+  background: rgba(255, 255, 255, 0.25);
+  z-index: 4;
+  overflow: hidden;
+}
+
+.reel-progress-bar {
+  width: 0%;
+  height: 100%;
+  background: linear-gradient(90deg, var(--yellow-accent), var(--pink-main));
+  transition: width 0.1s linear;
+}
+
+/* Reel Caption Area */
 .reel-cap {
-  text-align: center;
+  background: var(--white);
+  padding: 1rem 1.1rem;
+  border-radius: 22px;
+  border: 2.5px solid var(--ink-dark);
+  box-shadow: 4px 4px 0px var(--ink-dark);
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
 }
 
-.reel-cap b {
-  display: block;
+.reel-cap-info {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.6rem;
+}
+
+.reel-title {
   font-family: "Fredoka", sans-serif;
-  font-size: 1.05rem;
+  font-size: 1.15rem;
+  font-weight: 700;
   color: var(--ink-dark);
+  line-height: 1.25;
 }
 
-.reel-cap span {
-  display: block;
-  font-size: 0.85rem;
-  color: var(--ink-muted);
-  font-weight: 500;
-  margin-top: 0.15rem;
+.reel-kind-tag {
+  display: inline-block;
+  padding: 0.25rem 0.65rem;
+  border-radius: var(--radius-pill);
+  background: var(--pink-soft);
+  color: var(--pink-deep);
+  font-size: 0.75rem;
+  font-weight: 700;
+  white-space: nowrap;
+  border: 1px solid rgba(232, 77, 139, 0.3);
 }
 
 .btn-reel-download {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.4rem;
-  margin-top: 0.6rem;
-  background-color: var(--pink-soft);
+  gap: 0.45rem;
+  background: var(--bg-cream);
   color: var(--ink-dark);
   font-family: "Fredoka", sans-serif;
-  font-weight: 700;
-  font-size: 0.85rem;
+  font-weight: 600;
+  font-size: 0.88rem;
   padding: 0.45rem 1rem;
   border-radius: var(--radius-pill);
-  border: 1.5px solid var(--ink-dark);
-  box-shadow: 2px 3px 0px var(--ink-dark);
-  transition: all 0.2s ease;
+  border: 2px solid var(--ink-dark);
+  box-shadow: 2px 2px 0px var(--ink-dark);
+  transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
   cursor: pointer;
-  width: 100%;
   text-decoration: none;
+  width: 100%;
 }
 
 .btn-reel-download:hover {
+  background: var(--yellow-accent);
   transform: translateY(-2px);
-  box-shadow: 3px 5px 0px var(--ink-dark);
-  background-color: var(--yellow-accent);
+  box-shadow: 3px 4px 0px var(--ink-dark);
 }
 
 .btn-reel-download:active {
@@ -555,48 +860,6 @@ p { margin: 0; }
   width: 16px;
   height: 16px;
   fill: currentColor;
-}
-
-/* Categories Side-by-Side Grid */
-.categories-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 2.5rem;
-  align-items: start;
-}
-
-.reel-category {
-  margin-bottom: 2rem;
-}
-
-.reels.reels--2col {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1.5rem;
-}
-
-.category-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.6rem;
-  background-color: var(--pink-soft);
-  color: var(--ink-dark);
-  padding: 0.5rem 1.4rem;
-  border-radius: var(--radius-pill);
-  border: 2.5px solid var(--ink-dark);
-  box-shadow: 3px 4px 0px var(--ink-dark);
-  margin-bottom: 1.8rem;
-}
-
-.category-badge h3 {
-  font-family: "Fredoka", sans-serif;
-  font-size: 1.3rem;
-  color: var(--ink-dark);
-  margin: 0;
-}
-
-.category-badge .flag {
-  font-size: 1.4rem;
 }
 
 /* Placeholder Slot */
@@ -643,6 +906,123 @@ p { margin: 0; }
 
 .photos img:hover {
   transform: scale(1.03);
+}
+
+/* ---------- INSTAGRAM SPOTLIGHT SECTION ---------- */
+.insta-spotlight {
+  margin-top: 4.5rem;
+}
+
+.insta-spotlight-card {
+  background: linear-gradient(135deg, #FFF0F6 0%, #FFF8EF 100%);
+  border-radius: var(--radius-lg);
+  border: 3px solid var(--ink-dark);
+  box-shadow: 6px 8px 0px var(--ink-dark);
+  padding: clamp(2rem, 4vw, 3rem);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.insta-spotlight-card::before {
+  content: "✦";
+  position: absolute;
+  top: -15px;
+  right: 25px;
+  font-size: 6rem;
+  color: var(--pink-soft);
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.insta-spotlight-left {
+  max-width: 650px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  position: relative;
+  z-index: 2;
+}
+
+.insta-pill-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  background: var(--pink-main);
+  color: var(--white);
+  padding: 0.35rem 0.95rem;
+  border-radius: var(--radius-pill);
+  font-family: "Fredoka", sans-serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  width: fit-content;
+  border: 1.5px solid var(--ink-dark);
+  box-shadow: 2px 2px 0px var(--ink-dark);
+}
+
+.insta-spotlight-title {
+  font-family: "Fredoka", sans-serif;
+  font-size: clamp(1.6rem, 3vw, 2.3rem);
+  color: var(--ink-dark);
+  line-height: 1.2;
+}
+
+.insta-spotlight-desc {
+  font-size: 1.05rem;
+  color: var(--ink-muted);
+  line-height: 1.6;
+}
+
+.insta-feature-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: 0.4rem;
+}
+
+.insta-ftag {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.35rem 0.85rem;
+  border-radius: var(--radius-pill);
+  background: var(--white);
+  border: 1.5px solid var(--ink-dark);
+  box-shadow: 2px 2px 0px var(--ink-dark);
+  font-family: "Outfit", sans-serif;
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: var(--ink-dark);
+}
+
+.btn-insta-big {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  background: linear-gradient(135deg, #FF581A, #E84D8B);
+  color: var(--white);
+  font-family: "Fredoka", sans-serif;
+  font-weight: 700;
+  font-size: 1.05rem;
+  padding: 0.95rem 1.9rem;
+  border-radius: var(--radius-pill);
+  border: 2.5px solid var(--ink-dark);
+  box-shadow: 4px 5px 0px var(--ink-dark);
+  text-decoration: none;
+  transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+  white-space: nowrap;
+  position: relative;
+  z-index: 2;
+}
+
+.btn-insta-big:hover {
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 6px 8px 0px var(--ink-dark);
+  background: linear-gradient(135deg, #E84D8B, #FFCE31);
+  color: var(--ink-dark);
 }
 
 /* ---------- FOOTER & SOCIALS SECTION ---------- */
@@ -802,6 +1182,7 @@ p { margin: 0; }
         <a href="#top" data-es="Inicio" data-en="Home">Inicio</a>
         <a href="#servicios" data-es="Servicios" data-en="Services">Servicios</a>
         <a href="#videos" data-es="Vídeos" data-en="Videos">Vídeos</a>
+        <a href="#instagram" data-es="Viajes & Dev" data-en="Travel & Dev">Viajes & Dev</a>
         <a href="#contacto" data-es="Contacto" data-en="Contact">Contacto</a>
         <div class="lang-switch" role="group" aria-label="Idioma / Language">
           <button type="button" data-lang="es" aria-pressed="true">ES</button>
@@ -831,8 +1212,14 @@ p { margin: 0; }
       <!-- Right: Orange Hero Card -->
       <div class="hero-card">
         <h1 class="hero-title" data-es="¡Encontremos el spark de tu marca!" data-en="we're all about finding your spark!">¡Encontremos el spark de tu marca!</h1>
-        <p class="hero-bio" data-es="Soy Selenia (Seleedev). Creadora de contenido UGC & Developer. Guionizo, grabo y edito vídeos de alta conversión para TikTok e Instagram con la voz auténtica que tu producto necesita." data-en="I'm Selenia (Seleedev). UGC Creator & Developer. I write scripts, film, and edit high-converting videos for TikTok and Instagram with the authentic voice your tech product needs.">Soy Selenia (Seleedev). Creadora de contenido UGC & Developer. Guionizo, grabo y edito vídeos de alta conversión para TikTok e Instagram con la voz auténtica que tu producto necesita.</p>
-        <a href="#contacto" class="btn-pill" data-es="spark!" data-en="spark!">spark!</a>
+        <p class="hero-bio" data-es="Soy Selenia (Seleedev). Creadora de contenido UGC & Programadora de Software. Recorro el mundo como nómada digital construyendo proyectos tech y creando vídeos virales y de alta conversión para marcas globales." data-en="I'm Selenia (Seleedev). UGC Creator & Software Programmer. I travel the world as a digital nomad building tech projects and creating high-converting, authentic videos for global tech brands.">Soy Selenia (Seleedev). Creadora de contenido UGC & Programadora de Software. Recorro el mundo como nómada digital construyendo proyectos tech y creando vídeos virales y de alta conversión para marcas globales.</p>
+        <div class="hero-actions">
+          <a href="#contacto" class="btn-pill" data-es="spark!" data-en="spark!">spark!</a>
+          <a href="https://www.instagram.com/seleniasanchez/" target="_blank" rel="noopener noreferrer" class="btn-pill-insta" aria-label="Instagram @seleniasanchez">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            <span>Instagram: @seleniasanchez</span>
+          </a>
+        </div>
       </div>
 
     </div>
@@ -842,20 +1229,24 @@ p { margin: 0; }
   <div class="ticker-wrap">
     <div class="ticker-move">
       <div class="ticker-item">
-        <span data-es="Trabaja conmigo para impulsar tu marca" data-en="Work with me to rediscover your inner glow">Trabaja conmigo para impulsar tu marca</span>
+        <span data-es="✈️ Nómada Digital & Viajes por el mundo" data-en="✈️ Digital Nomad & World Travels">✈️ Nómada Digital & Viajes por el mundo</span>
         <span class="star">✦</span>
-        <span data-es="Creadora de UGC & Content Strategy" data-en="UGC Creator & Tech Strategy">Creadora de UGC & Content Strategy</span>
+        <span data-es="💻 Programadora de Software" data-en="💻 Software Programmer & Developer">💻 Programadora de Software</span>
         <span class="star">★</span>
-        <span data-es="Vídeos de alta conversión para TikTok e Instagram" data-en="High converting videos for TikTok & Instagram">Vídeos de alta conversión para TikTok e Instagram</span>
+        <span data-es="📸 @seleniasanchez en Instagram" data-en="📸 @seleniasanchez on Instagram">📸 @seleniasanchez en Instagram</span>
         <span class="star">✦</span>
+        <span data-es="Vídeos de alta conversión para TikTok e Instagram" data-en="High converting videos for TikTok & Instagram">Vídeos de alta conversión para TikTok e Instagram</span>
+        <span class="star">★</span>
       </div>
       <div class="ticker-item" aria-hidden="true">
-        <span data-es="Trabaja conmigo para impulsar tu marca" data-en="Work with me to rediscover your inner glow">Trabaja conmigo para impulsar tu marca</span>
+        <span data-es="✈️ Nómada Digital & Viajes por el mundo" data-en="✈️ Digital Nomad & World Travels">✈️ Nómada Digital & Viajes por el mundo</span>
         <span class="star">✦</span>
-        <span data-es="Creadora de UGC & Content Strategy" data-en="UGC Creator & Tech Strategy">Creadora de UGC & Content Strategy</span>
+        <span data-es="💻 Programadora de Software" data-en="💻 Software Programmer & Developer">💻 Programadora de Software</span>
         <span class="star">★</span>
-        <span data-es="Vídeos de alta conversión para TikTok e Instagram" data-en="High converting videos for TikTok & Instagram">Vídeos de alta conversión para TikTok e Instagram</span>
+        <span data-es="📸 @seleniasanchez en Instagram" data-en="📸 @seleniasanchez on Instagram">📸 @seleniasanchez en Instagram</span>
         <span class="star">✦</span>
+        <span data-es="Vídeos de alta conversión para TikTok e Instagram" data-en="High converting videos for TikTok & Instagram">Vídeos de alta conversión para TikTok e Instagram</span>
+        <span class="star">★</span>
       </div>
     </div>
   </div>
@@ -886,32 +1277,59 @@ p { margin: 0; }
   <!-- REELS SHOWCASE SECTION -->
   <div class="wrap reels-section-wrap" id="videos">
     <div class="section-head">
-      <h2 class="sec-title" data-es="Mis vídeos destacados" data-en="Featured videos">Mis vídeos destacados</h2>
-    </div>
-    
-    <div class="categories-grid">
-      <!-- Category 1: English -->
-      <div class="reel-category">
-        <div class="category-badge">
-          <span class="flag">🇬🇧</span>
-          <h3 data-es="Vídeos en Inglés" data-en="English Videos">Vídeos en Inglés</h3>
-        </div>
-        <div class="reels reels--2col">
-          {{REEL_ITEMS_EN}}
-        </div>
+      <div class="section-head-info">
+        <span class="sec-tagline" data-es="✦ PORTFOLIO UGC" data-en="✦ UGC SHOWCASE">✦ PORTFOLIO UGC</span>
+        <h2 class="sec-title" data-es="Mis vídeos destacados" data-en="Featured videos">Mis vídeos destacados</h2>
       </div>
 
-      <!-- Category 2: Spanish -->
-      <div class="reel-category">
-        <div class="category-badge">
-          <span class="flag">🇪🇸</span>
-          <h3 data-es="Vídeos en Español" data-en="Spanish Videos">Vídeos en Español</h3>
-        </div>
-        <div class="reels reels--2col">
-          {{REEL_ITEMS_ES}}
-        </div>
+      <!-- Filter Tabs -->
+      <div class="reels-filter-tabs">
+        <button class="filter-tab active" data-filter="all" type="button">
+          <span class="tab-icon">✦</span>
+          <span data-es="Todos" data-en="All">Todos</span>
+          <span class="tab-count count-all">5</span>
+        </button>
+        <button class="filter-tab" data-filter="en" type="button">
+          <span class="tab-icon">🇬🇧</span>
+          <span data-es="Inglés" data-en="English">Inglés</span>
+          <span class="tab-count count-en">4</span>
+        </button>
+        <button class="filter-tab" data-filter="es" type="button">
+          <span class="tab-icon">🇪🇸</span>
+          <span data-es="Español" data-en="Spanish">Español</span>
+          <span class="tab-count count-es">1</span>
+        </button>
       </div>
     </div>
+    
+    <div class="reels reels-grid-modern">
+      {{REEL_ITEMS}}
+    </div>
+
+    <!-- INSTAGRAM LIFESTYLE & DEV SPOTLIGHT -->
+    <section class="insta-spotlight" id="instagram">
+      <div class="insta-spotlight-card">
+        <div class="insta-spotlight-left">
+          <div class="insta-pill-badge">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            <span>Instagram: @seleniasanchez</span>
+          </div>
+          <h2 class="insta-spotlight-title" data-es="Viajes por el Mundo & Vida de Programadora" data-en="World Travels & Life as a Programmer">Viajes por el Mundo & Vida de Programadora</h2>
+          <p class="insta-spotlight-desc" data-es="En mi cuenta @seleniasanchez comparto mi vida como programadora remota y nómada digital: descubriendo nuevos países, creando software y mostrando cómo la tecnología me permite construir proyectos y viajar por el mundo." data-en="On my account @seleniasanchez, I share my journey as a remote software programmer and digital nomad: discovering new countries, coding software, and living how tech enables working from anywhere in the world.">En mi cuenta @seleniasanchez comparto mi vida como programadora remota y nómada digital: descubriendo nuevos países, creando software y mostrando cómo la tecnología me permite construir proyectos y viajar por el mundo.</p>
+          <div class="insta-feature-tags">
+            <span class="insta-ftag">✈️ Viajes & Nómada Digital</span>
+            <span class="insta-ftag">💻 Programadora & Developer</span>
+            <span class="insta-ftag">📱 Contenido Tech Auténtico</span>
+          </div>
+        </div>
+        <div class="insta-spotlight-right">
+          <a href="https://www.instagram.com/seleniasanchez/" target="_blank" rel="noopener noreferrer" class="btn-insta-big" aria-label="Seguir a Selenia en Instagram">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            <span data-es="Ver mis viajes & código ↗" data-en="See my travels & code ↗">Ver mis viajes & código ↗</span>
+          </a>
+        </div>
+      </div>
+    </section>
 
     {{PHOTOS}}
   </div>
@@ -963,20 +1381,177 @@ p { margin: 0; }
     });
   });
 
-  document.querySelectorAll(".reel-btn").forEach(function(btn){
-    var v = btn.closest(".reel").querySelector("video");
+  var globalUnmuted = false;
+
+  document.querySelectorAll(".reel").forEach(function(reel){
+    var v = reel.querySelector("video");
+    var btn = reel.querySelector(".reel-btn");
+    var soundBtn = reel.querySelector(".reel-sound-btn");
+    var progressBar = reel.querySelector(".reel-progress-bar");
     if(!v) return;
-    btn.addEventListener("click", function(){
-      if(v.paused){
-        document.querySelectorAll(".reel video").forEach(function(o){ if(o !== v) o.pause(); });
-        v.play().catch(function(){});
-      }else{
-        v.pause();
+
+    var isLocked = false;
+    var playPromise = null;
+
+    v.addEventListener("timeupdate", function(){
+      if(v.duration && progressBar){
+        var pct = (v.currentTime / v.duration) * 100;
+        progressBar.style.width = pct + "%";
       }
     });
-    v.addEventListener("play", function(){ btn.classList.add("playing"); });
-    v.addEventListener("pause", function(){ btn.classList.remove("playing"); });
+
+    function startPlay(withSound){
+      document.querySelectorAll(".reel video").forEach(function(o){
+        if(o !== v){
+          o.pause();
+          o.currentTime = 0;
+          var pReel = o.closest(".reel");
+          if(pReel){
+            pReel.classList.remove("is-playing");
+            var pBtn = pReel.querySelector(".reel-btn");
+            if(pBtn) pBtn.classList.remove("playing");
+            var pBar = pReel.querySelector(".reel-progress-bar");
+            if(pBar) pBar.style.width = "0%";
+          }
+        }
+      });
+
+      v.muted = !withSound;
+      reel.classList.toggle("is-unmuted", withSound);
+
+      playPromise = v.play();
+      if(playPromise !== undefined){
+        playPromise.then(function(){
+          reel.classList.add("is-playing");
+          if(btn) btn.classList.add("playing");
+        }).catch(function(){
+          if(withSound){
+            v.muted = true;
+            reel.classList.remove("is-unmuted");
+            v.play().then(function(){
+              reel.classList.add("is-playing");
+              if(btn) btn.classList.add("playing");
+            }).catch(function(){});
+          }
+        });
+      }
+    }
+
+    function stopPlay(resetTime){
+      if(playPromise !== undefined){
+        playPromise.then(function(){
+          v.pause();
+          if(resetTime){
+            v.currentTime = 0;
+            if(progressBar) progressBar.style.width = "0%";
+          }
+        }).catch(function(){
+          v.pause();
+          if(resetTime){
+            v.currentTime = 0;
+            if(progressBar) progressBar.style.width = "0%";
+          }
+        });
+      } else {
+        v.pause();
+        if(resetTime){
+          v.currentTime = 0;
+          if(progressBar) progressBar.style.width = "0%";
+        }
+      }
+      reel.classList.remove("is-playing");
+      if(btn) btn.classList.remove("playing");
+    }
+
+    var item = reel.closest(".reel-item") || reel;
+
+    item.addEventListener("mouseenter", function(){
+      if(!isLocked){
+        startPlay(globalUnmuted);
+      }
+    });
+
+    item.addEventListener("mouseleave", function(){
+      if(!isLocked){
+        stopPlay(true);
+      }
+    });
+
+    if(btn){
+      btn.addEventListener("click", function(e){
+        if(e.target.closest(".reel-sound-btn")) return;
+
+        if(v.paused){
+          isLocked = true;
+          globalUnmuted = true;
+          startPlay(true);
+        } else if(!isLocked && v.muted){
+          isLocked = true;
+          globalUnmuted = true;
+          v.muted = false;
+          reel.classList.add("is-unmuted");
+        } else {
+          isLocked = false;
+          stopPlay(false);
+        }
+      });
+    }
+
+    if(soundBtn){
+      soundBtn.addEventListener("click", function(e){
+        e.stopPropagation();
+        e.preventDefault();
+        v.muted = !v.muted;
+        globalUnmuted = !v.muted;
+        reel.classList.toggle("is-unmuted", !v.muted);
+        if(!v.muted && v.paused){
+          isLocked = true;
+          startPlay(true);
+        }
+      });
+    }
+
+    v.addEventListener("play", function(){
+      reel.classList.add("is-playing");
+      if(btn) btn.classList.add("playing");
+    });
+    v.addEventListener("pause", function(){
+      if(!isLocked){
+        reel.classList.remove("is-playing");
+        if(btn) btn.classList.remove("playing");
+      }
+    });
   });
+
+  var filterTabs = document.querySelectorAll(".filter-tab");
+  filterTabs.forEach(function(tab){
+    tab.addEventListener("click", function(){
+      filterTabs.forEach(function(t){ t.classList.remove("active"); });
+      tab.classList.add("active");
+      var filter = tab.dataset.filter;
+      document.querySelectorAll(".reel-item").forEach(function(item){
+        if(filter === "all" || item.dataset.category === filter){
+          item.classList.remove("is-filtered-out");
+        } else {
+          item.classList.add("is-filtered-out");
+          var v = item.querySelector("video");
+          if(v){
+            v.pause();
+            v.currentTime = 0;
+            var r = v.closest(".reel");
+            if(r) r.classList.remove("is-playing");
+          }
+        }
+      });
+    });
+  });
+
+  var allCount = document.querySelectorAll(".reel-item:not(.placeholder)").length;
+  var enCount = document.querySelectorAll('.reel-item[data-category="en"]').length;
+  var esCount = document.querySelectorAll('.reel-item[data-category="es"]').length;
+  var cAll = document.querySelector(".count-all"); if(cAll) cAll.textContent = allCount;
+  var cEn = document.querySelector(".count-en"); if(cEn) cEn.textContent = enCount;
+  var cEs = document.querySelector(".count-es"); if(cEs) cEs.textContent = esCount;
 
   function apply(lang){
     document.documentElement.lang = lang;

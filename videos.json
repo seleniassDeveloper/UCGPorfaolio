@@ -5,7 +5,7 @@
 
   "links": {
     "tiktok": "https://www.tiktok.com/@seleedev",
-    "instagram": "https://www.instagram.com/ssseleniadev",
+    "instagram": "https://www.instagram.com/seleniasanchez/",
     "youtube": "",
     "linkedin": "",
     "email": "seleniadeveloper@gmail.com"
@@ -21,20 +21,20 @@
       "url": "https://www.tiktok.com/@seleedev"
     },
     {
-      "value": "103",
-      "label_es": "Seguidores Instagram (@ssseleniadev)",
-      "label_en": "Instagram Followers (@ssseleniadev)",
-      "btn_es": "Ir a Instagram ↗",
+      "value": "✈️ 💻",
+      "label_es": "Viajes & Programación (@seleniasanchez)",
+      "label_en": "Travel & Coding Life (@seleniasanchez)",
+      "btn_es": "Ver Instagram ↗",
       "btn_en": "Go to Instagram ↗",
-      "url": "https://www.instagram.com/ssseleniadev"
+      "url": "https://www.instagram.com/seleniasanchez/"
     },
     {
-      "value": "170",
+      "value": "170+",
       "label_es": "Seguidores Totales en Redes",
       "label_en": "Total Social Followers",
       "btn_es": "Ver Redes ↗",
       "btn_en": "View Socials ↗",
-      "url": "https://www.instagram.com/ssseleniadev"
+      "url": "https://www.instagram.com/seleniasanchez/"
     }
   ],
 
@@ -54,19 +54,6 @@
       "kind_en": "Demo + talking head"
     },
     {
-      "id": "reel-02",
-      "file": "media/reel-02.mp4",
-      "poster": "media/reel-02.jpg",
-      "duration": "0:42",
-      "category": "en",
-      "views": "",
-      "likes": "",
-      "title_es": "Demo de producto",
-      "title_en": "Product demo",
-      "kind_es": "Onboarding",
-      "kind_en": "Onboarding"
-    },
-    {
       "id": "reel-05",
       "file": "media/reel-05.mp4",
       "poster": "media/reel-05.jpg",
@@ -76,19 +63,6 @@
       "likes": "",
       "title_es": "Lovable",
       "title_en": "Lovable",
-      "kind_es": "Talking Head + Subtítulos",
-      "kind_en": "Talking Head + Captions"
-    },
-    {
-      "id": "reel-06",
-      "file": "media/reel-06.mp4",
-      "poster": "media/reel-06.jpg",
-      "duration": "0:19",
-      "category": "en",
-      "views": "",
-      "likes": "",
-      "title_es": "ClassFactor",
-      "title_en": "ClassFactor",
       "kind_es": "Talking Head + Subtítulos",
       "kind_en": "Talking Head + Captions"
     },
@@ -106,19 +80,17 @@
       "kind_en": "Talking Head + Captions"
     },
     {
-      "id": "reel-03",
-      "file": "media/reel-03.mp4",
-      "poster": "media/reel-03.jpg",
-      "duration": "0:29",
-      "category": "es",
+      "id": "reel-08",
+      "file": "media/reel-08.mp4",
+      "poster": "media/reel-08.jpg",
+      "duration": "0:20",
+      "category": "en",
       "views": "",
       "likes": "",
-      "title_es": "Demo de producto",
-      "title_en": "Product demo",
-      "kind_es": "UGC Video",
-      "kind_en": "UGC Video",
-      "lang_es": "Español",
-      "lang_en": "Spanish"
+      "title_es": "ClassFactor",
+      "title_en": "ClassFactor",
+      "kind_es": "Talking Head + Subtítulos",
+      "kind_en": "Talking Head + Captions"
     },
     {
       "id": "reel-04",
@@ -134,6 +106,19 @@
       "kind_en": "UGC Video",
       "lang_es": "Español",
       "lang_en": "Spanish"
+    },
+    {
+      "id": "reel-09",
+      "file": "media/reel-09.mp4",
+      "poster": "media/reel-09.jpg",
+      "duration": "0:16",
+      "category": "en",
+      "views": "",
+      "likes": "",
+      "title_es": "Viajes & Lifestyle",
+      "title_en": "Travel & Lifestyle",
+      "kind_es": "Vlog + Lifestyle UGC",
+      "kind_en": "Vlog + Lifestyle UGC"
     }
   ]
 }
