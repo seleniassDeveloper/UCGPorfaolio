@@ -28,7 +28,7 @@
       "poster": "media/reel-08.jpg",
       "duration": "0:20",
       "format": "Relatable Meme",
-      "structureLabel": "Relatable Hook → Product Demo → Payoff",
+      "structureLabel": "Relatable Hook / Product Demo",
       "featured": true,
       "status": "published"
     },
@@ -41,7 +41,7 @@
       "poster": "media/reel-09.jpg",
       "duration": "0:16",
       "format": "Brand Story",
-      "structureLabel": "Story Hook → App Demo → CTA",
+      "structureLabel": "Story Hook / Workflow Demo",
       "featured": true,
       "status": "published"
     },
@@ -52,10 +52,23 @@
       "category": "tech",
       "file": "media/reel-05.mp4",
       "poster": "media/reel-05.jpg",
-      "duration": "2:18",
-      "format": "Reaction / Social Proof",
-      "structureLabel": "Reaction → Product Showcase → CTA",
+      "duration": "2:08",
+      "format": "Reaction",
+      "structureLabel": "Split-Screen Reaction / Social Proof",
       "featured": true,
+      "status": "published"
+    },
+    {
+      "id": "reel-10",
+      "brand": "CapCut",
+      "title": "Background Removal Without Green Screen",
+      "category": "tech",
+      "file": "media/reel-10.mp4",
+      "poster": "media/reel-10.jpg",
+      "duration": "0:20",
+      "format": "Feature Demo",
+      "structureLabel": "Visual Hook / Feature Demo",
+      "featured": false,
       "status": "published"
     },
     {
@@ -66,8 +79,8 @@
       "file": "media/reel-01.mp4",
       "poster": "media/reel-01.jpg",
       "duration": "0:41",
-      "format": "Feature Explainer",
-      "structureLabel": "Hook → Product Demo → Benefit → CTA",
+      "format": "Explainer",
+      "structureLabel": "Problem Hook / Feature Explainer",
       "featured": false,
       "status": "published"
     },
@@ -96,19 +109,6 @@
       "structureLabel": "Relatable Hook → Feature Demo → Payoff",
       "featured": false,
       "status": "hidden"
-    },
-    {
-      "id": "new-capcut",
-      "brand": "CapCut",
-      "title": "Background Removal Without Green Screen",
-      "category": "tech",
-      "file": "",
-      "poster": "",
-      "duration": "0:22",
-      "format": "Feature Explainer",
-      "structureLabel": "Visual Hook → Feature Demo → Transformation → CTA",
-      "featured": false,
-      "status": "draft"
     },
     {
       "id": "new-chatgpt",
