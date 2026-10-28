@@ -1,5 +1,5 @@
 {
-  "_nota": "Edita este archivo y ejecuta: python3 build.py",
+  "_nota": "Edit this file and run: python3 build.py",
 
   "portrait": "media/retrato.jpg",
 
@@ -8,117 +8,49 @@
     "instagram": "https://www.instagram.com/seleniasanchez/",
     "youtube": "",
     "linkedin": "",
-    "email": "seleniadeveloper@gmail.com"
+    "email": "seleniadeveloper@gmail.com",
+    "booking": "https://cal.com/seleniasanchez"
   },
 
-  "stats": [
-    {
-      "value": "707",
-      "label_es": "Me gusta en TikTok (@seleedev)",
-      "label_en": "TikTok Likes (@seleedev)",
-      "btn_es": "Ir a TikTok ↗",
-      "btn_en": "Go to TikTok ↗",
-      "url": "https://www.tiktok.com/@seleedev"
-    },
-    {
-      "value": "✈️ 💻",
-      "label_es": "Viajes & Programación (@seleniasanchez)",
-      "label_en": "Travel & Coding Life (@seleniasanchez)",
-      "btn_es": "Ver Instagram ↗",
-      "btn_en": "Go to Instagram ↗",
-      "url": "https://www.instagram.com/seleniasanchez/"
-    },
-    {
-      "value": "170+",
-      "label_es": "Seguidores Totales en Redes",
-      "label_en": "Total Social Followers",
-      "btn_es": "Ver Redes ↗",
-      "btn_en": "View Socials ↗",
-      "url": "https://www.instagram.com/seleniasanchez/"
-    }
-  ],
+  "stats": [],
 
-  "_reels": "views y likes salen en grande debajo de cada video. Si los dejas vacios sale el titulo y el tipo.",
+  "_reels": "Reels filtered by category (tech, travel). Spanish reels and removed reels excluded.",
   "reels": [
     {
       "id": "reel-01",
       "file": "media/reel-01.mp4",
       "poster": "media/reel-01.jpg",
       "duration": "0:41",
-      "category": "en",
-      "views": "",
-      "likes": "",
-      "title_es": "App de planificación con IA",
-      "title_en": "AI day-planner app",
-      "kind_es": "Demo + talking head",
-      "kind_en": "Demo + talking head"
+      "category": "tech",
+      "title": "AI Day-Planner App",
+      "kind": "Demo + Talking Head"
     },
     {
       "id": "reel-05",
       "file": "media/reel-05.mp4",
       "poster": "media/reel-05.jpg",
       "duration": "2:18",
-      "category": "en",
-      "views": "",
-      "likes": "",
-      "title_es": "Lovable",
-      "title_en": "Lovable",
-      "kind_es": "Talking Head + Subtítulos",
-      "kind_en": "Talking Head + Captions"
-    },
-    {
-      "id": "reel-07",
-      "file": "media/reel-07.mp4",
-      "poster": "media/reel-07.jpg",
-      "duration": "0:20",
-      "category": "en",
-      "views": "",
-      "likes": "",
-      "title_es": "ClassFactor",
-      "title_en": "ClassFactor",
-      "kind_es": "Talking Head + Subtítulos",
-      "kind_en": "Talking Head + Captions"
+      "category": "tech",
+      "title": "Lovable",
+      "kind": "Talking Head + Captions"
     },
     {
       "id": "reel-08",
       "file": "media/reel-08.mp4",
       "poster": "media/reel-08.jpg",
       "duration": "0:20",
-      "category": "en",
-      "views": "",
-      "likes": "",
-      "title_es": "ClassFactor",
-      "title_en": "ClassFactor",
-      "kind_es": "Talking Head + Subtítulos",
-      "kind_en": "Talking Head + Captions"
-    },
-    {
-      "id": "reel-04",
-      "file": "media/reel-04.mp4",
-      "poster": "media/reel-04.jpg",
-      "duration": "0:30",
-      "category": "es",
-      "views": "",
-      "likes": "",
-      "title_es": "Demo de producto",
-      "title_en": "Product demo",
-      "kind_es": "UGC Video",
-      "kind_en": "UGC Video",
-      "lang_es": "Español",
-      "lang_en": "Spanish"
+      "category": "tech",
+      "title": "ClassFactor",
+      "kind": "Talking Head + Captions"
     },
     {
       "id": "reel-09",
       "file": "media/reel-09.mp4",
       "poster": "media/reel-09.jpg",
       "duration": "0:16",
-      "category": "en",
-      "views": "",
-      "likes": "",
-      "title_es": "Viajes & Lifestyle",
-      "title_en": "Travel & Lifestyle",
-      "kind_es": "Vlog + Lifestyle UGC",
-      "kind_en": "Vlog + Lifestyle UGC"
+      "category": "travel",
+      "title": "Travel & Lifestyle",
+      "kind": "Vlog + Lifestyle UGC"
     }
   ]
 }

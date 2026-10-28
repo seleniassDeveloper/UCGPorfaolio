@@ -1,13 +1,8 @@
 #!/usr/bin/env python3
-"""Monta dist/portfolio.html: mete los vídeos y las fotos de media/ dentro del HTML.
+"""Build dist/portfolio.html: bundles videos and assets into an English-only, high-converting UGC portfolio.
 
-Uso:
+Usage:
     python3 build.py
-
-Para añadir un vídeo nuevo:
-    1. python3 add_video.py originals/mi-video.mov reel-02
-    2. añade la entrada en videos.json (o edita un hueco)
-    3. python3 build.py
 """
 
 import base64
@@ -21,20 +16,19 @@ ROOT = os.path.dirname(os.path.abspath(__file__))
 TEMPLATE = os.path.join(ROOT, "template.html")
 CONFIG = os.path.join(ROOT, "videos.json")
 FOTOS = os.path.join(ROOT, "media", "fotos")
-OUT = os.path.join(ROOT, "dist", "portfolio.html")          # documento completo, para enviar o subir
-OUT_INDEX = os.path.join(ROOT, "dist", "index.html")            # documento principal para Vercel / web hosts
-OUT_ARTIFACT = os.path.join(ROOT, "dist", "artifact.html")  # fragmento, para publicar como Artifact
-
+OUT = os.path.join(ROOT, "dist", "portfolio.html")
+OUT_INDEX = os.path.join(ROOT, "dist", "index.html")
+OUT_ARTIFACT = os.path.join(ROOT, "dist", "artifact.html")
 
 DOC_HEAD = (
-    "<!doctype html>\n<html lang=\"es\">\n<head>\n<meta charset=\"utf-8\">\n"
+    "<!doctype html>\n<html lang=\"en\">\n<head>\n<meta charset=\"utf-8\">\n"
     "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n"
+    "<meta name=\"theme-color\" content=\"#FF581A\">\n"
+    "<meta name=\"description\" content=\"Selenia Sánchez (Seleedev) - UGC Creator & Software Engineer specializing in Tech, AI apps, and Travel & Lifestyle content.\">\n"
 )
 DOC_MID = "</head>\n<body>\n"
 DOC_TAIL = "\n</body>\n</html>\n"
 
-# Un artifact publicado no puede pasar de 16 MB ya renderizado.
-# El base64 pesa 4/3 del archivo original, asi que conviene dejar margen.
 HARD_LIMIT_MB = 15.0
 
 ICONS = {
@@ -44,8 +38,13 @@ ICONS = {
     "linkedin": "M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-.95 1.83-1.95 3.77-1.95 4.03 0 4.78 2.5 4.78 5.76V21h-4v-5.6c0-1.34-.03-3.06-1.9-3.06-1.9 0-2.2 1.45-2.2 2.96V21H9z",
     "email": "M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4-8 5-8-5V6l8 5 8-5z",
 }
-LABELS = {"tiktok": "TikTok", "instagram": "Instagram", "youtube": "YouTube",
-          "linkedin": "LinkedIn", "email": "Email"}
+LABELS = {
+    "tiktok": "TikTok",
+    "instagram": "Instagram",
+    "youtube": "YouTube",
+    "linkedin": "LinkedIn",
+    "email": "Email",
+}
 
 
 def data_uri(path, mime):
@@ -69,7 +68,8 @@ def socials(links):
         out.append(
             '<a href="{url}"{blank} aria-label="{label}">'
             '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="{path}"/></svg></a>'.format(
-                url=esc(url), blank=blank, label=LABELS[key], path=ICONS[key])
+                url=esc(url), blank=blank, label=LABELS[key], path=ICONS[key]
+            )
         )
     return "".join(out)
 
@@ -81,34 +81,47 @@ FLOWER_SVG = (
 )
 
 
-def stats_block(stats):
-    tiles = [s for s in stats if str(s.get("value", "")).strip()]
-    if not tiles:
-        return "<!-- sin datos todavia: rellena \"stats\" en videos.json -->"
-    cells = []
-    for s in tiles:
-        url = (s.get("url") or "#videos").strip()
-        blank = ' target="_blank" rel="noopener noreferrer"' if url.startswith("http") else ""
-        btn_es = s.get("btn_es") or s.get("button_es") or "let's go."
-        btn_en = s.get("btn_en") or s.get("button_en") or "let's go."
-        cells.append(
+def pillars_block():
+    """Highlights key creative pillars without showing follower counts or vanity metrics."""
+    pillars = [
+        {
+            "icon": "🤖",
+            "title": "Tech & AI UGC",
+            "desc": "Engaging product walkthroughs, live workflows & high-retention founder demos.",
+            "tag": "SaaS & AI Apps",
+        },
+        {
+            "icon": "✈️",
+            "title": "Travel & Lifestyle",
+            "desc": "Aesthetic, cinematic storytelling connecting genuine experiences with global brands.",
+            "tag": "Global Content",
+        },
+        {
+            "icon": "⚡",
+            "title": "High-Converting Creative",
+            "desc": "Scroll-stopping hooks and direct-response formats for TikTok & Instagram Reels.",
+            "tag": "Direct Response",
+        },
+    ]
+
+    cards = []
+    for p in pillars:
+        cards.append(
             '<div class="service-card">'
             '{flower}'
-            '<div class="stat-value">{v}</div>'
-            '<div class="service-title" data-es="{l_es}" data-en="{l_en}">{l_es}</div>'
-            '<a href="{url}"{blank} class="btn-small-pill" data-es="{b_es}" data-en="{b_en}">{b_es}</a>'
+            '<div class="pillar-emoji">{icon}</div>'
+            '<div class="service-title">{title}</div>'
+            '<p class="pillar-desc">{desc}</p>'
+            '<span class="btn-small-pill">{tag}</span>'
             '</div>'.format(
                 flower=FLOWER_SVG,
-                v=esc(s["value"]),
-                l_es=esc(s.get("label_es", "")),
-                l_en=esc(s.get("label_en", "")),
-                url=esc(url),
-                blank=blank,
-                b_es=esc(btn_es),
-                b_en=esc(btn_en),
+                icon=p["icon"],
+                title=esc(p["title"]),
+                desc=esc(p["desc"]),
+                tag=esc(p["tag"]),
             )
         )
-    return '<div class="services-cards">%s</div>' % "".join(cells)
+    return '<div class="services-cards">%s</div>' % "".join(cards)
 
 
 def reel_item(reel, poster_uri):
@@ -117,28 +130,27 @@ def reel_item(reel, poster_uri):
             '<div class="reel-item reel-item--slot">'
             '<div class="reel reel--slot">'
             '<div class="slot-icon">✦</div>'
-            '<p data-es="Espacio libre" data-en="Open slot">Espacio libre</p>'
+            '<p>Open slot</p>'
             "</div>"
             '<div class="reel-cap">'
-            '<b data-es="{t_es}" data-en="{t_en}">{t_es}</b>'
-            '<span data-es="{k_es}" data-en="{k_en}">{k_es}</span>'
+            '<b>{title}</b>'
+            '<span>{kind}</span>'
             "</div></div>"
         ).format(
-            t_es=esc(reel.get("title_es", "")), t_en=esc(reel.get("title_en", "")),
-            k_es=esc(reel.get("kind_es", "")), k_en=esc(reel.get("kind_en", "")),
+            title=esc(reel.get("title") or reel.get("title_en", "")),
+            kind=esc(reel.get("kind") or reel.get("kind_en", "")),
         )
 
-    views = str(reel.get("views", "")).strip()
-    likes = str(reel.get("likes", "")).strip()
-    line1_es = esc(views) if views else esc(reel.get("title_es", ""))
-    line1_en = esc(views) if views else esc(reel.get("title_en", ""))
-    line2_es = esc(likes) if likes else esc(reel.get("kind_es", ""))
-    line2_en = esc(likes) if likes else esc(reel.get("kind_en", ""))
-
+    title = esc(reel.get("title") or reel.get("title_en", "Reel"))
+    kind = esc(reel.get("kind") or reel.get("kind_en", "UGC Video"))
     duration = esc(reel.get("duration", "")).strip()
-    cat = esc(reel.get("category", "all")).strip()
-    flag = "🇬🇧" if cat == "en" else "🇪🇸"
-    lang_code = "EN" if cat == "en" else "ES"
+    cat = esc(reel.get("category", "tech")).strip().lower()
+
+    if cat == "travel":
+        cat_badge = "✈️ Travel"
+    else:
+        cat_badge = "🤖 Tech & AI"
+
     dur_html = ('<span class="reel-badge reel-duration">⏱ %s</span>' % duration) if duration else ""
 
     return (
@@ -148,15 +160,15 @@ def reel_item(reel, poster_uri):
         '<div class="reel-island"></div>'
         '<div class="reel-badges">'
         '{dur_html}'
-        '<span class="reel-badge reel-lang">{flag} {lang_code}</span>'
+        '<span class="reel-badge reel-cat">{cat_badge}</span>'
         '</div>'
-        '<button class="reel-sound-btn" type="button" aria-label="Sonido">'
+        '<button class="reel-sound-btn" type="button" aria-label="Toggle sound">'
         '<svg class="sound-on" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>'
         '<svg class="sound-off" viewBox="0 0 24 24"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/></svg>'
         '</button>'
         '<video data-reel="{id}" poster="{poster}" loop playsinline preload="none" '
-        'aria-label="{label}"></video>'
-        '<button class="reel-btn" type="button" aria-label="Reproducir"><i>'
+        'aria-label="{title}"></video>'
+        '<button class="reel-btn" type="button" aria-label="Play video"><i>'
         '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>'
         '</i></button>'
         '<div class="reel-progress"><div class="reel-progress-bar"></div></div>'
@@ -164,18 +176,18 @@ def reel_item(reel, poster_uri):
         '</div>'
         '<div class="reel-cap">'
         '<div class="reel-cap-info">'
-        '<b class="reel-title" data-es="{l1_es}" data-en="{l1_en}">{l1_es}</b>'
-        '<span class="reel-kind-tag" data-es="{l2_es}" data-en="{l2_en}">{l2_es}</span>'
+        '<b class="reel-title">{title}</b>'
+        '<span class="reel-kind-tag">{kind}</span>'
         '</div>'
-        '<a href="#" class="btn-reel-download" data-reel-download="{id}" download="{id}.mp4" aria-label="Descargar vídeo">'
-        '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>'
-        '<span data-es="Descargar vídeo" data-en="Download video">Descargar vídeo</span>'
-        '</a>'
         '</div></div>'
     ).format(
-        id=esc(reel["id"]), poster=poster_uri, label=esc(reel.get("title_es", "Reel")),
-        l1_es=line1_es, l1_en=line1_en, l2_es=line2_es, l2_en=line2_en,
-        cat=cat, flag=flag, lang_code=lang_code, dur_html=dur_html,
+        id=esc(reel["id"]),
+        poster=poster_uri,
+        title=title,
+        kind=kind,
+        cat=cat,
+        cat_badge=cat_badge,
+        dur_html=dur_html,
     )
 
 
@@ -184,17 +196,16 @@ def photos_block():
     for ext in ("jpg", "jpeg", "png", "webp"):
         files.extend(glob.glob(os.path.join(FOTOS, "*." + ext)))
     if not files:
-        return "<!-- pon fotos en media/fotos/ con add_photos.py y saldra la cuadricula -->"
+        return ""
     mimes = {".png": "image/png", ".webp": "image/webp"}
     tiles = "".join(
-        '<img src="%s" alt="" loading="lazy">' % data_uri(
+        '<img src="%s" alt="Instagram photography by Selenia" loading="lazy">' % data_uri(
             f, mimes.get(os.path.splitext(f)[1].lower(), "image/jpeg"))
         for f in sorted(files)
     )
     return (
         '<section class="fotos">'
-        '<h2 class="sec-title" data-es="Lo último en Instagram" data-en="Most recent on Instagram">'
-        "Lo último en Instagram</h2>"
+        '<h2 class="sec-title">Recent Moments on Instagram</h2>'
         '<div class="photos">%s</div></section>' % tiles
     )
 
@@ -203,9 +214,10 @@ def main():
     with open(CONFIG, encoding="utf-8") as fh:
         cfg = json.load(fh)
 
-    reels = cfg.get("reels", [])
+    reels = [r for r in cfg.get("reels", []) if r.get("category") != "es"]
     links = cfg.get("links", {})
-    email = (links.get("email") or "hola@tuemail.com").strip()
+    email = (links.get("email") or "seleniadeveloper@gmail.com").strip()
+    booking = (links.get("booking") or "https://cal.com/seleniasanchez").strip()
 
     videos, posters = {}, {}
     for reel in reels:
@@ -213,7 +225,7 @@ def main():
             continue
         mp4 = os.path.join(ROOT, reel["file"])
         if not os.path.exists(mp4):
-            sys.exit("Falta el vídeo: %s" % mp4)
+            sys.exit("Missing video file: %s" % mp4)
         videos[reel["id"]] = data_uri(mp4, "video/mp4")
         poster = os.path.join(ROOT, reel["poster"]) if reel.get("poster") else None
         posters[reel["id"]] = data_uri(poster, "image/jpeg") if poster and os.path.exists(poster) else ""
@@ -221,8 +233,6 @@ def main():
     portrait_path = os.path.join(ROOT, cfg.get("portrait", "media/retrato.jpg"))
     portrait = data_uri(portrait_path, "image/jpeg") if os.path.exists(portrait_path) else ""
 
-    items_en = [reel_item(r, posters.get(r.get("id"), "")) for r in reels if r.get("category") == "en"]
-    items_es = [reel_item(r, posters.get(r.get("id"), "")) for r in reels if r.get("category") == "es"]
     items_all = [reel_item(r, posters.get(r.get("id"), "")) for r in reels]
 
     with open(TEMPLATE, encoding="utf-8") as fh:
@@ -230,12 +240,11 @@ def main():
 
     page = page.replace("{{SOCIALS}}", socials(links))
     page = page.replace("{{PORTRAIT}}", portrait)
-    page = page.replace("{{STATS}}", stats_block(cfg.get("stats", [])))
-    page = page.replace("{{REEL_ITEMS_EN}}", "\n      ".join(items_en))
-    page = page.replace("{{REEL_ITEMS_ES}}", "\n      ".join(items_es))
+    page = page.replace("{{PILLARS}}", pillars_block())
     page = page.replace("{{REEL_ITEMS}}", "\n      ".join(items_all))
     page = page.replace("{{PHOTOS}}", photos_block())
     page = page.replace("{{EMAIL}}", esc(email))
+    page = page.replace("{{BOOKING_URL}}", esc(booking))
     page = page.replace(
         "<script>\n(function(){",
         "<script>window.__REELS=%s;</script>\n<script>\n(function(){" % json.dumps(videos),
@@ -255,15 +264,12 @@ def main():
 
     size_mb = os.path.getsize(OUT) / 1048576.0
     n_fotos = len(glob.glob(os.path.join(FOTOS, "*.*")))
-    print("dist/portfolio.html + dist/artifact.html -> %.2f MB "
-          "(%d vídeo(s), %d hueco(s), %d foto(s))" % (
+    print("dist/portfolio.html + dist/index.html -> %.2f MB "
+          "(%d video(s), %d placeholder(s), %d photo(s))" % (
               size_mb, len(videos),
               sum(1 for r in reels if r.get("placeholder")), n_fotos))
-    if not any(str(s.get("value", "")).strip() for s in cfg.get("stats", [])):
-        print("Nota: la fila de cifras no sale porque \"stats\" esta vacio en videos.json.")
     if size_mb > HARD_LIMIT_MB:
-        print("AVISO: pasa de %.0f MB. Comprime más los vídeos con add_video.py "
-              "(baja el --target) antes de publicar." % HARD_LIMIT_MB)
+        print("WARNING: size is %.2f MB, which exceeds %.0f MB limit for Vercel." % (size_mb, HARD_LIMIT_MB))
 
 
 if __name__ == "__main__":

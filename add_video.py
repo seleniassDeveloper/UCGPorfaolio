@@ -54,7 +54,7 @@ def main():
 
     subprocess.run([
         "ffmpeg", "-v", "error", "-y", "-i", args.source,
-        "-vf", "scale=720:-2",
+        "-vf", "scale=1080:1920:force_original_aspect_ratio=decrease,pad=1080:1920:(ow-iw)/2:(oh-ih)/2",
         "-c:v", "libx264", "-profile:v", "main", "-preset", "slow",
         "-b:v", "%dk" % video_kbps,
         "-maxrate", "%dk" % int(video_kbps * 1.45),
@@ -66,13 +66,13 @@ def main():
 
     subprocess.run([
         "ffmpeg", "-v", "error", "-y", "-ss", str(args.poster), "-i", args.source,
-        "-frames:v", "1", "-vf", "scale=540:-2", "-q:v", "5", jpg,
+        "-frames:v", "1", "-vf", "scale=1080:1920:force_original_aspect_ratio=decrease,pad=1080:1920:(ow-iw)/2:(oh-ih)/2", "-q:v", "4", jpg,
     ], check=True)
 
     mb = os.path.getsize(mp4) / 1048576.0
     mins, secs = divmod(int(duration), 60)
-    print("media/%s.mp4  %.2f MB  %d:%02d" % (args.name, mb, mins, secs))
-    print("media/%s.jpg  miniatura lista" % args.name)
+    print("media/%s.mp4  %.2f MB (1080x1920)  %d:%02d" % (args.name, mb, mins, secs))
+    print("media/%s.jpg  miniatura lista (1080x1920)" % args.name)
     print()
     print("Pega esto en videos.json (sustituye un hueco con \"placeholder\": true):")
     print(json.dumps({
@@ -80,12 +80,9 @@ def main():
         "file": "media/%s.mp4" % args.name,
         "poster": "media/%s.jpg" % args.name,
         "duration": "%d:%02d" % (mins, secs),
-        "title_es": "Nombre de la marca",
-        "title_en": "Brand name",
-        "kind_es": "Demo de producto",
-        "kind_en": "Product demo",
-        "lang_es": "Español, subtítulos quemados",
-        "lang_en": "Spanish, burned-in captions",
+        "category": "tech",
+        "title": "Brand Name or Product",
+        "kind": "Talking Head + Captions",
     }, indent=2, ensure_ascii=False))
     print()
     print("Luego: python3 build.py")

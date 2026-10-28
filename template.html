@@ -1,4 +1,4 @@
-<title>Seleedev ✦ Portfolio UGC</title>
+<title>Selenia Sánchez (Seleedev) ✦ Tech & AI / Travel UGC Portfolio</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800&family=Shrikhand&display=swap" rel="stylesheet">
@@ -54,6 +54,9 @@ p { margin: 0; }
   color: var(--white);
   padding-block: 1rem;
   border-bottom: 3px solid var(--ink-dark);
+  position: sticky;
+  top: 0;
+  z-index: 100;
 }
 
 .top-bar {
@@ -65,7 +68,7 @@ p { margin: 0; }
 
 .brand-logo {
   font-family: "Shrikhand", "Fredoka", cursive;
-  font-size: clamp(1.5rem, 3vw, 2.2rem);
+  font-size: clamp(1.4rem, 2.8vw, 2.1rem);
   color: var(--white);
   letter-spacing: 0.02em;
   display: flex;
@@ -85,7 +88,7 @@ p { margin: 0; }
   font-family: "Fredoka", sans-serif;
   font-size: 0.95rem;
   font-weight: 600;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--white);
   transition: transform 0.15s ease, color 0.15s ease;
@@ -96,31 +99,22 @@ p { margin: 0; }
   transform: translateY(-2px);
 }
 
-.lang-switch {
-  display: flex;
-  background: rgba(0, 0, 0, 0.18);
+.nav-cta-btn {
+  background-color: var(--yellow-accent) !important;
+  color: var(--ink-dark) !important;
+  padding: 0.45rem 1.1rem;
   border-radius: var(--radius-pill);
-  padding: 3px;
-  border: 1.5px solid rgba(255, 255, 255, 0.3);
+  border: 2px solid var(--ink-dark);
+  box-shadow: 2.5px 3px 0px var(--ink-dark);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
 }
 
-.lang-switch button {
-  font-family: "Fredoka", sans-serif;
-  font-weight: 700;
-  font-size: 0.75rem;
-  border: none;
-  background: transparent;
-  color: var(--white);
-  padding: 0.35rem 0.75rem;
-  border-radius: var(--radius-pill);
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.lang-switch button[aria-pressed="true"] {
-  background: var(--white);
-  color: var(--orange-main);
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+.nav-cta-btn:hover {
+  background-color: var(--white) !important;
+  transform: translateY(-2px) scale(1.03) !important;
+  box-shadow: 3.5px 4.5px 0px var(--ink-dark);
 }
 
 /* ---------- HERO SECTION ---------- */
@@ -203,9 +197,19 @@ p { margin: 0; }
   opacity: 0.9;
 }
 
+.hero-tagline {
+  font-family: "Fredoka", sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--yellow-accent);
+  margin-bottom: 0.5rem;
+}
+
 .hero-title {
   font-family: "Fredoka", sans-serif;
-  font-size: clamp(2rem, 4vw, 3rem);
+  font-size: clamp(2rem, 4vw, 3.1rem);
   color: var(--white);
   margin-bottom: 1.2rem;
   line-height: 1.1;
@@ -213,7 +217,7 @@ p { margin: 0; }
 }
 
 .hero-bio {
-  font-size: clamp(1rem, 1.5vw, 1.15rem);
+  font-size: clamp(1rem, 1.4vw, 1.15rem);
   line-height: 1.6;
   margin-bottom: 2rem;
   color: #FFF0E6;
@@ -225,28 +229,38 @@ p { margin: 0; }
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  gap: 0.5rem;
   background-color: var(--pink-soft);
   color: var(--ink-dark);
   font-family: "Fredoka", sans-serif;
   font-weight: 700;
-  font-size: 1.1rem;
-  padding: 0.75rem 2.2rem;
+  font-size: 1.05rem;
+  padding: 0.8rem 2rem;
   border-radius: var(--radius-pill);
-  border: 2px solid var(--ink-dark);
-  box-shadow: 3px 4px 0px var(--ink-dark);
+  border: 2.5px solid var(--ink-dark);
+  box-shadow: 3.5px 5px 0px var(--ink-dark);
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+  text-decoration: none;
 }
 
 .btn-pill:hover {
   transform: translate(-2px, -2px);
-  box-shadow: 5px 6px 0px var(--ink-dark);
+  box-shadow: 5px 7px 0px var(--ink-dark);
   background-color: var(--white);
 }
 
 .btn-pill:active {
   transform: translate(1px, 1px);
   box-shadow: 2px 2px 0px var(--ink-dark);
+}
+
+.btn-pill-primary {
+  background-color: var(--yellow-accent);
+}
+
+.btn-pill-primary:hover {
+  background-color: var(--white);
 }
 
 .hero-actions {
@@ -268,13 +282,13 @@ p { margin: 0; }
   padding: 0.75rem 1.6rem;
   border-radius: var(--radius-pill);
   border: 2.5px solid var(--ink-dark);
-  box-shadow: 4px 5px 0px var(--ink-dark);
+  box-shadow: 3.5px 5px 0px var(--ink-dark);
   text-decoration: none;
   transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 .btn-pill-insta:hover {
-  background-color: var(--yellow-accent);
+  background-color: var(--pink-soft);
   transform: translateY(-3px) scale(1.03);
   box-shadow: 5px 7px 0px var(--ink-dark);
 }
@@ -299,7 +313,7 @@ p { margin: 0; }
 .ticker-move {
   display: inline-flex;
   gap: 2rem;
-  animation: tickerScroll 24s linear infinite;
+  animation: tickerScroll 26s linear infinite;
 }
 
 @keyframes tickerScroll {
@@ -322,7 +336,7 @@ p { margin: 0; }
   font-size: 1.2rem;
 }
 
-/* ---------- SERVICES & ROTATING STAMP SECTION ---------- */
+/* ---------- CREATIVE PILLARS SECTION ---------- */
 .services-section {
   background-color: var(--orange-main);
   color: var(--white);
@@ -333,7 +347,7 @@ p { margin: 0; }
 .services-grid {
   display: grid;
   grid-template-columns: auto 1fr;
-  gap: 3rem;
+  gap: 3.2rem;
   align-items: center;
 }
 
@@ -344,6 +358,7 @@ p { margin: 0; }
   height: 160px;
   display: grid;
   place-items: center;
+  flex-shrink: 0;
 }
 
 .stamp-svg {
@@ -364,7 +379,7 @@ p { margin: 0; }
   text-shadow: 2px 2px 0px var(--ink-dark);
 }
 
-/* 3 Flower Service Cards */
+/* 3 Creative Pillar Cards */
 .services-cards {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -377,36 +392,50 @@ p { margin: 0; }
   align-items: center;
   text-align: center;
   gap: 0.6rem;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 1.4rem 1.1rem;
+  border-radius: var(--radius-md);
+  border: 2px dashed rgba(255, 255, 255, 0.35);
+  backdrop-filter: blur(4px);
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.service-card:hover {
+  transform: translateY(-4px);
+  background: rgba(255, 255, 255, 0.18);
 }
 
 .flower-icon {
-  width: 72px;
-  height: 72px;
+  width: 58px;
+  height: 58px;
   color: var(--pink-soft);
   filter: drop-shadow(2px 3px 0px var(--ink-dark));
   transition: transform 0.2s ease;
 }
 
 .service-card:hover .flower-icon {
-  transform: scale(1.1) rotate(6deg);
+  transform: scale(1.12) rotate(8deg);
 }
 
-.stat-value {
-  font-family: "Fredoka", sans-serif;
-  font-size: clamp(2.2rem, 3.8vw, 3rem);
-  font-weight: 700;
-  color: var(--white);
+.pillar-emoji {
+  font-size: 1.8rem;
   line-height: 1;
-  text-shadow: 2.5px 2.5px 0px var(--ink-dark);
 }
 
 .service-title {
   font-family: "Fredoka", sans-serif;
-  font-size: 0.95rem;
+  font-size: 1.15rem;
   font-weight: 700;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
+  letter-spacing: 0.02em;
   color: var(--white);
+  text-shadow: 1.5px 1.5px 0px var(--ink-dark);
+}
+
+.pillar-desc {
+  font-size: 0.88rem;
+  line-height: 1.45;
+  color: #FFF2E8;
+  max-width: 28ch;
 }
 
 .btn-small-pill {
@@ -414,22 +443,19 @@ p { margin: 0; }
   color: var(--ink-dark);
   font-family: "Fredoka", sans-serif;
   font-weight: 700;
-  font-size: 0.85rem;
-  padding: 0.4rem 1.2rem;
+  font-size: 0.78rem;
+  padding: 0.35rem 0.95rem;
   border-radius: var(--radius-pill);
   border: 1.5px solid var(--ink-dark);
-  box-shadow: 2px 3px 0px var(--ink-dark);
-  transition: transform 0.15s ease, background-color 0.15s ease;
-}
-
-.btn-small-pill:hover {
-  transform: scale(1.06) translateY(-2px);
-  background-color: var(--white);
+  box-shadow: 2px 2.5px 0px var(--ink-dark);
+  margin-top: 0.3rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 /* ---------- REELS VIDEO SECTION ---------- */
 .reels-section-wrap {
-  padding-block: 4rem 5rem;
+  padding-block: 4.5rem 5rem;
 }
 
 .section-head {
@@ -438,7 +464,7 @@ p { margin: 0; }
   justify-content: space-between;
   flex-wrap: wrap;
   gap: 1.5rem;
-  margin-bottom: 2.5rem;
+  margin-bottom: 2.8rem;
 }
 
 .section-head-info {
@@ -473,7 +499,7 @@ p { margin: 0; }
   vertical-align: super;
 }
 
-/* Filter Tabs */
+/* Category Filter Tabs: Tech & AI / Travel */
 .reels-filter-tabs {
   display: inline-flex;
   align-items: center;
@@ -488,15 +514,15 @@ p { margin: 0; }
 .filter-tab {
   display: inline-flex;
   align-items: center;
-  gap: 0.45rem;
-  padding: 0.5rem 1.1rem;
+  gap: 0.5rem;
+  padding: 0.55rem 1.25rem;
   border-radius: var(--radius-pill);
   border: none;
   background: transparent;
   color: var(--ink-dark);
   font-family: "Fredoka", sans-serif;
   font-size: 0.95rem;
-  font-weight: 600;
+  font-weight: 700;
   cursor: pointer;
   transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
@@ -514,7 +540,7 @@ p { margin: 0; }
 
 .tab-count {
   display: inline-block;
-  padding: 0.1rem 0.5rem;
+  padding: 0.1rem 0.55rem;
   border-radius: 999px;
   font-size: 0.75rem;
   font-weight: 700;
@@ -638,13 +664,13 @@ p { margin: 0; }
   display: inline-flex;
   align-items: center;
   gap: 0.3rem;
-  padding: 3px 8px;
+  padding: 4px 9px;
   border-radius: 999px;
   font-family: "Outfit", sans-serif;
-  font-size: 0.72rem;
+  font-size: 0.74rem;
   font-weight: 700;
   letter-spacing: 0.03em;
-  background: rgba(18, 14, 16, 0.72);
+  background: rgba(18, 14, 16, 0.75);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   border: 1px solid rgba(255, 255, 255, 0.25);
@@ -652,8 +678,8 @@ p { margin: 0; }
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
 }
 
-.reel-badge.reel-lang {
-  background: rgba(255, 88, 26, 0.88);
+.reel-badge.reel-cat {
+  background: rgba(255, 88, 26, 0.9);
   border-color: rgba(255, 255, 255, 0.45);
 }
 
@@ -711,7 +737,7 @@ p { margin: 0; }
 .reel.is-unmuted .reel-sound-btn .sound-on { display: block; }
 .reel.is-unmuted .reel-sound-btn .sound-off { display: none; }
 
-/* Center Play Button with Pulse */
+/* Center Play Button */
 .reel-btn {
   position: absolute;
   inset: 0;
@@ -763,11 +789,7 @@ p { margin: 0; }
   transform: scale(0.7);
 }
 
-.reel.is-playing .reel-btn:hover i {
-  opacity: 0;
-}
-
-/* Video Progress Bar at Bottom of Reel */
+/* Video Progress Bar */
 .reel-progress {
   position: absolute;
   bottom: 0;
@@ -789,18 +811,18 @@ p { margin: 0; }
 /* Reel Caption Area */
 .reel-cap {
   background: var(--white);
-  padding: 1rem 1.1rem;
+  padding: 1rem 1.15rem;
   border-radius: 22px;
   border: 2.5px solid var(--ink-dark);
   box-shadow: 4px 4px 0px var(--ink-dark);
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+  gap: 0.6rem;
 }
 
 .reel-cap-info {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: space-between;
   gap: 0.6rem;
 }
@@ -815,7 +837,7 @@ p { margin: 0; }
 
 .reel-kind-tag {
   display: inline-block;
-  padding: 0.25rem 0.65rem;
+  padding: 0.25rem 0.7rem;
   border-radius: var(--radius-pill);
   background: var(--pink-soft);
   color: var(--pink-deep);
@@ -823,67 +845,6 @@ p { margin: 0; }
   font-weight: 700;
   white-space: nowrap;
   border: 1px solid rgba(232, 77, 139, 0.3);
-}
-
-.btn-reel-download {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.45rem;
-  background: var(--bg-cream);
-  color: var(--ink-dark);
-  font-family: "Fredoka", sans-serif;
-  font-weight: 600;
-  font-size: 0.88rem;
-  padding: 0.45rem 1rem;
-  border-radius: var(--radius-pill);
-  border: 2px solid var(--ink-dark);
-  box-shadow: 2px 2px 0px var(--ink-dark);
-  transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
-  cursor: pointer;
-  text-decoration: none;
-  width: 100%;
-}
-
-.btn-reel-download:hover {
-  background: var(--yellow-accent);
-  transform: translateY(-2px);
-  box-shadow: 3px 4px 0px var(--ink-dark);
-}
-
-.btn-reel-download:active {
-  transform: translate(1px, 1px);
-  box-shadow: 1px 1px 0px var(--ink-dark);
-}
-
-.btn-reel-download svg {
-  width: 16px;
-  height: 16px;
-  fill: currentColor;
-}
-
-/* Placeholder Slot */
-.reel--slot {
-  border: 2.5px dashed var(--pink-deep);
-  background-color: var(--pink-soft);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 1.5rem;
-  text-align: center;
-}
-
-.slot-icon {
-  font-size: 2rem;
-  color: var(--orange-main);
-  margin-bottom: 0.5rem;
-}
-
-.reel--slot p {
-  font-family: "Fredoka", sans-serif;
-  font-size: 0.95rem;
-  color: var(--ink-dark);
 }
 
 /* ---------- INSTAGRAM PHOTOS SECTION ---------- */
@@ -908,7 +869,7 @@ p { margin: 0; }
   transform: scale(1.03);
 }
 
-/* ---------- INSTAGRAM SPOTLIGHT SECTION ---------- */
+/* ---------- TRAVEL & TECH SPOTLIGHT SECTION ---------- */
 .insta-spotlight {
   margin-top: 4.5rem;
 }
@@ -1025,19 +986,20 @@ p { margin: 0; }
   color: var(--ink-dark);
 }
 
-/* ---------- FOOTER & SOCIALS SECTION ---------- */
+/* ---------- FOOTER & CONTACT SECTION ---------- */
 .footer-section {
-  padding-block: 4rem 3rem;
+  padding-block: 4.5rem 3.5rem;
   background-color: var(--bg-cream);
+  border-top: 3px solid var(--ink-dark);
 }
 
 .footer-grid {
   display: grid;
-  grid-template-columns: 1fr 1.2fr;
-  gap: 2rem;
+  grid-template-columns: 1fr 1.3fr;
+  gap: 2.2rem;
 }
 
-/* Left Box: Checkerboard background */
+/* Left Card: Socials & Direct Email */
 .checker-card {
   background-color: var(--orange-main);
   background-image: repeating-conic-gradient(var(--orange-main) 0% 25%, var(--bg-cream) 0% 50%);
@@ -1058,11 +1020,14 @@ p { margin: 0; }
   text-align: center;
   width: 100%;
   box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .checker-title {
   font-family: "Fredoka", sans-serif;
-  font-size: 1.8rem;
+  font-size: 1.75rem;
   color: var(--orange-main);
   margin-bottom: 1.2rem;
 }
@@ -1072,7 +1037,7 @@ p { margin: 0; }
   align-items: center;
   justify-content: center;
   gap: 0.9rem;
-  margin-bottom: 1.2rem;
+  margin-bottom: 1.5rem;
 }
 
 .socials-row a {
@@ -1099,13 +1064,46 @@ p { margin: 0; }
   fill: currentColor;
 }
 
+.contact-email-box {
+  background: var(--bg-cream);
+  border: 2px solid var(--ink-dark);
+  border-radius: var(--radius-pill);
+  padding: 0.5rem 1.1rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  box-shadow: 2px 2px 0px var(--ink-dark);
+  font-family: "Outfit", sans-serif;
+  font-weight: 600;
+  font-size: 0.92rem;
+  margin-bottom: 0.8rem;
+  color: var(--ink-dark);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.contact-email-box:hover {
+  background: var(--yellow-accent);
+  transform: translateY(-2px);
+  box-shadow: 3px 4px 0px var(--ink-dark);
+}
+
+.copy-badge {
+  font-size: 0.72rem;
+  font-weight: 700;
+  background: var(--white);
+  padding: 2px 8px;
+  border-radius: 999px;
+  border: 1px solid var(--ink-dark);
+}
+
 .checker-subtext {
   font-size: 0.85rem;
   color: var(--ink-muted);
   font-weight: 500;
 }
 
-/* Right Box: Pink Club Card */
+/* Right Card: High-Converting Meeting & Booking Card */
 .club-card {
   background-color: var(--pink-main);
   color: var(--white);
@@ -1128,12 +1126,30 @@ p { margin: 0; }
   color: var(--yellow-accent);
 }
 
+.club-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: var(--yellow-accent);
+  color: var(--ink-dark);
+  font-family: "Fredoka", sans-serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  padding: 0.35rem 0.95rem;
+  border-radius: var(--radius-pill);
+  border: 1.5px solid var(--ink-dark);
+  box-shadow: 2px 2px 0px var(--ink-dark);
+  width: fit-content;
+  margin-bottom: 1rem;
+}
+
 .club-title {
   font-family: "Fredoka", sans-serif;
-  font-size: clamp(2rem, 3.5vw, 2.6rem);
+  font-size: clamp(2rem, 3.5vw, 2.7rem);
   margin-bottom: 1rem;
   color: var(--white);
   text-shadow: 2px 2px 0px var(--pink-deep);
+  line-height: 1.1;
 }
 
 .club-desc {
@@ -1141,6 +1157,32 @@ p { margin: 0; }
   line-height: 1.6;
   margin-bottom: 2rem;
   color: #FFF0F5;
+  max-width: 52ch;
+}
+
+.contact-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.btn-pill-booking {
+  background-color: var(--yellow-accent);
+  color: var(--ink-dark);
+}
+
+.btn-pill-booking:hover {
+  background-color: var(--white);
+}
+
+.btn-pill-email {
+  background-color: var(--white);
+  color: var(--ink-dark);
+}
+
+.btn-pill-email:hover {
+  background-color: var(--yellow-accent);
 }
 
 /* ---------- RESPONSIVE MEDIA QUERIES ---------- */
@@ -1149,16 +1191,18 @@ p { margin: 0; }
   .scallop-frame-wrap { max-width: 320px; margin-inline: auto; }
   .services-grid { grid-template-columns: 1fr; gap: 2rem; }
   .stamp-wrapper { margin-inline: auto; }
-  .reels { grid-template-columns: repeat(2, 1fr); }
   .footer-grid { grid-template-columns: 1fr; }
 }
 
-@media (max-width: 640px) {
-  .top-nav-links a:not(.lang-switch) { display: none; }
+@media (max-width: 768px) {
   .services-cards { grid-template-columns: 1fr; }
-  .stats { grid-template-columns: 1fr; }
-  .reels { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+}
+
+@media (max-width: 640px) {
+  .top-nav-links a:not(.nav-cta-btn) { display: none; }
   .photos { grid-template-columns: repeat(2, 1fr); }
+  .contact-actions { flex-direction: column; width: 100%; }
+  .contact-actions .btn-pill { width: 100%; }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -1178,17 +1222,13 @@ p { margin: 0; }
       <a class="brand-logo" href="#top">
         spark & seleedev <span>✦</span>
       </a>
-      <div class="top-nav-links">
-        <a href="#top" data-es="Inicio" data-en="Home">Inicio</a>
-        <a href="#servicios" data-es="Servicios" data-en="Services">Servicios</a>
-        <a href="#videos" data-es="Vídeos" data-en="Videos">Vídeos</a>
-        <a href="#instagram" data-es="Viajes & Dev" data-en="Travel & Dev">Viajes & Dev</a>
-        <a href="#contacto" data-es="Contacto" data-en="Contact">Contacto</a>
-        <div class="lang-switch" role="group" aria-label="Idioma / Language">
-          <button type="button" data-lang="es" aria-pressed="true">ES</button>
-          <button type="button" data-lang="en" aria-pressed="false">EN</button>
-        </div>
-      </div>
+      <nav class="top-nav-links" aria-label="Main Navigation">
+        <a href="#top">Home</a>
+        <a href="#videos">Featured Reels</a>
+        <a href="#travel-tech">Travel & Dev</a>
+        <a href="#contact">Contact</a>
+        <a href="{{BOOKING_URL}}" target="_blank" rel="noopener noreferrer" class="nav-cta-btn">Book a Call ↗</a>
+      </nav>
     </header>
   </div>
 </div>
@@ -1205,16 +1245,19 @@ p { margin: 0; }
         <span class="sparkle-icon sparkle-2">★</span>
         <span class="sparkle-icon sparkle-3">✨</span>
         <div class="scallop-bg">
-          <img src="{{PORTRAIT}}" alt="Selenia Sánchez - UGC Creator & Dev">
+          <img src="{{PORTRAIT}}" alt="Selenia Sánchez - UGC Creator & Software Engineer">
         </div>
       </div>
 
       <!-- Right: Orange Hero Card -->
       <div class="hero-card">
-        <h1 class="hero-title" data-es="¡Encontremos el spark de tu marca!" data-en="we're all about finding your spark!">¡Encontremos el spark de tu marca!</h1>
-        <p class="hero-bio" data-es="Soy Selenia (Seleedev). Creadora de contenido UGC & Programadora de Software. Recorro el mundo como nómada digital construyendo proyectos tech y creando vídeos virales y de alta conversión para marcas globales." data-en="I'm Selenia (Seleedev). UGC Creator & Software Programmer. I travel the world as a digital nomad building tech projects and creating high-converting, authentic videos for global tech brands.">Soy Selenia (Seleedev). Creadora de contenido UGC & Programadora de Software. Recorro el mundo como nómada digital construyendo proyectos tech y creando vídeos virales y de alta conversión para marcas globales.</p>
+        <div class="hero-tagline">✦ UGC CREATOR & SOFTWARE ENGINEER</div>
+        <h1 class="hero-title">we're all about finding your spark!</h1>
+        <p class="hero-bio">I'm Selenia (Seleedev). UGC Creator & Software Engineer. Building innovative tech projects and creating high-converting, authentic videos for forward-thinking global brands.</p>
         <div class="hero-actions">
-          <a href="#contacto" class="btn-pill" data-es="spark!" data-en="spark!">spark!</a>
+          <a href="{{BOOKING_URL}}" target="_blank" rel="noopener noreferrer" class="btn-pill btn-pill-primary">
+            <span>Book a Meeting 📅</span>
+          </a>
           <a href="https://www.instagram.com/seleniasanchez/" target="_blank" rel="noopener noreferrer" class="btn-pill-insta" aria-label="Instagram @seleniasanchez">
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
             <span>Instagram: @seleniasanchez</span>
@@ -1226,50 +1269,54 @@ p { margin: 0; }
   </div>
 
   <!-- MARQUEE TICKER BANNER -->
-  <div class="ticker-wrap">
+  <div class="ticker-wrap" aria-hidden="true">
     <div class="ticker-move">
       <div class="ticker-item">
-        <span data-es="✈️ Nómada Digital & Viajes por el mundo" data-en="✈️ Digital Nomad & World Travels">✈️ Nómada Digital & Viajes por el mundo</span>
+        <span>🤖 Tech & AI Software Walkthroughs</span>
         <span class="star">✦</span>
-        <span data-es="💻 Programadora de Software" data-en="💻 Software Programmer & Developer">💻 Programadora de Software</span>
+        <span>💻 Software Engineer & Developer</span>
         <span class="star">★</span>
-        <span data-es="📸 @seleniasanchez en Instagram" data-en="📸 @seleniasanchez on Instagram">📸 @seleniasanchez en Instagram</span>
+        <span>✈️ Travel & Lifestyle Content</span>
         <span class="star">✦</span>
-        <span data-es="Vídeos de alta conversión para TikTok e Instagram" data-en="High converting videos for TikTok & Instagram">Vídeos de alta conversión para TikTok e Instagram</span>
+        <span>📸 @seleniasanchez on Instagram</span>
         <span class="star">★</span>
+        <span>⚡ High-Converting UGC for TikTok & Instagram</span>
+        <span class="star">✦</span>
       </div>
-      <div class="ticker-item" aria-hidden="true">
-        <span data-es="✈️ Nómada Digital & Viajes por el mundo" data-en="✈️ Digital Nomad & World Travels">✈️ Nómada Digital & Viajes por el mundo</span>
+      <div class="ticker-item">
+        <span>🤖 Tech & AI Software Walkthroughs</span>
         <span class="star">✦</span>
-        <span data-es="💻 Programadora de Software" data-en="💻 Software Programmer & Developer">💻 Programadora de Software</span>
+        <span>💻 Software Engineer & Developer</span>
         <span class="star">★</span>
-        <span data-es="📸 @seleniasanchez en Instagram" data-en="📸 @seleniasanchez on Instagram">📸 @seleniasanchez en Instagram</span>
+        <span>✈️ Travel & Lifestyle Content</span>
         <span class="star">✦</span>
-        <span data-es="Vídeos de alta conversión para TikTok e Instagram" data-en="High converting videos for TikTok & Instagram">Vídeos de alta conversión para TikTok e Instagram</span>
+        <span>📸 @seleniasanchez on Instagram</span>
         <span class="star">★</span>
+        <span>⚡ High-Converting UGC for TikTok & Instagram</span>
+        <span class="star">✦</span>
       </div>
     </div>
   </div>
 
-  <!-- SERVICES & ROTATING STAMP SECTION -->
-  <div class="services-section" id="servicios">
+  <!-- CREATIVE PILLARS SECTION -->
+  <div class="services-section">
     <div class="wrap services-grid">
       
       <!-- Rotating Circular Stamp -->
       <div class="stamp-wrapper">
-        <svg class="stamp-svg" viewBox="0 0 200 200">
+        <svg class="stamp-svg" viewBox="0 0 200 200" aria-hidden="true">
           <path id="textPath" d="M 100, 100 m -75, 0 a 75,75 0 1,1 150,0 a 75,75 0 1,1 -150,0" fill="none"/>
           <text fill="#FFFFFF" font-family="Fredoka" font-size="14.5" font-weight="700" letter-spacing="2">
             <textPath href="#textPath">
-              SELEE DEV ✦ SINCE 2024 ✦ FIND YOUR SPARK ✦ 
+              SELEE DEV ✦ CREATIVE UGC ✦ TECH & TRAVEL ✦ 
             </textPath>
           </text>
         </svg>
         <span class="stamp-center-icon">✦</span>
       </div>
 
-      <!-- 3 Flower Stat Badges -->
-      {{STATS}}
+      <!-- 3 Creative Pillar Cards (Follower statistics hidden per guidelines) -->
+      {{PILLARS}}
 
     </div>
   </div>
@@ -1278,26 +1325,26 @@ p { margin: 0; }
   <div class="wrap reels-section-wrap" id="videos">
     <div class="section-head">
       <div class="section-head-info">
-        <span class="sec-tagline" data-es="✦ PORTFOLIO UGC" data-en="✦ UGC SHOWCASE">✦ PORTFOLIO UGC</span>
-        <h2 class="sec-title" data-es="Mis vídeos destacados" data-en="Featured videos">Mis vídeos destacados</h2>
+        <span class="sec-tagline">✦ FEATURED UGC REELS</span>
+        <h2 class="sec-title">Curated Projects</h2>
       </div>
 
-      <!-- Filter Tabs -->
-      <div class="reels-filter-tabs">
-        <button class="filter-tab active" data-filter="all" type="button">
+      <!-- Category Filter Tabs: Tech & AI / Travel -->
+      <div class="reels-filter-tabs" role="tablist" aria-label="Reel Categories">
+        <button class="filter-tab active" data-filter="all" type="button" role="tab" aria-selected="true">
           <span class="tab-icon">✦</span>
-          <span data-es="Todos" data-en="All">Todos</span>
-          <span class="tab-count count-all">5</span>
+          <span>All</span>
+          <span class="tab-count count-all">4</span>
         </button>
-        <button class="filter-tab" data-filter="en" type="button">
-          <span class="tab-icon">🇬🇧</span>
-          <span data-es="Inglés" data-en="English">Inglés</span>
-          <span class="tab-count count-en">4</span>
+        <button class="filter-tab" data-filter="tech" type="button" role="tab" aria-selected="false">
+          <span class="tab-icon">🤖</span>
+          <span>Tech & AI</span>
+          <span class="tab-count count-tech">3</span>
         </button>
-        <button class="filter-tab" data-filter="es" type="button">
-          <span class="tab-icon">🇪🇸</span>
-          <span data-es="Español" data-en="Spanish">Español</span>
-          <span class="tab-count count-es">1</span>
+        <button class="filter-tab" data-filter="travel" type="button" role="tab" aria-selected="false">
+          <span class="tab-icon">✈️</span>
+          <span>Travel</span>
+          <span class="tab-count count-travel">1</span>
         </button>
       </div>
     </div>
@@ -1306,26 +1353,26 @@ p { margin: 0; }
       {{REEL_ITEMS}}
     </div>
 
-    <!-- INSTAGRAM LIFESTYLE & DEV SPOTLIGHT -->
-    <section class="insta-spotlight" id="instagram">
+    <!-- TRAVEL & TECH SPOTLIGHT -->
+    <section class="insta-spotlight" id="travel-tech">
       <div class="insta-spotlight-card">
         <div class="insta-spotlight-left">
           <div class="insta-pill-badge">
-            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
             <span>Instagram: @seleniasanchez</span>
           </div>
-          <h2 class="insta-spotlight-title" data-es="Viajes por el Mundo & Vida de Programadora" data-en="World Travels & Life as a Programmer">Viajes por el Mundo & Vida de Programadora</h2>
-          <p class="insta-spotlight-desc" data-es="En mi cuenta @seleniasanchez comparto mi vida como programadora remota y nómada digital: descubriendo nuevos países, creando software y mostrando cómo la tecnología me permite construir proyectos y viajar por el mundo." data-en="On my account @seleniasanchez, I share my journey as a remote software programmer and digital nomad: discovering new countries, coding software, and living how tech enables working from anywhere in the world.">En mi cuenta @seleniasanchez comparto mi vida como programadora remota y nómada digital: descubriendo nuevos países, creando software y mostrando cómo la tecnología me permite construir proyectos y viajar por el mundo.</p>
+          <h2 class="insta-spotlight-title">World Travels & Life as an Engineer</h2>
+          <p class="insta-spotlight-desc">On my account @seleniasanchez, I share my journey as a software engineer and creative: exploring new destinations worldwide, developing software, and producing authentic content where technology, travel, and storytelling converge.</p>
           <div class="insta-feature-tags">
-            <span class="insta-ftag">✈️ Viajes & Nómada Digital</span>
-            <span class="insta-ftag">💻 Programadora & Developer</span>
-            <span class="insta-ftag">📱 Contenido Tech Auténtico</span>
+            <span class="insta-ftag">✈️ Travel & Lifestyle</span>
+            <span class="insta-ftag">💻 Software Engineering & AI</span>
+            <span class="insta-ftag">📱 High-Converting Creative</span>
           </div>
         </div>
         <div class="insta-spotlight-right">
-          <a href="https://www.instagram.com/seleniasanchez/" target="_blank" rel="noopener noreferrer" class="btn-insta-big" aria-label="Seguir a Selenia en Instagram">
-            <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-            <span data-es="Ver mis viajes & código ↗" data-en="See my travels & code ↗">Ver mis viajes & código ↗</span>
+          <a href="https://www.instagram.com/seleniasanchez/" target="_blank" rel="noopener noreferrer" class="btn-insta-big" aria-label="Follow Selenia on Instagram">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            <span>See My Travels & Code ↗</span>
           </a>
         </div>
       </div>
@@ -1336,27 +1383,38 @@ p { margin: 0; }
 
 </main>
 
-<!-- FOOTER & SOCIALS SECTION -->
-<footer class="footer-section" id="contacto">
+<!-- FOOTER & CONTACT SECTION -->
+<footer class="footer-section" id="contact">
   <div class="wrap footer-grid">
     
-    <!-- Left: Checkerboard Card -->
+    <!-- Left: Socials & Direct Email -->
     <div class="checker-card">
       <div class="checker-inner">
-        <h3 class="checker-title" data-es="¡Conectemos en redes!" data-en="let's hang on socials!">¡Conectemos en redes!</h3>
+        <h3 class="checker-title">Let's Connect!</h3>
         <div class="socials-row">
           {{SOCIALS}}
         </div>
-        <p class="checker-subtext" data-es="Sígueme para ver nuevos ejemplos y casos de éxito." data-en="Follow along to see new cases and work.">Sígueme para ver nuevos ejemplos y casos de éxito.</p>
+        <a href="mailto:{{EMAIL}}" class="contact-email-box" id="emailBox" title="Click to copy email">
+          <span>✉️</span>
+          <span id="emailText">{{EMAIL}}</span>
+          <span class="copy-badge" id="copyBadge">Copy</span>
+        </a>
+        <p class="checker-subtext">Direct business email & social profiles.</p>
       </div>
     </div>
 
-    <!-- Right: Pink Sparkl Club Card -->
+    <!-- Right: High-Converting Meeting & Booking Card -->
     <div class="club-card">
-      <h3 class="club-title" data-es="Únete al sparkl club" data-en="join the sparkl club">Únete al sparkl club</h3>
-      <p class="club-desc" data-es="¿Tienes un producto o app genial que quieres lanzar? Trabajemos juntos para crear vídeos auténticos que enganchen a tu audiencia desde el primer segundo." data-en="Ever wanted to surround yourself with fun, uplifting and inspiring content? Let's work together to create authentic videos that engage your audience.">¿Tienes un producto o app genial que quieres lanzar? Trabajemos juntos para crear vídeos auténticos que enganchen a tu audiencia desde el primer segundo.</p>
-      <div>
-        <a href="mailto:{{EMAIL}}" class="btn-pill" data-es="spark!" data-en="spark!">spark!</a>
+      <div class="club-badge">✦ OPEN FOR COLLABORATIONS</div>
+      <h3 class="club-title">Ready to find your brand's spark?</h3>
+      <p class="club-desc">Let's create authentic, high-converting video content for your software, AI platform, or brand. Schedule a quick discovery call to discuss ideas, or reach out directly via email.</p>
+      <div class="contact-actions">
+        <a href="{{BOOKING_URL}}" target="_blank" rel="noopener noreferrer" class="btn-pill btn-pill-booking">
+          <span>Schedule a Call 📅</span>
+        </a>
+        <a href="mailto:{{EMAIL}}" class="btn-pill btn-pill-email">
+          <span>Send an Email ✉️</span>
+        </a>
       </div>
     </div>
 
@@ -1375,10 +1433,6 @@ p { margin: 0; }
       url = URL.createObjectURL(new Blob([bytes], {type:"video/mp4"}));
     }catch(e){}
     document.querySelectorAll('video[data-reel="'+id+'"]').forEach(function(v){ v.src = url; });
-    document.querySelectorAll('a[data-reel-download="'+id+'"]').forEach(function(a){ 
-      a.href = url;
-      a.download = id + ".mp4";
-    });
   });
 
   var globalUnmuted = false;
@@ -1523,11 +1577,16 @@ p { margin: 0; }
     });
   });
 
+  // Filter Tabs logic: All / Tech & AI / Travel
   var filterTabs = document.querySelectorAll(".filter-tab");
   filterTabs.forEach(function(tab){
     tab.addEventListener("click", function(){
-      filterTabs.forEach(function(t){ t.classList.remove("active"); });
+      filterTabs.forEach(function(t){
+        t.classList.remove("active");
+        t.setAttribute("aria-selected", "false");
+      });
       tab.classList.add("active");
+      tab.setAttribute("aria-selected", "true");
       var filter = tab.dataset.filter;
       document.querySelectorAll(".reel-item").forEach(function(item){
         if(filter === "all" || item.dataset.category === filter){
@@ -1546,28 +1605,28 @@ p { margin: 0; }
     });
   });
 
-  var allCount = document.querySelectorAll(".reel-item:not(.placeholder)").length;
-  var enCount = document.querySelectorAll('.reel-item[data-category="en"]').length;
-  var esCount = document.querySelectorAll('.reel-item[data-category="es"]').length;
+  // Update dynamic count badges
+  var allCount = document.querySelectorAll(".reel-item:not(.reel-item--slot)").length;
+  var techCount = document.querySelectorAll('.reel-item[data-category="tech"]').length;
+  var travelCount = document.querySelectorAll('.reel-item[data-category="travel"]').length;
   var cAll = document.querySelector(".count-all"); if(cAll) cAll.textContent = allCount;
-  var cEn = document.querySelector(".count-en"); if(cEn) cEn.textContent = enCount;
-  var cEs = document.querySelector(".count-es"); if(cEs) cEs.textContent = esCount;
+  var cTech = document.querySelector(".count-tech"); if(cTech) cTech.textContent = techCount;
+  var cTravel = document.querySelector(".count-travel"); if(cTravel) cTravel.textContent = travelCount;
 
-  function apply(lang){
-    document.documentElement.lang = lang;
-    document.querySelectorAll("[data-es][data-en]").forEach(function(el){
-      el.textContent = el.dataset[lang];
+  // Copy Email Helper
+  var emailBox = document.getElementById("emailBox");
+  var emailText = document.getElementById("emailText");
+  var copyBadge = document.getElementById("copyBadge");
+  if(emailBox && emailText && copyBadge){
+    emailBox.addEventListener("click", function(e){
+      var email = emailText.textContent.trim();
+      if(navigator.clipboard && navigator.clipboard.writeText){
+        navigator.clipboard.writeText(email).then(function(){
+          copyBadge.textContent = "Copied! ✓";
+          setTimeout(function(){ copyBadge.textContent = "Copy"; }, 2500);
+        });
+      }
     });
-    document.querySelectorAll(".lang-switch button").forEach(function(b){
-      b.setAttribute("aria-pressed", String(b.dataset.lang === lang));
-    });
-    try{ localStorage.setItem("seleedev-lang", lang); }catch(e){}
   }
-  document.querySelectorAll(".lang-switch button").forEach(function(b){
-    b.addEventListener("click", function(){ apply(b.dataset.lang); });
-  });
-  var saved = null;
-  try{ saved = localStorage.getItem("seleedev-lang"); }catch(e){}
-  apply(saved === "en" ? "en" : "es");
 })();
 </script>
