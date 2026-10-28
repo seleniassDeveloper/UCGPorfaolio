@@ -1,56 +1,166 @@
 {
-  "_nota": "Edit this file and run: python3 build.py",
+  "_nota": "Centralized video catalog. Edit this file and run: python3 build.py",
 
-  "portrait": "media/retrato.jpg",
-
-  "links": {
-    "tiktok": "https://www.tiktok.com/@seleedev",
-    "instagram": "https://www.instagram.com/seleniasanchez/",
-    "youtube": "",
-    "linkedin": "",
+  "creator": {
+    "name": "Selenia Sánchez",
+    "role": "UGC Creator | AI Systems Engineer & SaaS Founder",
+    "headline": "UGC that makes complex tech feel simple.",
+    "description": "I create engaging, conversion-focused videos for tech, AI, SaaS and travel brands — combining authentic storytelling with a deep understanding of digital products.",
+    "availability": "Available for US & Global Brand Collaborations",
     "email": "seleniadeveloper@gmail.com",
-    "booking": "https://cal.com/seleniasanchez"
+    "portrait": "media/retrato.jpg"
   },
 
-  "stats": [],
+  "links": {
+    "email": "seleniadeveloper@gmail.com",
+    "instagram": "https://www.instagram.com/seleniasanchez/",
+    "tiktok": "https://www.tiktok.com/@seleedev",
+    "booking": ""
+  },
 
-  "_reels": "Reels filtered by category (tech, travel). Spanish reels and removed reels excluded.",
   "reels": [
     {
-      "id": "reel-01",
-      "file": "media/reel-01.mp4",
-      "poster": "media/reel-01.jpg",
-      "duration": "0:41",
-      "category": "tech",
-      "title": "AI Day-Planner App",
-      "kind": "Demo + Talking Head"
-    },
-    {
-      "id": "reel-05",
-      "file": "media/reel-05.mp4",
-      "poster": "media/reel-05.jpg",
-      "duration": "2:18",
-      "category": "tech",
-      "title": "Lovable",
-      "kind": "Talking Head + Captions"
-    },
-    {
       "id": "reel-08",
+      "brand": "ClassFactor",
+      "title": "Studying like I'm 5 years old",
+      "category": "tech",
       "file": "media/reel-08.mp4",
       "poster": "media/reel-08.jpg",
       "duration": "0:20",
-      "category": "tech",
-      "title": "ClassFactor",
-      "kind": "Talking Head + Captions"
+      "format": "Relatable Meme",
+      "structureLabel": "Relatable Hook → Product Demo → Payoff",
+      "featured": true,
+      "status": "published"
     },
     {
       "id": "reel-09",
+      "brand": "Travel Tech App",
+      "title": "Travel Itinerary & Workflow Demo",
+      "category": "tech",
       "file": "media/reel-09.mp4",
       "poster": "media/reel-09.jpg",
       "duration": "0:16",
+      "format": "Brand Story",
+      "structureLabel": "Story Hook → App Demo → CTA",
+      "featured": true,
+      "status": "published"
+    },
+    {
+      "id": "reel-05",
+      "brand": "Lovable",
+      "title": "AI Full-Stack App Builder",
+      "category": "tech",
+      "file": "media/reel-05.mp4",
+      "poster": "media/reel-05.jpg",
+      "duration": "2:18",
+      "format": "Reaction / Social Proof",
+      "structureLabel": "Reaction → Product Showcase → CTA",
+      "featured": true,
+      "status": "published"
+    },
+    {
+      "id": "reel-01",
+      "brand": "Day Planner AI",
+      "title": "AI Daily Schedule Builder",
+      "category": "tech",
+      "file": "media/reel-01.mp4",
+      "poster": "media/reel-01.jpg",
+      "duration": "0:41",
+      "format": "Feature Explainer",
+      "structureLabel": "Hook → Product Demo → Benefit → CTA",
+      "featured": false,
+      "status": "published"
+    },
+    {
+      "id": "reel-04",
+      "brand": "Pulse Post",
+      "title": "Product Demo (Spanish)",
+      "category": "tech",
+      "file": "media/reel-04.mp4",
+      "poster": "media/reel-04.jpg",
+      "duration": "0:30",
+      "format": "Customer Testimonial",
+      "structureLabel": "Curiosity Hook → Product Demo → CTA",
+      "featured": false,
+      "status": "hidden"
+    },
+    {
+      "id": "reel-07",
+      "brand": "ClassFactor",
+      "title": "Student Workflow Walkthrough",
+      "category": "tech",
+      "file": "media/reel-07.mp4",
+      "poster": "media/reel-07.jpg",
+      "duration": "0:20",
+      "format": "Educational Explainer",
+      "structureLabel": "Relatable Hook → Feature Demo → Payoff",
+      "featured": false,
+      "status": "hidden"
+    },
+    {
+      "id": "new-capcut",
+      "brand": "CapCut",
+      "title": "Background Removal Without Green Screen",
+      "category": "tech",
+      "file": "",
+      "poster": "",
+      "duration": "0:22",
+      "format": "Feature Explainer",
+      "structureLabel": "Visual Hook → Feature Demo → Transformation → CTA",
+      "featured": false,
+      "status": "draft"
+    },
+    {
+      "id": "new-chatgpt",
+      "brand": "ChatGPT",
+      "title": "Automating Workflows with Advanced Prompts",
+      "category": "tech",
+      "file": "",
+      "poster": "",
+      "duration": "0:18",
+      "format": "Educational Explainer",
+      "structureLabel": "Curiosity Hook → Product Demo → Benefit → CTA",
+      "featured": false,
+      "status": "draft"
+    },
+    {
+      "id": "new-canva",
+      "brand": "Canva",
+      "title": "Transforming Basic Layouts to Pro Designs",
+      "category": "tech",
+      "file": "",
+      "poster": "",
+      "duration": "0:20",
+      "format": "Build-Along Tutorial",
+      "structureLabel": "Result-First Hook → Editing Process → Final Result",
+      "featured": false,
+      "status": "draft"
+    },
+    {
+      "id": "new-hotel-ugc",
+      "brand": "Boutique Stays",
+      "title": "Cabin Stay Experience & Tour",
       "category": "travel",
-      "title": "Travel & Lifestyle",
-      "kind": "Vlog + Lifestyle UGC"
+      "file": "",
+      "poster": "",
+      "duration": "0:25",
+      "format": "Brand Story",
+      "structureLabel": "Aesthetic Hook → Room Tour → Experience → CTA",
+      "featured": false,
+      "status": "draft"
+    },
+    {
+      "id": "new-travel-app",
+      "brand": "Travel Mobile App",
+      "title": "Flight Booking Hacks for Remote Workers",
+      "category": "travel",
+      "file": "",
+      "poster": "",
+      "duration": "0:20",
+      "format": "Feature Explainer",
+      "structureLabel": "Problem Hook → App Interface → Price Drop → CTA",
+      "featured": false,
+      "status": "draft"
     }
   ]
 }
