@@ -57,7 +57,7 @@ def build_editorial_card(reel, index):
     return f"""
     <article class="gallery-card" data-reel="{rid}" data-category="{cat}">
       <div class="video-box">
-        <video data-reel="{rid}" src="{video_src}" poster="{poster_src}" loop playsinline preload="none" aria-label="{brand} - {title}"></video>
+        <video data-reel="{rid}" src="{video_src}" poster="{poster_src}" loop playsinline preload="metadata" aria-label="{brand} - {title}"></video>
         <div class="video-overlay">
           <button class="sound-toggle-btn" type="button" aria-label="Toggle sound">
             <svg class="sound-icon-muted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5L6 9H2v6h4l5 4V5z"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>

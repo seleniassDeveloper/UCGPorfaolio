@@ -1,12 +1,15 @@
 #!/usr/bin/env python3
-"""Comprime un vídeo para la web y saca su miniatura.
+"""Optimiza un vídeo para la web en alta definición nítida y extrae su miniatura.
 
-Uso:
+Uso estándar (alta definición, nitidez máxima con filtro CAS y Lanczos):
     python3 add_video.py originals/mi-video.mov reel-02
-    python3 add_video.py originals/mi-video.mov reel-02 --target 3.5 --poster 1.2
+    python3 add_video.py originals/mi-video.mov reel-02 --poster 2.5
 
---target  MB que debe pesar el mp4 final (por defecto 3.5)
---poster  segundo del vídeo del que sale la miniatura (por defecto 1.0)
+Opciones avanzadas:
+    --crf      calidad de compresión (por defecto 19; 18-20 es nitidez cristalina)
+    --cas      filtro de nitidez adaptativo por contraste AMD CAS (por defecto 0.45)
+    --target   MB límite si se necesita tope de peso estricto
+    --poster   segundo exacto del vídeo del que sale la miniatura (por defecto 1.0)
 
 Deja media/<nombre>.mp4 y media/<nombre>.jpg listos para videos.json.
 """
@@ -31,11 +34,13 @@ def probe_duration(path):
 
 
 def main():
-    ap = argparse.ArgumentParser()
-    ap.add_argument("source")
-    ap.add_argument("name", help="nombre del reel, por ejemplo reel-02")
-    ap.add_argument("--target", type=float, default=3.5, help="MB que debe pesar el mp4 final")
-    ap.add_argument("--poster", type=float, default=1.0, help="segundo de la miniatura")
+    ap = argparse.ArgumentParser(description="Optimiza un reel a 1080x1920 con máxima nitidez.")
+    ap.add_argument("source", help="Ruta al archivo original (.mov o .mp4)")
+    ap.add_argument("name", help="Nombre identificador, por ejemplo reel-02")
+    ap.add_argument("--crf", type=int, default=19, help="Calidad CRF de x264 (18-22, menor = más nítido)")
+    ap.add_argument("--cas", type=float, default=0.45, help="Filtro de nitidez CAS (0.0 a 1.0)")
+    ap.add_argument("--target", type=float, default=None, help="Límite estricto de MB (opcional)")
+    ap.add_argument("--poster", type=float, default=1.0, help="Segundo del vídeo para la miniatura")
     args = ap.parse_args()
 
     if not os.path.exists(args.source):
@@ -48,33 +53,62 @@ def main():
     jpg = os.path.join(MEDIA, args.name + ".jpg")
 
     duration = probe_duration(args.source)
-    audio_kbps = 96
-    total_kbps = (args.target * 8192) / duration
-    video_kbps = max(500, int(total_kbps - audio_kbps))
+    audio_kbps = 128
 
-    subprocess.run([
+    # Filtro de video: Lanczos scaling a 1080x1920 + Contrast Adaptive Sharpening (CAS)
+    vf_filters = [
+        "scale=1080:1920:force_original_aspect_ratio=decrease:flags=lanczos",
+        "pad=1080:1920:(ow-iw)/2:(oh-ih)/2",
+    ]
+    if args.cas > 0:
+        vf_filters.append(f"cas={args.cas:.2f}")
+    vf_pipeline = ",".join(vf_filters)
+
+    ffmpeg_cmd = [
         "ffmpeg", "-v", "error", "-y", "-i", args.source,
-        "-vf", "scale=1080:1920:force_original_aspect_ratio=decrease,pad=1080:1920:(ow-iw)/2:(oh-ih)/2",
-        "-c:v", "libx264", "-profile:v", "main", "-preset", "slow",
-        "-b:v", "%dk" % video_kbps,
-        "-maxrate", "%dk" % int(video_kbps * 1.45),
-        "-bufsize", "%dk" % int(video_kbps * 2.5),
-        "-pix_fmt", "yuv420p", "-r", "30",
-        "-c:a", "aac", "-b:a", "%dk" % audio_kbps, "-ac", "1",
-        "-movflags", "+faststart", mp4,
-    ], check=True)
+        "-vf", vf_pipeline,
+        "-c:v", "libx264", "-profile:v", "high", "-level:v", "4.2", "-preset", "slow",
+    ]
 
-    subprocess.run([
+    if args.target:
+        total_kbps = (args.target * 8192) / duration
+        video_kbps = max(800, int(total_kbps - audio_kbps))
+        ffmpeg_cmd.extend([
+            "-b:v", "%dk" % video_kbps,
+            "-maxrate", "%dk" % int(video_kbps * 1.5),
+            "-bufsize", "%dk" % int(video_kbps * 2.5),
+        ])
+    else:
+        ffmpeg_cmd.extend([
+            "-crf", str(args.crf),
+            "-maxrate", "6500k",
+            "-bufsize", "10000k",
+        ])
+
+    ffmpeg_cmd.extend([
+        "-pix_fmt", "yuv420p", "-r", "30",
+        "-c:a", "aac", "-b:a", "%dk" % audio_kbps, "-ac", "2",
+        "-movflags", "+faststart", mp4,
+    ])
+
+    print("Procesando vídeo en alta definición (1080x1920, CAS=%.2f)..." % args.cas)
+    subprocess.run(ffmpeg_cmd, check=True)
+
+    # Miniatura en calidad fotográfica (-q:v 2)
+    poster_cmd = [
         "ffmpeg", "-v", "error", "-y", "-ss", str(args.poster), "-i", args.source,
-        "-frames:v", "1", "-vf", "scale=1080:1920:force_original_aspect_ratio=decrease,pad=1080:1920:(ow-iw)/2:(oh-ih)/2", "-q:v", "4", jpg,
-    ], check=True)
+        "-frames:v", "1",
+        "-vf", vf_pipeline,
+        "-q:v", "2", jpg,
+    ]
+    subprocess.run(poster_cmd, check=True)
 
     mb = os.path.getsize(mp4) / 1048576.0
     mins, secs = divmod(int(duration), 60)
-    print("media/%s.mp4  %.2f MB (1080x1920)  %d:%02d" % (args.name, mb, mins, secs))
-    print("media/%s.jpg  miniatura lista (1080x1920)" % args.name)
+    print("✓ media/%s.mp4  %.2f MB (1080x1920)  %d:%02d [NÍTIDO]" % (args.name, mb, mins, secs))
+    print("✓ media/%s.jpg  miniatura HD lista (1080x1920, q=2)" % args.name)
     print()
-    print("Pega esto en videos.json (sustituye un hueco con \"placeholder\": true):")
+    print("Pega esto en videos.json (o reemplaza un slot existente):")
     print(json.dumps({
         "id": args.name,
         "file": "media/%s.mp4" % args.name,
@@ -85,7 +119,7 @@ def main():
         "kind": "Talking Head + Captions",
     }, indent=2, ensure_ascii=False))
     print()
-    print("Luego: python3 build.py")
+    print("Luego ejecuta: python3 build.py")
 
 
 if __name__ == "__main__":

@@ -327,6 +327,11 @@ button {
   height: 100%;
   object-fit: cover;
   display: block;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  image-rendering: -webkit-optimize-contrast;
 }
 
 /* Secondary Complementary Visual Piece */
@@ -355,6 +360,11 @@ button {
   height: 100%;
   object-fit: cover;
   display: block;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  image-rendering: -webkit-optimize-contrast;
 }
 
 /* Editorial Annotation Below Hero Visual */
@@ -388,6 +398,11 @@ button {
   object-fit: cover;
   display: block;
   background-color: var(--bg-secondary);
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  image-rendering: -webkit-optimize-contrast;
 }
 
 .video-overlay {
@@ -1004,12 +1019,12 @@ button {
         
         <!-- Secondary Asymmetric Layer -->
         <div class="hero-secondary-card" aria-hidden="true">
-          <video data-reel="reel-09" src="media/reel-09.mp4" poster="media/reel-09.jpg" loop playsinline muted preload="none"></video>
+          <video data-reel="reel-09" src="media/reel-09.mp4" poster="media/reel-09.jpg" loop playsinline muted preload="metadata"></video>
         </div>
 
         <!-- Primary Protagonist Reel -->
         <div class="hero-primary-card" data-reel="reel-08">
-          <video data-reel="reel-08" src="media/reel-08.mp4" poster="media/reel-08.jpg" loop playsinline preload="none" aria-label="ClassFactor — Relatable Hook / Product Demo"></video>
+          <video data-reel="reel-08" src="media/reel-08.mp4" poster="media/reel-08.jpg" loop playsinline preload="metadata" aria-label="ClassFactor — Relatable Hook / Product Demo"></video>
           
           <div class="video-overlay">
             <button class="sound-toggle-btn" type="button" aria-label="Toggle sound">
@@ -1049,7 +1064,7 @@ button {
         
     <article class="gallery-card" data-reel="reel-08" data-category="tech">
       <div class="video-box">
-        <video data-reel="reel-08" src="media/reel-08.mp4" poster="media/reel-08.jpg" loop playsinline preload="none" aria-label="ClassFactor - Studying like I&#x27;m 5 years old"></video>
+        <video data-reel="reel-08" src="media/reel-08.mp4" poster="media/reel-08.jpg" loop playsinline preload="metadata" aria-label="ClassFactor - Studying like I&#x27;m 5 years old"></video>
         <div class="video-overlay">
           <button class="sound-toggle-btn" type="button" aria-label="Toggle sound">
             <svg class="sound-icon-muted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5L6 9H2v6h4l5 4V5z"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
@@ -1077,7 +1092,7 @@ button {
 
     <article class="gallery-card" data-reel="reel-09" data-category="tech">
       <div class="video-box">
-        <video data-reel="reel-09" src="media/reel-09.mp4" poster="media/reel-09.jpg" loop playsinline preload="none" aria-label="Travel Tech App - Travel Itinerary &amp; Workflow Demo"></video>
+        <video data-reel="reel-09" src="media/reel-09.mp4" poster="media/reel-09.jpg" loop playsinline preload="metadata" aria-label="Travel Tech App - Travel Itinerary &amp; Workflow Demo"></video>
         <div class="video-overlay">
           <button class="sound-toggle-btn" type="button" aria-label="Toggle sound">
             <svg class="sound-icon-muted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5L6 9H2v6h4l5 4V5z"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
@@ -1105,7 +1120,7 @@ button {
 
     <article class="gallery-card" data-reel="reel-05" data-category="tech">
       <div class="video-box">
-        <video data-reel="reel-05" src="media/reel-05.mp4" poster="media/reel-05.jpg" loop playsinline preload="none" aria-label="Lovable - AI Full-Stack App Builder"></video>
+        <video data-reel="reel-05" src="media/reel-05.mp4" poster="media/reel-05.jpg" loop playsinline preload="metadata" aria-label="Lovable - AI Full-Stack App Builder"></video>
         <div class="video-overlay">
           <button class="sound-toggle-btn" type="button" aria-label="Toggle sound">
             <svg class="sound-icon-muted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5L6 9H2v6h4l5 4V5z"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
@@ -1133,7 +1148,7 @@ button {
 
     <article class="gallery-card" data-reel="reel-10" data-category="tech">
       <div class="video-box">
-        <video data-reel="reel-10" src="media/reel-10.mp4" poster="media/reel-10.jpg" loop playsinline preload="none" aria-label="CapCut - Background Removal Without Green Screen"></video>
+        <video data-reel="reel-10" src="media/reel-10.mp4" poster="media/reel-10.jpg" loop playsinline preload="metadata" aria-label="CapCut - Background Removal Without Green Screen"></video>
         <div class="video-overlay">
           <button class="sound-toggle-btn" type="button" aria-label="Toggle sound">
             <svg class="sound-icon-muted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5L6 9H2v6h4l5 4V5z"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
@@ -1161,7 +1176,7 @@ button {
 
     <article class="gallery-card" data-reel="reel-11" data-category="tech">
       <div class="video-box">
-        <video data-reel="reel-11" src="media/reel-11.mp4" poster="media/reel-11.jpg" loop playsinline preload="none" aria-label="ClassFactor - Lock In Diva / Study Ritual Hook"></video>
+        <video data-reel="reel-11" src="media/reel-11.mp4" poster="media/reel-11.jpg" loop playsinline preload="metadata" aria-label="ClassFactor - Lock In Diva / Study Ritual Hook"></video>
         <div class="video-overlay">
           <button class="sound-toggle-btn" type="button" aria-label="Toggle sound">
             <svg class="sound-icon-muted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5L6 9H2v6h4l5 4V5z"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
@@ -1189,7 +1204,7 @@ button {
 
     <article class="gallery-card" data-reel="reel-01" data-category="tech">
       <div class="video-box">
-        <video data-reel="reel-01" src="media/reel-01.mp4" poster="media/reel-01.jpg" loop playsinline preload="none" aria-label="Day Planner AI - AI Daily Schedule Builder"></video>
+        <video data-reel="reel-01" src="media/reel-01.mp4" poster="media/reel-01.jpg" loop playsinline preload="metadata" aria-label="Day Planner AI - AI Daily Schedule Builder"></video>
         <div class="video-overlay">
           <button class="sound-toggle-btn" type="button" aria-label="Toggle sound">
             <svg class="sound-icon-muted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5L6 9H2v6h4l5 4V5z"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>

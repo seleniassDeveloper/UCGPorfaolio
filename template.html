@@ -327,6 +327,11 @@ button {
   height: 100%;
   object-fit: cover;
   display: block;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  image-rendering: -webkit-optimize-contrast;
 }
 
 /* Secondary Complementary Visual Piece */
@@ -355,6 +360,11 @@ button {
   height: 100%;
   object-fit: cover;
   display: block;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  image-rendering: -webkit-optimize-contrast;
 }
 
 /* Editorial Annotation Below Hero Visual */
@@ -388,6 +398,11 @@ button {
   object-fit: cover;
   display: block;
   background-color: var(--bg-secondary);
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  image-rendering: -webkit-optimize-contrast;
 }
 
 .video-overlay {
@@ -1004,12 +1019,12 @@ button {
         
         <!-- Secondary Asymmetric Layer -->
         <div class="hero-secondary-card" aria-hidden="true">
-          <video data-reel="{{HERO_SECONDARY_ID}}" src="{{HERO_SECONDARY_SRC}}" poster="{{HERO_SECONDARY_POSTER}}" loop playsinline muted preload="none"></video>
+          <video data-reel="{{HERO_SECONDARY_ID}}" src="{{HERO_SECONDARY_SRC}}" poster="{{HERO_SECONDARY_POSTER}}" loop playsinline muted preload="metadata"></video>
         </div>
 
         <!-- Primary Protagonist Reel -->
         <div class="hero-primary-card" data-reel="{{HERO_PRIMARY_ID}}">
-          <video data-reel="{{HERO_PRIMARY_ID}}" src="{{HERO_PRIMARY_SRC}}" poster="{{HERO_PRIMARY_POSTER}}" loop playsinline preload="none" aria-label="{{HERO_PRIMARY_BRAND}} — {{HERO_PRIMARY_STRUCTURE}}"></video>
+          <video data-reel="{{HERO_PRIMARY_ID}}" src="{{HERO_PRIMARY_SRC}}" poster="{{HERO_PRIMARY_POSTER}}" loop playsinline preload="metadata" aria-label="{{HERO_PRIMARY_BRAND}} — {{HERO_PRIMARY_STRUCTURE}}"></video>
           
           <div class="video-overlay">
             <button class="sound-toggle-btn" type="button" aria-label="Toggle sound">
