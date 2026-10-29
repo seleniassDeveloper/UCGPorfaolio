@@ -25,6 +25,11 @@ def esc(value):
 
 def build_socials(links):
     items = []
+    if links.get("website"):
+        items.append(
+            '<a href="%s" target="_blank" rel="noopener noreferrer" class="footer-link">Software &amp; Tech ↗</a>'
+            % esc(links["website"])
+        )
     if links.get("instagram"):
         items.append(
             '<a href="%s" target="_blank" rel="noopener noreferrer" class="footer-link">Instagram ↗</a>'
