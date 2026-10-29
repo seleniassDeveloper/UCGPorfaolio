@@ -72,6 +72,19 @@
       "status": "published"
     },
     {
+      "id": "reel-11",
+      "brand": "ClassFactor",
+      "title": "Lock In Diva / Study Ritual Hook",
+      "category": "tech",
+      "file": "media/reel-11.mp4",
+      "poster": "media/reel-11.jpg",
+      "duration": "0:18",
+      "format": "Viral Hook",
+      "structureLabel": "Relatable Hook / Website Demo",
+      "featured": false,
+      "status": "published"
+    },
+    {
       "id": "reel-01",
       "brand": "Day Planner AI",
       "title": "AI Daily Schedule Builder",
