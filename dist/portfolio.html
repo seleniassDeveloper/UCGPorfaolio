@@ -37,14 +37,15 @@
   --border: #DEDCD6;
   --accent: #A67C68;
   --bg-secondary: #EEEAE4;
-  
+  --blush: #EFE2DA;
+
   --font-serif: "Instrument Serif", Georgia, serif;
   --font-sans: "Manrope", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 
   --radius-xs: 2px;
   --radius-sm: 4px;
   --radius-md: 6px;
-  
+
   --transition-fast: 0.18s cubic-bezier(0.16, 1, 0.3, 1);
   --transition-smooth: 0.32s cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -111,7 +112,7 @@ button {
 
 @media (max-width: 480px) {
   .container {
-    width: min(100% - 1.8rem, 1280px);
+    width: min(100% - 2rem, 1280px);
   }
 }
 
@@ -183,12 +184,21 @@ button {
   border-color: var(--text-primary);
 }
 
+.nav-brand,
+.nav-cta {
+  white-space: nowrap;
+}
+
 @media (max-width: 680px) {
   .nav-inner {
     padding-block: 1.1rem;
   }
+  .nav-brand {
+    font-size: 0.76rem;
+    letter-spacing: 0.1em;
+  }
   .nav-links {
-    gap: 1.25rem;
+    gap: 1.1rem;
   }
   .nav-link.hide-mobile {
     display: none;
@@ -197,24 +207,23 @@ button {
 
 /* ==========================================================================
    HERO SECTION
-   Asymmetrical composition.
-   Desktop: Left column presentation, right column visual composition with real media.
-   Mobile: Brief presentation, protagonist video immediately visible.
+   Desktop: short presentation on the left, drawn phone scrolling the reels on the right.
+   Mobile: headline first, phone right below.
    ========================================================================== */
 .hero-section {
-  padding-top: clamp(2.5rem, 6vw, 4.5rem);
-  padding-bottom: clamp(3.5rem, 8vw, 6.5rem);
+  padding-top: clamp(2.5rem, 5vw, 4rem);
+  padding-bottom: clamp(3rem, 6vw, 5rem);
   border-bottom: 1px solid var(--border);
+  overflow: hidden;
 }
 
 .hero-grid {
   display: grid;
-  grid-template-columns: 1.05fr 0.95fr;
+  grid-template-columns: 1fr 1fr;
   align-items: center;
-  gap: clamp(2.5rem, 5vw, 5.5rem);
+  gap: clamp(2rem, 5vw, 5rem);
 }
 
-/* Hero Left Presentation */
 .hero-copy {
   display: flex;
   flex-direction: column;
@@ -233,35 +242,27 @@ button {
 
 .hero-headline {
   font-family: var(--font-serif);
-  font-size: clamp(3rem, 5.5vw, 5.2rem);
-  line-height: 1.02;
+  font-size: clamp(3.2rem, 6.4vw, 6rem);
+  line-height: 0.98;
   font-weight: 400;
   color: var(--text-primary);
-  letter-spacing: -0.015em;
+  letter-spacing: -0.02em;
   margin-bottom: 1.6rem;
 }
 
 .hero-headline em {
   font-style: italic;
   font-weight: 400;
+  color: var(--accent);
 }
 
 .hero-supporting {
-  font-size: clamp(1.05rem, 1.6vw, 1.25rem);
+  font-size: clamp(1.02rem, 1.5vw, 1.18rem);
   font-weight: 500;
-  line-height: 1.45;
-  color: var(--text-primary);
-  margin-bottom: 1rem;
-  max-width: 520px;
-}
-
-.hero-description {
-  font-size: 0.96rem;
-  font-weight: 400;
-  line-height: 1.65;
+  line-height: 1.5;
   color: var(--text-secondary);
-  max-width: 480px;
   margin-bottom: 2.2rem;
+  max-width: 420px;
 }
 
 .hero-action-row {
@@ -279,20 +280,23 @@ button {
   font-weight: 600;
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  color: var(--text-primary);
-  padding: 0.85rem 1.6rem;
-  background-color: transparent;
+  color: var(--bg);
+  padding: 0.95rem 1.7rem;
+  background-color: var(--text-primary);
   border: 1.5px solid var(--text-primary);
   border-radius: var(--radius-xs);
   transition: all var(--transition-fast);
 }
 
 .hero-cta:hover {
-  background-color: var(--text-primary);
-  color: var(--bg);
+  background-color: transparent;
+  color: var(--text-primary);
 }
 
 .hero-sub-meta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
   font-size: 0.76rem;
   font-weight: 500;
   text-transform: uppercase;
@@ -300,94 +304,333 @@ button {
   color: var(--text-secondary);
 }
 
-/* Hero Right Visual Composition */
-.hero-visual-composition {
+.hero-sub-meta::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #6E9C7A;
+  box-shadow: 0 0 0 3px rgba(110, 156, 122, 0.18);
+}
+
+/* ==========================================================================
+   PHONE STAGE
+   A drawn phone whose screen auto-scrolls the hook of every reel, like a For You feed.
+   ========================================================================== */
+.hero-stage {
+  --phone-w: 290px;
   position: relative;
   display: flex;
-  justify-content: flex-end;
-  align-items: flex-end;
-  min-height: 520px;
+  justify-content: center;
+  align-items: center;
+  min-height: 680px;
 }
 
-/* Primary Protagonist Video */
-.hero-primary-card {
+.stage-blob {
+  position: absolute;
+  width: min(480px, 100%);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle at 38% 32%, var(--blush) 0%, var(--bg-secondary) 52%, rgba(238, 234, 228, 0) 71%);
+}
+
+.stage-ring {
+  position: absolute;
+  width: min(560px, 118%);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: 1px dashed rgba(166, 124, 104, 0.4);
+  animation: ring-spin 90s linear infinite;
+}
+
+@keyframes ring-spin {
+  to { transform: rotate(360deg); }
+}
+
+.phone {
   position: relative;
-  width: min(340px, 80%);
-  aspect-ratio: 9 / 16;
-  background-color: var(--bg-secondary);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-sm);
-  overflow: hidden;
   z-index: 2;
-  box-shadow: 0 8px 30px rgba(36, 35, 33, 0.06);
+  width: var(--phone-w);
+  aspect-ratio: 9 / 19;
+  padding: 11px;
+  border-radius: 50px;
+  background: linear-gradient(150deg, #33302E 0%, #191817 45%, #26231F 100%);
+  box-shadow:
+    inset 0 0 0 1.5px #4D4945,
+    inset 0 0 0 4px #121110,
+    0 40px 70px -28px rgba(36, 35, 33, 0.45),
+    0 16px 30px -18px rgba(36, 35, 33, 0.3);
+  animation: phone-float 7s ease-in-out infinite;
 }
 
-.hero-primary-card video {
+@keyframes phone-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-9px); }
+}
+
+/* Side buttons */
+.phone-btn {
+  position: absolute;
+  width: 3px;
+  background: #2B2826;
+  border-radius: 2px;
+}
+.phone-btn--action { left: -3px; top: 96px; height: 24px; }
+.phone-btn--vol-up { left: -3px; top: 138px; height: 44px; }
+.phone-btn--vol-down { left: -3px; top: 192px; height: 44px; }
+.phone-btn--power { right: -3px; top: 156px; height: 70px; }
+
+.phone-screen {
+  position: relative;
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  display: block;
-  -webkit-transform: translateZ(0);
-  transform: translateZ(0);
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-  image-rendering: -webkit-optimize-contrast;
-}
-
-/* Secondary Complementary Visual Piece */
-.hero-secondary-card {
-  position: absolute;
-  left: 0;
-  top: 10%;
-  width: min(220px, 55%);
-  aspect-ratio: 9 / 16;
-  background-color: var(--bg-secondary);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-sm);
+  border-radius: 40px;
   overflow: hidden;
-  z-index: 1;
-  opacity: 0.92;
-  transition: opacity var(--transition-fast), transform var(--transition-fast);
+  background: #121110;
+  cursor: pointer;
+  isolation: isolate;
+  -webkit-mask-image: -webkit-radial-gradient(white, black);
 }
 
-.hero-secondary-card:hover {
-  opacity: 1;
-  transform: translateY(-4px);
+.phone-screen:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
 }
 
-.hero-secondary-card video {
+/* Home indicator */
+.phone-screen::after {
+  content: "";
+  position: absolute;
+  z-index: 6;
+  left: 50%;
+  bottom: 7px;
+  width: 34%;
+  height: 4px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.85);
+  transform: translateX(-50%);
+}
+
+.phone-island {
+  position: absolute;
+  z-index: 6;
+  top: 10px;
+  left: 50%;
+  width: 82px;
+  height: 24px;
+  border-radius: 20px;
+  background: #050505;
+  transform: translateX(-50%);
+}
+
+.phone-status {
+  position: absolute;
+  z-index: 5;
+  top: 13px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-inline: 26px 22px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #FFFFFF;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+  pointer-events: none;
+}
+
+.phone-status-icons {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.phone-status-icons svg {
+  height: 10px;
+  width: auto;
+  fill: #FFFFFF;
+}
+
+.feed-track {
+  height: 100%;
+  transition: transform 0.75s cubic-bezier(0.65, 0, 0.25, 1);
+  will-change: transform;
+}
+
+.feed-track.no-anim {
+  transition: none;
+}
+
+.feed-slide {
+  position: relative;
+  height: 100%;
+  background: #121110;
+}
+
+.feed-slide video {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  display: block;
-  -webkit-transform: translateZ(0);
-  transform: translateZ(0);
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-  image-rendering: -webkit-optimize-contrast;
 }
 
-/* Editorial Annotation Below Hero Visual */
-.hero-visual-caption {
+.feed-ui {
   position: absolute;
-  bottom: -2.2rem;
-  right: 0;
-  font-size: 0.72rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--text-secondary);
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.22) 0%, rgba(0, 0, 0, 0) 16%, rgba(0, 0, 0, 0) 68%, rgba(0, 0, 0, 0.5) 100%);
+}
+
+.feed-actions {
+  position: absolute;
+  right: 12px;
+  bottom: 74px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  color: #FFFFFF;
+}
+
+.feed-actions svg {
+  width: 23px;
+  height: 23px;
+  filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.35));
+}
+
+.feed-slide.is-active .feed-actions svg:first-child {
+  animation: heart-pop 0.6s 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+@keyframes heart-pop {
+  0% { transform: scale(1); fill: transparent; }
+  45% { transform: scale(1.28); }
+  100% { transform: scale(1); fill: #FF4D67; stroke: #FF4D67; }
+}
+
+.feed-caption {
+  position: absolute;
+  left: 14px;
+  right: 56px;
+  bottom: 26px;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  color: #FFFFFF;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.35);
+}
+
+.feed-handle {
+  font-size: 0.74rem;
+  font-weight: 700;
+}
+
+.feed-brand {
+  font-size: 0.7rem;
+  font-weight: 500;
+  opacity: 0.88;
+}
+
+.feed-progress {
+  position: absolute;
+  left: 14px;
+  right: 14px;
+  bottom: 17px;
+  height: 2px;
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.3);
+  overflow: hidden;
+}
+
+.feed-progress span {
+  display: block;
+  height: 100%;
+  width: 0;
+  background: #FFFFFF;
+}
+
+.feed-slide.is-active .feed-progress span {
+  animation: feed-progress var(--slide-ms, 6000ms) linear forwards;
+}
+
+.phone.is-paused .feed-progress span {
+  animation-play-state: paused;
+}
+
+@keyframes feed-progress {
+  to { width: 100%; }
+}
+
+/* Feed position dots, beside the phone */
+.feed-dots {
+  position: absolute;
+  z-index: 3;
+  top: 50%;
+  left: calc(50% + var(--phone-w) / 2 + 26px);
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  list-style: none;
+  transform: translateY(-50%);
+}
+
+.feed-dot {
+  display: block;
+  width: 7px;
+  height: 7px;
+  border-radius: 7px;
+  border: 1px solid var(--accent);
+  transition: height var(--transition-smooth), background-color var(--transition-fast);
+}
+
+.feed-dot:hover {
+  background-color: rgba(166, 124, 104, 0.35);
+}
+
+.feed-dot.is-active {
+  height: 22px;
+  background-color: var(--accent);
+}
+
+/* Hand-drawn note pointing at the phone */
+.stage-note {
+  position: absolute;
+  z-index: 3;
+  right: calc(50% + var(--phone-w) / 2 + 14px);
+  bottom: 22%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.45rem;
+  line-height: 1;
+  color: var(--text-primary);
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.stage-note svg {
+  width: 74px;
+  height: 46px;
+  margin-top: 0.3rem;
+  margin-right: -0.6rem;
+  stroke: var(--accent);
+  fill: none;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 
 /* ==========================================================================
    VIDEO CONTROLS & OVERLAYS
-   Discreet, minimal, professional player mechanics without phone frames.
+   Discreet, minimal, professional player mechanics.
    ========================================================================== */
 .video-box {
   position: relative;
   width: 100%;
   aspect-ratio: 9 / 16;
   background-color: var(--bg-secondary);
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius-md);
   overflow: hidden;
   border: 1px solid var(--border);
 }
@@ -494,9 +737,7 @@ button {
   pointer-events: none;
 }
 
-.video-box:hover .is-playing .play-trigger-btn,
-.gallery-card:hover .is-playing .play-trigger-btn,
-.hero-primary-card:hover .is-playing .play-trigger-btn {
+.gallery-card.is-playing:hover .play-trigger-btn {
   opacity: 0.82;
   pointer-events: auto;
 }
@@ -539,9 +780,7 @@ button {
 
 /* ==========================================================================
    SELECTED WORK (GALLERY SECTION)
-   Desktop: 3 columns. Tablet: 2 columns. Mobile: 1 column.
-   Refined editorial scale (balanced ~280px width), 9:16 vertical ratio,
-   subtle minimal borders, perfectly scaled for laptop & mobile viewports.
+   Centered rows of 9:16 reels: 3 per row on desktop, 2 on tablet and phone.
    ========================================================================== */
 .gallery-section {
   padding-block: clamp(3.5rem, 6vw, 5.5rem);
@@ -555,12 +794,14 @@ button {
 
 .section-head {
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1rem;
   margin-bottom: clamp(2rem, 4vw, 3rem);
 }
 
 .section-eyebrow {
+  display: block;
   font-size: 0.72rem;
   font-weight: 700;
   text-transform: uppercase;
@@ -576,30 +817,28 @@ button {
   line-height: 1.05;
   color: var(--text-primary);
   letter-spacing: -0.015em;
-  margin-bottom: 0.6rem;
 }
 
-.section-subtitle {
-  font-size: 0.95rem;
+.section-hint {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.15rem;
   color: var(--text-secondary);
-  max-width: 540px;
+  white-space: nowrap;
 }
 
-/* 3-Column Editorial Grid with Refined Dimensions */
 .gallery-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 280px));
+  display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   gap: clamp(1.4rem, 2.2vw, 2.2rem);
-  margin-inline: auto;
 }
 
 .gallery-card {
   display: flex;
   flex-direction: column;
-  width: 100%;
-  max-width: 280px;
-  margin-inline: auto;
+  flex: 0 1 280px;
+  min-width: 0;
   transition: transform var(--transition-fast);
 }
 
@@ -608,15 +847,11 @@ button {
 }
 
 .card-meta {
-  padding-top: 0.85rem;
-}
-
-.card-meta-head {
   display: flex;
   align-items: baseline;
   justify-content: space-between;
   gap: 0.8rem;
-  margin-bottom: 0.3rem;
+  padding-top: 0.85rem;
 }
 
 .card-brand-title {
@@ -627,63 +862,87 @@ button {
   letter-spacing: -0.01em;
 }
 
-.card-num-index {
-  font-size: 0.72rem;
+.card-format {
+  font-size: 0.68rem;
   font-weight: 600;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
   color: var(--accent);
+  text-align: right;
 }
 
-.card-structure-text {
-  font-size: 0.82rem;
-  font-weight: 400;
-  color: var(--text-secondary);
-  line-height: 1.4;
-}
-
-/* Tablet & Mobile gallery breakpoints */
 @media (max-width: 960px) {
-  .gallery-grid {
-    grid-template-columns: repeat(2, minmax(0, 270px));
-    gap: 1.8rem;
+  .gallery-card {
+    flex-basis: calc(50% - 1rem);
+    max-width: 300px;
   }
 }
 
 @media (max-width: 600px) {
+  .gallery-section .container {
+    width: min(100% - 2rem, 980px);
+  }
+  .section-hint {
+    display: none;
+  }
   .gallery-grid {
-    grid-template-columns: minmax(0, 280px);
-    justify-content: center;
-    gap: 2.2rem;
+    gap: 1.6rem 0.75rem;
+  }
+  .gallery-card {
+    flex-basis: calc(50% - 0.375rem);
+  }
+  .video-overlay {
+    padding: 0.6rem;
+  }
+  .sound-toggle-btn {
+    width: 30px;
+    height: 30px;
+  }
+  .play-trigger-btn {
+    width: 46px;
+    height: 46px;
+  }
+  .video-duration-pill {
+    bottom: 0.6rem;
+    left: 0.6rem;
+  }
+  .card-meta {
+    flex-direction: column;
+    gap: 0.1rem;
+    padding-top: 0.6rem;
+  }
+  .card-brand-title {
+    font-size: 0.92rem;
+  }
+  .card-format {
+    font-size: 0.62rem;
+    text-align: left;
   }
 }
 
 /* ==========================================================================
    ABOUT SECTION
-   Editorial, asymmetrical layout with real personal portrait and spacious copy.
+   Portrait + two lines. Tags instead of paragraphs.
    ========================================================================== */
 .about-section {
-  padding-block: clamp(4.5rem, 9vw, 8rem);
+  padding-block: clamp(4rem, 8vw, 7rem);
   border-bottom: 1px solid var(--border);
 }
 
 .about-grid {
   display: grid;
-  grid-template-columns: 0.85fr 1.15fr;
+  grid-template-columns: 0.8fr 1.2fr;
   align-items: center;
   gap: clamp(2.5rem, 6vw, 6rem);
 }
 
-.about-portrait-wrap {
-  position: relative;
-}
-
 .about-portrait-frame {
   width: 100%;
-  max-width: 420px;
+  max-width: 380px;
   aspect-ratio: 4 / 5;
   background-color: var(--bg-secondary);
   border: 1px solid var(--border);
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius-md);
   overflow: hidden;
 }
 
@@ -693,14 +952,6 @@ button {
   object-fit: cover;
   display: block;
   filter: grayscale(15%) contrast(102%);
-}
-
-.about-portrait-caption {
-  margin-top: 0.8rem;
-  font-size: 0.72rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--text-secondary);
 }
 
 .about-content {
@@ -716,62 +967,48 @@ button {
   line-height: 1.06;
   color: var(--text-primary);
   letter-spacing: -0.015em;
-  margin-bottom: 2rem;
+  margin-bottom: 1.6rem;
 }
 
-.about-text-lead {
-  font-size: clamp(1.08rem, 1.6vw, 1.25rem);
-  font-weight: 500;
-  line-height: 1.55;
-  color: var(--text-primary);
-  margin-bottom: 1.25rem;
-}
-
-.about-text-body {
-  font-size: 1rem;
-  font-weight: 400;
-  line-height: 1.7;
-  color: var(--text-secondary);
-  margin-bottom: 1.1rem;
-}
-
-.about-meta-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1.5rem;
-  width: 100%;
-  margin-top: 2rem;
-  padding-top: 2rem;
-  border-top: 1px solid var(--border);
-}
-
-.about-meta-item {
-  display: flex;
-  flex-direction: column;
-  gap: 0.3rem;
-}
-
-.about-meta-label {
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+.about-title em {
+  font-style: italic;
   color: var(--accent);
 }
 
-.about-meta-val {
-  font-size: 0.88rem;
+.about-text-lead {
+  font-size: clamp(1.05rem, 1.5vw, 1.2rem);
   font-weight: 500;
+  line-height: 1.55;
+  color: var(--text-secondary);
+  max-width: 480px;
+  margin-bottom: 2rem;
+}
+
+.about-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  list-style: none;
+}
+
+.about-tags li {
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  padding: 0.45rem 0.95rem;
+  border: 1px solid var(--border);
+  border-radius: 999px;
   color: var(--text-primary);
+  background: var(--bg);
 }
 
 @media (max-width: 860px) {
   .about-grid {
     grid-template-columns: 1fr;
-    gap: 3rem;
+    gap: 2.5rem;
   }
   .about-portrait-frame {
-    max-width: 320px;
+    max-width: 300px;
   }
 }
 
@@ -790,15 +1027,6 @@ button {
   max-width: 780px;
 }
 
-.contact-eyebrow {
-  font-size: 0.72rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.16em;
-  color: var(--accent);
-  margin-bottom: 1rem;
-}
-
 .contact-title {
   font-family: var(--font-serif);
   font-size: clamp(2.8rem, 5.5vw, 5rem);
@@ -807,6 +1035,11 @@ button {
   color: var(--text-primary);
   letter-spacing: -0.02em;
   margin-bottom: 1.4rem;
+}
+
+.contact-title em {
+  font-style: italic;
+  color: var(--accent);
 }
 
 .contact-text {
@@ -868,6 +1101,7 @@ button {
   font-size: 0.9rem;
   font-weight: 500;
   color: var(--text-primary);
+  overflow-wrap: anywhere;
 }
 
 .email-copy-badge {
@@ -876,13 +1110,15 @@ button {
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--accent);
+  white-space: nowrap;
   transition: color var(--transition-fast);
 }
 
 .contact-social-row {
   display: flex;
   align-items: center;
-  gap: 2.2rem;
+  flex-wrap: wrap;
+  gap: 1rem 2.2rem;
   padding-top: 2rem;
   border-top: 1px solid var(--border);
   width: 100%;
@@ -922,38 +1158,85 @@ button {
 /* ==========================================================================
    MOBILE & RESPONSIVE REFINEMENTS
    ========================================================================== */
+@media (min-width: 1200px) {
+  .hero-stage {
+    --phone-w: 320px;
+    min-height: 730px;
+  }
+  .stage-blob {
+    width: 520px;
+  }
+  .stage-ring {
+    width: 610px;
+  }
+}
+
 @media (max-width: 900px) {
   .hero-grid {
     grid-template-columns: 1fr;
-    gap: 3rem;
+    gap: 2.5rem;
   }
-  .hero-visual-composition {
-    justify-content: center;
-    min-height: auto;
-    width: 100%;
+  .hero-stage {
+    min-height: 0;
+    padding-block: 1.5rem;
   }
-  .hero-primary-card {
-    width: min(320px, 85%);
+}
+
+@media (max-width: 560px) {
+  .hero-stage {
+    --phone-w: 248px;
   }
-  .hero-secondary-card {
-    display: none; /* Keep hero focused and immediately visible on mobile */
+  .phone {
+    padding: 9px;
+    border-radius: 44px;
   }
-  .hero-visual-caption {
-    position: static;
-    margin-top: 0.8rem;
-    text-align: center;
-    width: 100%;
+  .phone-screen {
+    border-radius: 35px;
+  }
+  .phone-island {
+    width: 72px;
+    height: 21px;
+    top: 9px;
+  }
+  .phone-btn--action { top: 82px; }
+  .phone-btn--vol-up { top: 118px; height: 38px; }
+  .phone-btn--vol-down { top: 164px; height: 38px; }
+  .phone-btn--power { top: 134px; height: 60px; }
+  .feed-dots {
+    left: calc(50% + var(--phone-w) / 2 + 16px);
+  }
+  .stage-note {
+    display: none;
   }
 }
 
 @media (max-width: 480px) {
-  .hero-action-row {
-    flex-direction: column;
-    align-items: stretch;
+  .hero-section {
+    padding-top: 2rem;
+  }
+  .hero-grid {
     gap: 1rem;
   }
+  .hero-eyebrow {
+    margin-bottom: 1rem;
+  }
+  .hero-headline {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+  }
+  .hero-supporting {
+    font-size: 0.98rem;
+    margin-bottom: 1.5rem;
+  }
+  .hero-action-row {
+    gap: 1rem 1.2rem;
+  }
   .hero-cta {
-    justify-content: center;
+    padding: 0.8rem 1.3rem;
+    font-size: 0.8rem;
+  }
+  .hero-sub-meta {
+    font-size: 0.68rem;
   }
   .contact-action-bar {
     flex-direction: column;
@@ -988,7 +1271,6 @@ button {
       <ul class="nav-links">
         <li><a href="#work" class="nav-link">Work</a></li>
         <li><a href="#about" class="nav-link hide-mobile">About</a></li>
-        <li><a href="#contact" class="nav-link hide-mobile">Contact</a></li>
         <li><a href="#contact" class="nav-cta">Let’s Talk ↗</a></li>
       </ul>
     </nav>
@@ -1000,50 +1282,103 @@ button {
   <!-- HERO SECTION -->
   <section class="hero-section" aria-label="Introduction">
     <div class="container hero-grid">
-      
-      <!-- Left Column: Editorial Presentation -->
+
       <div class="hero-copy">
-        <span class="hero-eyebrow">UGC CREATOR / TECH, AI &amp; TRAVEL</span>
+        <span class="hero-eyebrow">UGC Creator · Tech, AI &amp; Travel</span>
         <h1 class="hero-headline">Content that <em>feels human.</em></h1>
         <p class="hero-supporting">Created by someone who understands the technology behind the product.</p>
-        <p class="hero-description">I’m Selenia — a UGC creator and software engineer creating authentic content for apps, AI, SaaS and travel brands.</p>
-        
         <div class="hero-action-row">
-          <a href="#work" class="hero-cta">Explore my work ↗</a>
-          <span class="hero-sub-meta">Available for US &amp; Global Collabs</span>
+          <a href="#work" class="hero-cta">See my work ↓</a>
+          <span class="hero-sub-meta">Open to US &amp; global brands</span>
         </div>
       </div>
 
-      <!-- Right Column: Visual Composition with Real Media (No Phone Frames) -->
-      <div class="hero-visual-composition">
-        
-        <!-- Secondary Asymmetric Layer -->
-        <div class="hero-secondary-card" aria-hidden="true">
-          <video data-reel="reel-09" src="media/reel-09.mp4" poster="media/reel-09.jpg" loop playsinline muted preload="metadata"></video>
-        </div>
+      <!-- Drawn phone scrolling the reels -->
+      <div class="hero-stage">
+        <div class="stage-ring" aria-hidden="true"></div>
+        <div class="stage-blob" aria-hidden="true"></div>
 
-        <!-- Primary Protagonist Reel -->
-        <div class="hero-primary-card" data-reel="reel-08">
-          <video data-reel="reel-08" src="media/reel-08.mp4" poster="media/reel-08.jpg" loop playsinline preload="metadata" aria-label="ClassFactor — Relatable Hook / Product Demo"></video>
-          
-          <div class="video-overlay">
-            <button class="sound-toggle-btn" type="button" aria-label="Toggle sound">
-              <svg class="sound-icon-muted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5L6 9H2v6h4l5 4V5z"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
-              <svg class="sound-icon-unmuted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5L6 9H2v6h4l5 4V5z"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
-            </button>
-            <button class="play-trigger-btn" type="button" aria-label="Play video">
-              <span class="play-glyph">
-                <svg class="play-icon" viewBox="0 0 24 24" fill="currentColor"><polygon points="6 3 20 12 6 21 6 3"/></svg>
-                <svg class="pause-icon" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+        <div class="phone" id="phone">
+          <span class="phone-btn phone-btn--action" aria-hidden="true"></span>
+          <span class="phone-btn phone-btn--vol-up" aria-hidden="true"></span>
+          <span class="phone-btn phone-btn--vol-down" aria-hidden="true"></span>
+          <span class="phone-btn phone-btn--power" aria-hidden="true"></span>
+          <div class="phone-screen" id="phoneScreen" role="button" tabindex="0" aria-label="Watch the full video">
+            <div class="phone-status" aria-hidden="true">
+              <span>9:41</span>
+              <span class="phone-status-icons">
+                <svg viewBox="0 0 18 12"><rect x="0" y="8" width="3" height="4" rx="1"/><rect x="5" y="5.5" width="3" height="6.5" rx="1"/><rect x="10" y="3" width="3" height="9" rx="1"/><rect x="15" y="0" width="3" height="12" rx="1"/></svg>
+                <svg viewBox="0 0 26 12"><rect x="0.75" y="0.75" width="21.5" height="10.5" rx="3" fill="none" stroke="#fff" stroke-width="1.2" opacity="0.6"/><rect x="2.5" y="2.5" width="15" height="7" rx="1.6"/><rect x="23.5" y="4" width="1.8" height="4" rx="0.9" opacity="0.6"/></svg>
               </span>
-            </button>
-            <span class="video-duration-pill">0:20</span>
-            <div class="video-progress-track"><div class="video-progress-fill"></div></div>
+            </div>
+            <div class="phone-island" aria-hidden="true"></div>
+            <div class="feed-track" id="feedTrack">
+              
+            <div class="feed-slide" data-reel="reel-08" data-brand="ClassFactor">
+              <video data-src="media/reel-08.preview.mp4" data-poster="media/reel-08.jpg" muted playsinline preload="none" aria-hidden="true"></video>
+              <div class="feed-ui" aria-hidden="true">
+                <div class="feed-actions"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1.1L12 21l7.8-7.5 1-1.1a5.5 5.5 0 0 0 0-7.8z"/></svg><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-12.2 7.5L3 21l2-5.6A8.4 8.4 0 1 1 21 11.5z"/></svg><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4 20-7z"/></svg></div>
+                <div class="feed-caption">
+                  <span class="feed-handle">@seleniasanchez</span>
+                  <span class="feed-brand">ClassFactor</span>
+                </div>
+                <div class="feed-progress"><span></span></div>
+              </div>
+            </div>
+            <div class="feed-slide" data-reel="reel-01" data-brand="Day Planner AI">
+              <video data-src="media/reel-01.preview.mp4" data-poster="media/reel-01.jpg" muted playsinline preload="none" aria-hidden="true"></video>
+              <div class="feed-ui" aria-hidden="true">
+                <div class="feed-actions"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1.1L12 21l7.8-7.5 1-1.1a5.5 5.5 0 0 0 0-7.8z"/></svg><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-12.2 7.5L3 21l2-5.6A8.4 8.4 0 1 1 21 11.5z"/></svg><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4 20-7z"/></svg></div>
+                <div class="feed-caption">
+                  <span class="feed-handle">@seleniasanchez</span>
+                  <span class="feed-brand">Day Planner AI</span>
+                </div>
+                <div class="feed-progress"><span></span></div>
+              </div>
+            </div>
+            <div class="feed-slide" data-reel="reel-05" data-brand="Lovable">
+              <video data-src="media/reel-05.preview.mp4" data-poster="media/reel-05.jpg" muted playsinline preload="none" aria-hidden="true"></video>
+              <div class="feed-ui" aria-hidden="true">
+                <div class="feed-actions"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1.1L12 21l7.8-7.5 1-1.1a5.5 5.5 0 0 0 0-7.8z"/></svg><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-12.2 7.5L3 21l2-5.6A8.4 8.4 0 1 1 21 11.5z"/></svg><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4 20-7z"/></svg></div>
+                <div class="feed-caption">
+                  <span class="feed-handle">@seleniasanchez</span>
+                  <span class="feed-brand">Lovable</span>
+                </div>
+                <div class="feed-progress"><span></span></div>
+              </div>
+            </div>
+            <div class="feed-slide" data-reel="reel-10" data-brand="CapCut">
+              <video data-src="media/reel-10.preview.mp4" data-poster="media/reel-10.jpg" muted playsinline preload="none" aria-hidden="true"></video>
+              <div class="feed-ui" aria-hidden="true">
+                <div class="feed-actions"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1.1L12 21l7.8-7.5 1-1.1a5.5 5.5 0 0 0 0-7.8z"/></svg><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-12.2 7.5L3 21l2-5.6A8.4 8.4 0 1 1 21 11.5z"/></svg><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4 20-7z"/></svg></div>
+                <div class="feed-caption">
+                  <span class="feed-handle">@seleniasanchez</span>
+                  <span class="feed-brand">CapCut</span>
+                </div>
+                <div class="feed-progress"><span></span></div>
+              </div>
+            </div>
+            <div class="feed-slide" data-reel="reel-11" data-brand="ClassFactor">
+              <video data-src="media/reel-11.preview.mp4" data-poster="media/reel-11.jpg" muted playsinline preload="none" aria-hidden="true"></video>
+              <div class="feed-ui" aria-hidden="true">
+                <div class="feed-actions"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1.1L12 21l7.8-7.5 1-1.1a5.5 5.5 0 0 0 0-7.8z"/></svg><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-12.2 7.5L3 21l2-5.6A8.4 8.4 0 1 1 21 11.5z"/></svg><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4 20-7z"/></svg></div>
+                <div class="feed-caption">
+                  <span class="feed-handle">@seleniasanchez</span>
+                  <span class="feed-brand">ClassFactor</span>
+                </div>
+                <div class="feed-progress"><span></span></div>
+              </div>
+            </div>
+            </div>
           </div>
         </div>
 
-        <div class="hero-visual-caption">Fig. 01 — ClassFactor · Relatable Hook / Product Demo</div>
+        <ol class="feed-dots" id="feedDots" aria-label="Choose a video"></ol>
 
+        <div class="stage-note" aria-hidden="true">
+          <span>tap to watch</span>
+          <svg viewBox="0 0 74 46"><path d="M4 6c10 22 30 32 58 30"/><path d="M53 28l10 8-11 6"/></svg>
+        </div>
       </div>
 
     </div>
@@ -1052,14 +1387,15 @@ button {
   <!-- SELECTED WORK -->
   <section id="work" class="gallery-section" aria-label="Selected Work">
     <div class="container">
-      
+
       <header class="section-head">
-        <span class="section-eyebrow">PORTFOLIO / SELECTED WORK</span>
-        <h2 class="section-title">Curated UGC Reels.</h2>
-        <p class="section-subtitle">Engaging, high-converting product videos crafted with narrative intention and clear value delivery.</p>
+        <div>
+          <span class="section-eyebrow">Selected work</span>
+          <h2 class="section-title">UGC reels.</h2>
+        </div>
+        <span class="section-hint">hover to preview, click for sound</span>
       </header>
 
-      <!-- 3-Column Editorial Grid -->
       <div class="gallery-grid">
         
     <article class="gallery-card" data-reel="reel-08" data-category="tech">
@@ -1081,123 +1417,8 @@ button {
         </div>
       </div>
       <div class="card-meta">
-        <div class="card-meta-head">
-          <h3 class="card-brand-title">ClassFactor</h3>
-          <span class="card-num-index">01</span>
-        </div>
-        <p class="card-structure-text">Relatable Hook / Product Demo</p>
-      </div>
-    </article>
-    
-
-    <article class="gallery-card" data-reel="reel-09" data-category="tech">
-      <div class="video-box">
-        <video data-reel="reel-09" src="media/reel-09.mp4" poster="media/reel-09.jpg" loop playsinline preload="metadata" aria-label="Travel Tech App - Travel Itinerary &amp; Workflow Demo"></video>
-        <div class="video-overlay">
-          <button class="sound-toggle-btn" type="button" aria-label="Toggle sound">
-            <svg class="sound-icon-muted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5L6 9H2v6h4l5 4V5z"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
-            <svg class="sound-icon-unmuted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5L6 9H2v6h4l5 4V5z"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
-          </button>
-          <button class="play-trigger-btn" type="button" aria-label="Play video">
-            <span class="play-glyph">
-              <svg class="play-icon" viewBox="0 0 24 24" fill="currentColor"><polygon points="6 3 20 12 6 21 6 3"/></svg>
-              <svg class="pause-icon" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
-            </span>
-          </button>
-          <span class="video-duration-pill">0:16</span>
-          <div class="video-progress-track"><div class="video-progress-fill"></div></div>
-        </div>
-      </div>
-      <div class="card-meta">
-        <div class="card-meta-head">
-          <h3 class="card-brand-title">Travel Tech App</h3>
-          <span class="card-num-index">02</span>
-        </div>
-        <p class="card-structure-text">Story Hook / Workflow Demo</p>
-      </div>
-    </article>
-    
-
-    <article class="gallery-card" data-reel="reel-05" data-category="tech">
-      <div class="video-box">
-        <video data-reel="reel-05" src="media/reel-05.mp4" poster="media/reel-05.jpg" loop playsinline preload="metadata" aria-label="Lovable - AI Full-Stack App Builder"></video>
-        <div class="video-overlay">
-          <button class="sound-toggle-btn" type="button" aria-label="Toggle sound">
-            <svg class="sound-icon-muted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5L6 9H2v6h4l5 4V5z"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
-            <svg class="sound-icon-unmuted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5L6 9H2v6h4l5 4V5z"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
-          </button>
-          <button class="play-trigger-btn" type="button" aria-label="Play video">
-            <span class="play-glyph">
-              <svg class="play-icon" viewBox="0 0 24 24" fill="currentColor"><polygon points="6 3 20 12 6 21 6 3"/></svg>
-              <svg class="pause-icon" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
-            </span>
-          </button>
-          <span class="video-duration-pill">2:08</span>
-          <div class="video-progress-track"><div class="video-progress-fill"></div></div>
-        </div>
-      </div>
-      <div class="card-meta">
-        <div class="card-meta-head">
-          <h3 class="card-brand-title">Lovable</h3>
-          <span class="card-num-index">03</span>
-        </div>
-        <p class="card-structure-text">Split-Screen Reaction / Social Proof</p>
-      </div>
-    </article>
-    
-
-    <article class="gallery-card" data-reel="reel-10" data-category="tech">
-      <div class="video-box">
-        <video data-reel="reel-10" src="media/reel-10.mp4" poster="media/reel-10.jpg" loop playsinline preload="metadata" aria-label="CapCut - Background Removal Without Green Screen"></video>
-        <div class="video-overlay">
-          <button class="sound-toggle-btn" type="button" aria-label="Toggle sound">
-            <svg class="sound-icon-muted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5L6 9H2v6h4l5 4V5z"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
-            <svg class="sound-icon-unmuted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5L6 9H2v6h4l5 4V5z"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
-          </button>
-          <button class="play-trigger-btn" type="button" aria-label="Play video">
-            <span class="play-glyph">
-              <svg class="play-icon" viewBox="0 0 24 24" fill="currentColor"><polygon points="6 3 20 12 6 21 6 3"/></svg>
-              <svg class="pause-icon" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
-            </span>
-          </button>
-          <span class="video-duration-pill">0:20</span>
-          <div class="video-progress-track"><div class="video-progress-fill"></div></div>
-        </div>
-      </div>
-      <div class="card-meta">
-        <div class="card-meta-head">
-          <h3 class="card-brand-title">CapCut</h3>
-          <span class="card-num-index">04</span>
-        </div>
-        <p class="card-structure-text">Visual Hook / Feature Demo</p>
-      </div>
-    </article>
-    
-
-    <article class="gallery-card" data-reel="reel-11" data-category="tech">
-      <div class="video-box">
-        <video data-reel="reel-11" src="media/reel-11.mp4" poster="media/reel-11.jpg" loop playsinline preload="metadata" aria-label="ClassFactor - Lock In Diva / Study Ritual Hook"></video>
-        <div class="video-overlay">
-          <button class="sound-toggle-btn" type="button" aria-label="Toggle sound">
-            <svg class="sound-icon-muted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5L6 9H2v6h4l5 4V5z"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
-            <svg class="sound-icon-unmuted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5L6 9H2v6h4l5 4V5z"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
-          </button>
-          <button class="play-trigger-btn" type="button" aria-label="Play video">
-            <span class="play-glyph">
-              <svg class="play-icon" viewBox="0 0 24 24" fill="currentColor"><polygon points="6 3 20 12 6 21 6 3"/></svg>
-              <svg class="pause-icon" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
-            </span>
-          </button>
-          <span class="video-duration-pill">0:18</span>
-          <div class="video-progress-track"><div class="video-progress-fill"></div></div>
-        </div>
-      </div>
-      <div class="card-meta">
-        <div class="card-meta-head">
-          <h3 class="card-brand-title">ClassFactor</h3>
-          <span class="card-num-index">05</span>
-        </div>
-        <p class="card-structure-text">Relatable Hook / Website Demo</p>
+        <h3 class="card-brand-title">ClassFactor</h3>
+        <span class="card-format">Relatable Meme</span>
       </div>
     </article>
     
@@ -1221,11 +1442,83 @@ button {
         </div>
       </div>
       <div class="card-meta">
-        <div class="card-meta-head">
-          <h3 class="card-brand-title">Day Planner AI</h3>
-          <span class="card-num-index">06</span>
+        <h3 class="card-brand-title">Day Planner AI</h3>
+        <span class="card-format">Explainer</span>
+      </div>
+    </article>
+    
+
+    <article class="gallery-card" data-reel="reel-05" data-category="tech">
+      <div class="video-box">
+        <video data-reel="reel-05" src="media/reel-05.mp4" poster="media/reel-05.jpg" loop playsinline preload="metadata" aria-label="Lovable - AI Full-Stack App Builder"></video>
+        <div class="video-overlay">
+          <button class="sound-toggle-btn" type="button" aria-label="Toggle sound">
+            <svg class="sound-icon-muted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5L6 9H2v6h4l5 4V5z"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
+            <svg class="sound-icon-unmuted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5L6 9H2v6h4l5 4V5z"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
+          </button>
+          <button class="play-trigger-btn" type="button" aria-label="Play video">
+            <span class="play-glyph">
+              <svg class="play-icon" viewBox="0 0 24 24" fill="currentColor"><polygon points="6 3 20 12 6 21 6 3"/></svg>
+              <svg class="pause-icon" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+            </span>
+          </button>
+          <span class="video-duration-pill">2:08</span>
+          <div class="video-progress-track"><div class="video-progress-fill"></div></div>
         </div>
-        <p class="card-structure-text">Problem Hook / Feature Explainer</p>
+      </div>
+      <div class="card-meta">
+        <h3 class="card-brand-title">Lovable</h3>
+        <span class="card-format">Reaction</span>
+      </div>
+    </article>
+    
+
+    <article class="gallery-card" data-reel="reel-10" data-category="tech">
+      <div class="video-box">
+        <video data-reel="reel-10" src="media/reel-10.mp4" poster="media/reel-10.jpg" loop playsinline preload="metadata" aria-label="CapCut - Background Removal Without Green Screen"></video>
+        <div class="video-overlay">
+          <button class="sound-toggle-btn" type="button" aria-label="Toggle sound">
+            <svg class="sound-icon-muted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5L6 9H2v6h4l5 4V5z"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
+            <svg class="sound-icon-unmuted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5L6 9H2v6h4l5 4V5z"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
+          </button>
+          <button class="play-trigger-btn" type="button" aria-label="Play video">
+            <span class="play-glyph">
+              <svg class="play-icon" viewBox="0 0 24 24" fill="currentColor"><polygon points="6 3 20 12 6 21 6 3"/></svg>
+              <svg class="pause-icon" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+            </span>
+          </button>
+          <span class="video-duration-pill">0:20</span>
+          <div class="video-progress-track"><div class="video-progress-fill"></div></div>
+        </div>
+      </div>
+      <div class="card-meta">
+        <h3 class="card-brand-title">CapCut</h3>
+        <span class="card-format">Feature Demo</span>
+      </div>
+    </article>
+    
+
+    <article class="gallery-card" data-reel="reel-11" data-category="tech">
+      <div class="video-box">
+        <video data-reel="reel-11" src="media/reel-11.mp4" poster="media/reel-11.jpg" loop playsinline preload="metadata" aria-label="ClassFactor - Lock In Diva / Study Ritual Hook"></video>
+        <div class="video-overlay">
+          <button class="sound-toggle-btn" type="button" aria-label="Toggle sound">
+            <svg class="sound-icon-muted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5L6 9H2v6h4l5 4V5z"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
+            <svg class="sound-icon-unmuted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5L6 9H2v6h4l5 4V5z"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
+          </button>
+          <button class="play-trigger-btn" type="button" aria-label="Play video">
+            <span class="play-glyph">
+              <svg class="play-icon" viewBox="0 0 24 24" fill="currentColor"><polygon points="6 3 20 12 6 21 6 3"/></svg>
+              <svg class="pause-icon" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+            </span>
+          </button>
+          <span class="video-duration-pill">0:18</span>
+          <div class="video-progress-track"><div class="video-progress-fill"></div></div>
+        </div>
+      </div>
+      <div class="card-meta">
+        <h3 class="card-brand-title">ClassFactor</h3>
+        <span class="card-format">Viral Hook</span>
       </div>
     </article>
     
@@ -1237,40 +1530,21 @@ button {
   <!-- ABOUT SECTION -->
   <section id="about" class="about-section" aria-label="About Selenia">
     <div class="container about-grid">
-      
-      <!-- Left: Real Portrait Frame -->
-      <div class="about-portrait-wrap">
-        <div class="about-portrait-frame">
-          <img src="media/retrato.jpg" alt="Selenia Sánchez — UGC Creator and Software Engineer" loading="lazy">
-        </div>
-        <div class="about-portrait-caption">Selenia Sánchez · Creator &amp; Engineer</div>
+
+      <div class="about-portrait-frame">
+        <img src="media/retrato.jpg" alt="Selenia Sánchez — UGC Creator and Software Engineer" loading="lazy">
       </div>
 
-      <!-- Right: Editorial Narrative -->
       <div class="about-content">
-        <h2 class="about-title">The person behind the content.</h2>
-        <p class="about-text-lead">I’m Selenia, a UGC creator, AI systems engineer and SaaS founder.</p>
-        <p class="about-text-body">I build digital products, so I know how to make complex technology feel simple, relatable and worth trying.</p>
-        <p class="about-text-body">I create content for tech, AI, SaaS and travel brands.</p>
-
-        <div class="about-meta-grid">
-          <div class="about-meta-item">
-            <span class="about-meta-label">Domain Expertise</span>
-            <span class="about-meta-val">Tech, AI, SaaS &amp; Travel</span>
-          </div>
-          <div class="about-meta-item">
-            <span class="about-meta-label">Format Standards</span>
-            <span class="about-meta-val">1080×1920 60FPS · 9:16 Vertical</span>
-          </div>
-          <div class="about-meta-item">
-            <span class="about-meta-label">Narrative Approach</span>
-            <span class="about-meta-val">Authentic, Human &amp; Conversion-Driven</span>
-          </div>
-          <div class="about-meta-item">
-            <span class="about-meta-label">Engineering Background</span>
-            <span class="about-meta-val">AI Systems Engineer &amp; SaaS Founder</span>
-          </div>
-        </div>
+        <h2 class="about-title">The person behind <em>the content.</em></h2>
+        <p class="about-text-lead">UGC creator and software engineer. I build digital products, so I make complex tech feel simple.</p>
+        <ul class="about-tags" aria-label="Focus">
+          <li>Tech</li>
+          <li>AI</li>
+          <li>SaaS</li>
+          <li>Travel</li>
+          <li>9:16 · 1080p</li>
+        </ul>
       </div>
 
     </div>
@@ -1279,16 +1553,15 @@ button {
   <!-- CONTACT SECTION -->
   <section id="contact" class="contact-section" aria-label="Contact and Inquiries">
     <div class="container contact-wrap">
-      <span class="contact-eyebrow">INQUIRIES &amp; BOOKINGS</span>
-      <h2 class="contact-title">Have something in mind?</h2>
+      <h2 class="contact-title">Have something <em>in mind?</em></h2>
       <p class="contact-text">Let’s create content people actually want to watch.</p>
 
       <div class="contact-action-bar">
         <a href="mailto:seleniadeveloper@gmail.com" class="contact-cta-btn">Get in touch ↗</a>
-        
+
         <div class="email-copy-box" id="emailCopyBox" role="button" tabindex="0" aria-label="Copy email address to clipboard">
           <span class="email-copy-text" id="targetEmailAddress">seleniadeveloper@gmail.com</span>
-          <span class="email-copy-badge" id="copyBadge">Click to Copy</span>
+          <span class="email-copy-badge" id="copyBadge">Copy</span>
         </div>
       </div>
 
@@ -1303,8 +1576,8 @@ button {
 <!-- FOOTER -->
 <footer class="site-footer" role="contentinfo">
   <div class="container footer-inner">
-    <span>© 2026 Selenia Sánchez. All rights reserved.</span>
-    <span>Editorial UGC Direction · Tech, AI &amp; Travel</span>
+    <span>© 2026 Selenia Sánchez</span>
+    <span>UGC · Tech, AI &amp; Travel</span>
   </div>
 </footer>
 
@@ -1329,10 +1602,12 @@ button {
     });
   }
 
+  var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var globalUnmuted = false;
+  var lockedCard = null; // a card the visitor clicked; hover previews leave it alone
 
-  // Video containers across Hero and Gallery Cards
-  var allCards = document.querySelectorAll(".hero-primary-card, .gallery-card");
+  // Gallery cards: hover preview, click to play with sound
+  var allCards = document.querySelectorAll(".gallery-card");
   allCards.forEach(function(card){
     var v = card.querySelector("video");
     var playBtn = card.querySelector(".play-trigger-btn");
@@ -1343,6 +1618,12 @@ button {
     var isLocked = false;
     var playPromise = null;
 
+    function lock(on){
+      isLocked = on;
+      if (on) { lockedCard = card; }
+      else if (lockedCard === card) { lockedCard = null; }
+    }
+
     // Progress bar update
     v.addEventListener("timeupdate", function(){
       if (v.duration && progressBar) {
@@ -1352,16 +1633,9 @@ button {
     });
 
     function startPlay(withSound){
-      // Pause all other video elements
+      // Stop every other card
       allCards.forEach(function(other){
-        var ov = other.querySelector("video");
-        if (ov && ov !== v) {
-          ov.pause();
-          ov.currentTime = 0;
-          other.classList.remove("is-playing");
-          var opBar = other.querySelector(".video-progress-fill");
-          if (opBar) opBar.style.width = "0%";
-        }
+        if (other !== card && other.__reset) other.__reset();
       });
 
       v.muted = !withSound;
@@ -1384,33 +1658,29 @@ button {
     }
 
     function stopPlay(resetTime){
-      if (playPromise !== undefined) {
-        playPromise.then(function(){
-          v.pause();
-          if (resetTime) {
-            v.currentTime = 0;
-            if (progressBar) progressBar.style.width = "0%";
-          }
-        }).catch(function(){
-          v.pause();
-          if (resetTime) {
-            v.currentTime = 0;
-            if (progressBar) progressBar.style.width = "0%";
-          }
-        });
-      } else {
+      function halt(){
         v.pause();
         if (resetTime) {
           v.currentTime = 0;
           if (progressBar) progressBar.style.width = "0%";
         }
       }
+      if (playPromise) {
+        playPromise.then(halt).catch(halt);
+      } else {
+        halt();
+      }
       card.classList.remove("is-playing");
     }
 
+    card.__reset = function(){
+      lock(false);
+      if (!v.paused || v.currentTime > 0) stopPlay(true);
+    };
+
     // Desktop hover preview (subtle & non-intrusive)
     card.addEventListener("mouseenter", function(){
-      if (!isLocked) {
+      if (!isLocked && !lockedCard) {
         startPlay(globalUnmuted);
       }
     });
@@ -1426,16 +1696,16 @@ button {
       playBtn.addEventListener("click", function(e){
         if (e.target.closest(".sound-toggle-btn")) return;
         if (v.paused) {
-          isLocked = true;
+          lock(true);
           globalUnmuted = true;
           startPlay(true);
         } else if (!isLocked && v.muted) {
-          isLocked = true;
+          lock(true);
           globalUnmuted = true;
           v.muted = false;
           card.classList.add("is-unmuted");
         } else {
-          isLocked = false;
+          lock(false);
           stopPlay(false);
         }
       });
@@ -1450,7 +1720,7 @@ button {
         globalUnmuted = !v.muted;
         card.classList.toggle("is-unmuted", !v.muted);
         if (!v.muted && v.paused) {
-          isLocked = true;
+          lock(true);
           startPlay(true);
         }
       });
@@ -1466,6 +1736,137 @@ button {
     });
   });
 
+  // PHONE FEED: shows the hook of every reel and scrolls to the next one, like a For You page
+  var phone = document.getElementById("phone");
+  var screen = document.getElementById("phoneScreen");
+  var track = document.getElementById("feedTrack");
+  var dotsWrap = document.getElementById("feedDots");
+  if (phone && screen && track) {
+    var SLIDE_MS = 5500;
+    var slides = Array.prototype.slice.call(track.querySelectorAll(".feed-slide"));
+    var total = slides.length;
+    var current = 0;
+    var timer = null;
+    var inView = true;
+
+    phone.style.setProperty("--slide-ms", SLIDE_MS + "ms");
+
+    // A copy of the first slide at the end lets the loop wrap around without scrolling back up
+    if (total > 1) {
+      track.appendChild(slides[0].cloneNode(true));
+    }
+    var frames = track.querySelectorAll(".feed-slide");
+
+    function hydrate(slide){
+      var fv = slide && slide.querySelector("video");
+      if (!fv || fv.getAttribute("src")) return;
+      if (fv.dataset.poster) fv.poster = fv.dataset.poster;
+      fv.muted = true;
+      fv.preload = "auto";
+      fv.src = fv.dataset.src;
+    }
+
+    function play(fv){
+      var p = fv.play();
+      if (p && p.catch) p.catch(function(){});
+    }
+
+    var dots = slides.map(function(slide, i){
+      var li = document.createElement("li");
+      var b = document.createElement("button");
+      b.type = "button";
+      b.className = "feed-dot";
+      b.setAttribute("aria-label", slide.dataset.brand || ("Video " + (i + 1)));
+      b.addEventListener("click", function(){ goTo(i); });
+      li.appendChild(b);
+      if (dotsWrap) dotsWrap.appendChild(li);
+      return b;
+    });
+
+    function schedule(){
+      clearTimeout(timer);
+      if (reduceMotion || !inView || document.hidden || total < 2) return;
+      timer = setTimeout(function(){ goTo(current + 1); }, SLIDE_MS);
+    }
+
+    function goTo(i, instant, keepTime){
+      clearTimeout(timer);
+      var from = frames[current].querySelector("video");
+      var startAt = keepTime && from ? from.currentTime : 0;
+      current = i;
+      phone.classList.remove("is-paused");
+      track.classList.toggle("no-anim", !!instant);
+      track.style.transform = "translateY(" + (-i * 100) + "%)";
+
+      Array.prototype.forEach.call(frames, function(frame, k){
+        var fv = frame.querySelector("video");
+        frame.classList.remove("is-active");
+        if (k !== i && fv && !fv.paused) fv.pause();
+      });
+
+      var active = frames[i];
+      void active.offsetWidth; // restart the progress line
+      active.classList.add("is-active");
+      hydrate(active);
+      hydrate(frames[i + 1]);
+      var av = active.querySelector("video");
+      if (av) {
+        av.currentTime = startAt;
+        play(av);
+      }
+
+      var real = i % total;
+      dots.forEach(function(d, k){ d.classList.toggle("is-active", k === real); });
+      screen.setAttribute("aria-label", "Watch the full " + (slides[real].dataset.brand || "") + " video");
+
+      // On the copy of the first slide, jump back to the real one once the scroll ends
+      if (i === total) {
+        setTimeout(function(){
+          if (current === total) goTo(0, true, true);
+        }, 800);
+      }
+      schedule();
+    }
+
+    function pause(){
+      clearTimeout(timer);
+      phone.classList.add("is-paused");
+      var fv = frames[current].querySelector("video");
+      if (fv) fv.pause();
+    }
+
+    // Tap the phone: jump to that reel in the gallery and play it with sound
+    function openFull(){
+      var id = slides[current % total].dataset.reel;
+      var card = document.querySelector('.gallery-card[data-reel="' + id + '"]');
+      if (!card) return;
+      var btn = card.querySelector(".play-trigger-btn");
+      var cv = card.querySelector("video");
+      if (btn && cv && cv.paused) btn.click();
+      card.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "center" });
+    }
+    screen.addEventListener("click", openFull);
+    screen.addEventListener("keydown", function(e){
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        openFull();
+      }
+    });
+
+    if (total) goTo(0, true);
+
+    // Only run the feed while the phone is on screen
+    if ("IntersectionObserver" in window) {
+      new IntersectionObserver(function(entries){
+        inView = entries[0].isIntersecting;
+        if (inView) { goTo(current, true); } else { pause(); }
+      }, { threshold: 0.2 }).observe(phone);
+    }
+    document.addEventListener("visibilitychange", function(){
+      if (document.hidden) { pause(); } else if (inView) { goTo(current, true); }
+    });
+  }
+
   // Interactive Email Click to Copy
   var emailBox = document.getElementById("emailCopyBox");
   var emailTarget = document.getElementById("targetEmailAddress");
@@ -1475,8 +1876,8 @@ button {
       var text = emailTarget.textContent.trim();
       if (navigator.clipboard && navigator.clipboard.writeText) {
         navigator.clipboard.writeText(text).then(function(){
-          copyBadge.textContent = "Copied to clipboard ✓";
-          setTimeout(function(){ copyBadge.textContent = "Click to Copy"; }, 2500);
+          copyBadge.textContent = "Copied ✓";
+          setTimeout(function(){ copyBadge.textContent = "Copy"; }, 2500);
         });
       }
     };

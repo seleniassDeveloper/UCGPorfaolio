@@ -12,11 +12,12 @@ subir a cualquier hosting o publicar como artifact. No hay servidor ni CDN.
 | `template.html` | El diseño y todos los textos de la página |
 | `build.py` | Junta plantilla + vídeos + fotos y escribe `dist/` |
 | `add_video.py` | Comprime un vídeo nuevo y le saca la miniatura |
+| `make_previews.py` | Saca el clip corto (el hook) que se ve dentro del teléfono del inicio |
 | `add_photos.py` | Prepara fotos para la cuadrícula de Instagram |
 | `set_foto.py` | Recorta tu foto de perfil para el círculo |
 | `serve.py` | Abre la página en el navegador para verla antes de enviarla |
 | `originals/` | Los vídeos tal como salen del móvil. No se publican |
-| `media/` | Vídeos comprimidos, miniaturas, retrato y `fotos/` |
+| `media/` | Vídeos comprimidos, miniaturas, retrato y `fotos/`. Puedes ordenarlos en subcarpetas: `build.py` los busca por nombre |
 | `dist/portfolio.html` | **El archivo que envías o subes** |
 | `dist/artifact.html` | La misma página en formato artifact de Claude |
 
@@ -47,8 +48,15 @@ Te dice cuánto pesa y te imprime el bloque JSON. Cópialo en `videos.json`
 sustituyendo uno de los huecos (`"placeholder": true`), y luego:
 
 ```bash
+python3 make_previews.py reel-02
 python3 build.py
 ```
+
+`make_previews.py` crea el clip ligero del teléfono del inicio. Si te lo saltas,
+el teléfono usa el vídeo completo (funciona, pero carga más lento).
+
+El orden de los vídeos en la página es el orden en `videos.json`. Para quitar uno
+sin borrarlo, pon `"status": "hidden"`.
 
 ## Cambiar la foto de perfil
 

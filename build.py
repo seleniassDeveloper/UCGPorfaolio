@@ -2,7 +2,8 @@
 """Build dist/portfolio.html: Editorial, high-fashion minimalist UGC portfolio for Selenia Sánchez.
 
 Compiles template.html + videos.json into a high-performance, progressive-streaming web bundle.
-Copies media files to dist/media/ for native CDN streaming on Vercel & localhost.
+Copies the media the page uses to dist/media/ for native CDN streaming on Vercel & localhost.
+Videos and photos can live in any subfolder of media/: they are found by file name.
 """
 
 import html
@@ -14,13 +15,48 @@ import sys
 ROOT = os.path.dirname(os.path.abspath(__file__))
 TEMPLATE = os.path.join(ROOT, "template.html")
 CONFIG = os.path.join(ROOT, "videos.json")
+MEDIA = os.path.join(ROOT, "media")
 OUT = os.path.join(ROOT, "dist", "portfolio.html")
 OUT_INDEX = os.path.join(ROOT, "dist", "index.html")
 DIST_MEDIA = os.path.join(ROOT, "dist", "media")
 
+ICON_HEART = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1.1L12 21l7.8-7.5 1-1.1a5.5 5.5 0 0 0 0-7.8z"/></svg>'
+ICON_COMMENT = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-12.2 7.5L3 21l2-5.6A8.4 8.4 0 1 1 21 11.5z"/></svg>'
+ICON_SAVE = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>'
+ICON_SHARE = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4 20-7z"/></svg>'
+
 
 def esc(value):
     return html.escape(str(value or ""), quote=True)
+
+
+def index_media():
+    """Map file name -> path for everything under media/, whatever subfolder it is in."""
+    found = {}
+    for dirpath, _, filenames in os.walk(MEDIA):
+        for fname in sorted(filenames):
+            if not fname.startswith("."):
+                found.setdefault(fname, os.path.join(dirpath, fname))
+    return found
+
+
+def publish(ref, media_index, missing):
+    """Copy a media file into dist/media/ and return its public path ("" if it is not found)."""
+    if not ref:
+        return ""
+    fname = os.path.basename(ref)
+    src = media_index.get(fname)
+    if not src:
+        missing.append(fname)
+        return ""
+    shutil.copy2(src, os.path.join(DIST_MEDIA, fname))
+    return "media/" + fname
+
+
+def handle_from(links):
+    url = (links.get("instagram") or links.get("tiktok") or "").rstrip("/")
+    name = url.rsplit("/", 1)[-1].lstrip("@") if url else ""
+    return "@" + name if name else ""
 
 
 def build_socials(links):
@@ -43,21 +79,35 @@ def build_socials(links):
     return "".join(items)
 
 
-def build_editorial_card(reel, index):
+def build_phone_slide(reel, video_src, poster_src, handle):
+    rid = esc(reel["id"])
+    brand = esc(reel.get("brand", "Brand"))
+    return f"""
+            <div class="feed-slide" data-reel="{rid}" data-brand="{brand}">
+              <video data-src="{esc(video_src)}" data-poster="{esc(poster_src)}" muted playsinline preload="none" aria-hidden="true"></video>
+              <div class="feed-ui" aria-hidden="true">
+                <div class="feed-actions">{ICON_HEART}{ICON_COMMENT}{ICON_SAVE}{ICON_SHARE}</div>
+                <div class="feed-caption">
+                  <span class="feed-handle">{esc(handle)}</span>
+                  <span class="feed-brand">{brand}</span>
+                </div>
+                <div class="feed-progress"><span></span></div>
+              </div>
+            </div>"""
+
+
+def build_editorial_card(reel, video_src, poster_src):
     rid = esc(reel["id"])
     brand = esc(reel.get("brand", "Brand"))
     title = esc(reel.get("title", ""))
     duration = esc(reel.get("duration", "0:20"))
     cat = esc(reel.get("category", "tech")).lower()
     fmt = esc(reel.get("format", "UGC Video"))
-    structure = esc(reel.get("structureLabel", ""))
-    video_src = esc(reel.get("file", f"media/{rid}.mp4"))
-    poster_src = esc(reel.get("poster", f"media/{rid}.jpg"))
 
     return f"""
     <article class="gallery-card" data-reel="{rid}" data-category="{cat}">
       <div class="video-box">
-        <video data-reel="{rid}" src="{video_src}" poster="{poster_src}" loop playsinline preload="metadata" aria-label="{brand} - {title}"></video>
+        <video data-reel="{rid}" src="{esc(video_src)}" poster="{esc(poster_src)}" loop playsinline preload="metadata" aria-label="{brand} - {title}"></video>
         <div class="video-overlay">
           <button class="sound-toggle-btn" type="button" aria-label="Toggle sound">
             <svg class="sound-icon-muted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5L6 9H2v6h4l5 4V5z"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
@@ -74,11 +124,8 @@ def build_editorial_card(reel, index):
         </div>
       </div>
       <div class="card-meta">
-        <div class="card-meta-head">
-          <h3 class="card-brand-title">{brand}</h3>
-          <span class="card-num-index">0{index + 1}</span>
-        </div>
-        <p class="card-structure-text">{structure}</p>
+        <h3 class="card-brand-title">{brand}</h3>
+        <span class="card-format">{fmt}</span>
       </div>
     </article>
     """
@@ -94,63 +141,41 @@ def main():
 
     published_reels = [r for r in all_reels if r.get("status") == "published"]
 
-    # Copy media directory to dist/media for progressive streaming
-    media_src_dir = os.path.join(ROOT, "media")
     os.makedirs(DIST_MEDIA, exist_ok=True)
-    for fname in os.listdir(media_src_dir):
-        s = os.path.join(media_src_dir, fname)
-        d = os.path.join(DIST_MEDIA, fname)
-        if os.path.isfile(s):
-            shutil.copy2(s, d)
+    media_index = index_media()
+    missing = []
+    no_preview = []
+    handle = handle_from(links)
 
-    # Locate primary and secondary hero visuals
-    hero_primary = published_reels[0] if published_reels else None
-    hero_secondary = published_reels[1] if len(published_reels) > 1 else None
+    gallery_cards = []
+    phone_slides = []
+    for reel in published_reels:
+        rid = reel["id"]
+        video_src = publish(reel.get("file") or f"media/{rid}.mp4", media_index, missing)
+        poster_src = publish(reel.get("poster") or f"media/{rid}.jpg", media_index, missing)
+        if not video_src:
+            continue
 
-    gallery_cards_html = "\n".join(
-        [build_editorial_card(r, i) for i, r in enumerate(published_reels)]
-    )
+        # The phone plays a light preview clip (make_previews.py); without one it uses the full reel
+        preview_name = f"{rid}.preview.mp4"
+        if preview_name in media_index:
+            phone_src = publish(preview_name, media_index, missing)
+        else:
+            phone_src = video_src
+            no_preview.append(rid)
 
-    primary_id = esc(hero_primary["id"]) if hero_primary else ""
-    primary_src = esc(hero_primary.get("file", "")) if hero_primary else ""
-    primary_poster = esc(hero_primary.get("poster", "")) if hero_primary else ""
-    primary_brand = esc(hero_primary.get("brand", "")) if hero_primary else ""
-    primary_format = esc(hero_primary.get("format", "")) if hero_primary else ""
-    primary_structure = esc(hero_primary.get("structureLabel", "")) if hero_primary else ""
-    primary_duration = esc(hero_primary.get("duration", "0:20")) if hero_primary else ""
+        gallery_cards.append(build_editorial_card(reel, video_src, poster_src))
+        phone_slides.append(build_phone_slide(reel, phone_src, poster_src, handle))
 
-    secondary_id = esc(hero_secondary["id"]) if hero_secondary else ""
-    secondary_src = esc(hero_secondary.get("file", "")) if hero_secondary else ""
-    secondary_poster = esc(hero_secondary.get("poster", "")) if hero_secondary else ""
-    secondary_brand = esc(hero_secondary.get("brand", "")) if hero_secondary else ""
-    secondary_format = esc(hero_secondary.get("format", "")) if hero_secondary else ""
-    secondary_structure = esc(hero_secondary.get("structureLabel", "")) if hero_secondary else ""
-    secondary_duration = esc(hero_secondary.get("duration", "0:20")) if hero_secondary else ""
-
-    portrait_uri = esc(creator.get("portrait", "media/retrato.jpg"))
+    portrait_uri = esc(publish(creator.get("portrait", "media/retrato.jpg"), media_index, missing))
     email = (links.get("email") or "seleniadeveloper@gmail.com").strip()
 
     with open(TEMPLATE, encoding="utf-8") as fh:
         page = fh.read()
 
-    page = page.replace("{{HERO_PRIMARY_ID}}", primary_id)
-    page = page.replace("{{HERO_PRIMARY_SRC}}", primary_src)
-    page = page.replace("{{HERO_PRIMARY_POSTER}}", primary_poster)
-    page = page.replace("{{HERO_PRIMARY_BRAND}}", primary_brand)
-    page = page.replace("{{HERO_PRIMARY_FORMAT}}", primary_format)
-    page = page.replace("{{HERO_PRIMARY_STRUCTURE}}", primary_structure)
-    page = page.replace("{{HERO_PRIMARY_DURATION}}", primary_duration)
-
-    page = page.replace("{{HERO_SECONDARY_ID}}", secondary_id)
-    page = page.replace("{{HERO_SECONDARY_SRC}}", secondary_src)
-    page = page.replace("{{HERO_SECONDARY_POSTER}}", secondary_poster)
-    page = page.replace("{{HERO_SECONDARY_BRAND}}", secondary_brand)
-    page = page.replace("{{HERO_SECONDARY_FORMAT}}", secondary_format)
-    page = page.replace("{{HERO_SECONDARY_STRUCTURE}}", secondary_structure)
-    page = page.replace("{{HERO_SECONDARY_DURATION}}", secondary_duration)
-
+    page = page.replace("{{PHONE_SLIDES}}", "".join(phone_slides))
     page = page.replace("{{PORTRAIT_URI}}", portrait_uri)
-    page = page.replace("{{GALLERY_CARDS}}", gallery_cards_html)
+    page = page.replace("{{GALLERY_CARDS}}", "\n".join(gallery_cards))
     page = page.replace("{{EMAIL}}", esc(email))
     page = page.replace("{{SOCIALS}}", build_socials(links))
 
@@ -162,8 +187,11 @@ def main():
 
     size_kb = os.path.getsize(OUT) / 1024.0
     print(f"dist/portfolio.html + dist/index.html -> {size_kb:.1f} KB (High-speed progressive streaming)")
-    print(f"Published videos in editorial gallery: {len(published_reels)}")
-    print(f"Media files copied to dist/media/: {len(os.listdir(DIST_MEDIA))}")
+    print(f"Published videos in editorial gallery: {len(gallery_cards)}")
+    if no_preview:
+        print("Phone feed uses the full video for: %s  (run: python3 make_previews.py)" % ", ".join(no_preview))
+    if missing:
+        print("WARNING — not found anywhere in media/: %s" % ", ".join(sorted(set(missing))), file=sys.stderr)
 
 
 if __name__ == "__main__":

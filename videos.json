@@ -34,15 +34,15 @@
       "status": "published"
     },
     {
-      "id": "reel-09",
-      "brand": "Travel Tech App",
-      "title": "Travel Itinerary & Workflow Demo",
+      "id": "reel-01",
+      "brand": "Day Planner AI",
+      "title": "AI Daily Schedule Builder",
       "category": "tech",
-      "file": "media/reel-09.mp4",
-      "poster": "media/reel-09.jpg",
-      "duration": "0:16",
-      "format": "Brand Story",
-      "structureLabel": "Story Hook / Workflow Demo",
+      "file": "media/reel-01.mp4",
+      "poster": "media/reel-01.jpg",
+      "duration": "0:41",
+      "format": "Explainer",
+      "structureLabel": "Problem Hook / Feature Explainer",
       "featured": true,
       "status": "published"
     },
@@ -86,17 +86,17 @@
       "status": "published"
     },
     {
-      "id": "reel-01",
-      "brand": "Day Planner AI",
-      "title": "AI Daily Schedule Builder",
+      "id": "reel-09",
+      "brand": "Travel Tech App",
+      "title": "Travel Itinerary & Workflow Demo",
       "category": "tech",
-      "file": "media/reel-01.mp4",
-      "poster": "media/reel-01.jpg",
-      "duration": "0:41",
-      "format": "Explainer",
-      "structureLabel": "Problem Hook / Feature Explainer",
+      "file": "media/reel-09.mp4",
+      "poster": "media/reel-09.jpg",
+      "duration": "0:16",
+      "format": "Brand Story",
+      "structureLabel": "Story Hook / Workflow Demo",
       "featured": false,
-      "status": "published"
+      "status": "hidden"
     },
     {
       "id": "reel-04",
