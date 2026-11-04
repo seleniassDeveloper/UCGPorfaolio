@@ -18,6 +18,7 @@ subir a cualquier hosting o publicar como artifact. No hay servidor ni CDN.
 | `serve.py` | Abre la página en el navegador para verla antes de enviarla |
 | `originals/` | Los vídeos tal como salen del móvil. No se publican |
 | `media/` | Vídeos comprimidos, miniaturas, retrato y `fotos/`. Puedes ordenarlos en subcarpetas: `build.py` los busca por nombre |
+| `media/photos/` | Fotos del diseño (recorte del inicio, moodboard, polaroids, contacto). Cualquier `media/<nombre>` que use `template.html` se publica solo |
 | `dist/portfolio.html` | **El archivo que envías o subes** |
 | `dist/artifact.html` | La misma página en formato artifact de Claude |
 

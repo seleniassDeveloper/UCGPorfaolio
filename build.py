@@ -9,6 +9,7 @@ Videos and photos can live in any subfolder of media/: they are found by file na
 import html
 import json
 import os
+import re
 import shutil
 import sys
 
@@ -59,22 +60,21 @@ def handle_from(links):
     return "@" + name if name else ""
 
 
-def build_socials(links):
-    items = []
+def build_contact_links(links, email):
+    """One column per way to reach Selenia: label on top, handle below."""
+    cols = [("Email", "mailto:" + email, email)]
+    for key, label in (("instagram", "Instagram"), ("tiktok", "TikTok")):
+        if links.get(key):
+            cols.append((label, links[key], handle_from({key: links[key]})))
     if links.get("website"):
+        cols.append(("Website", links["website"], links["website"].split("//", 1)[-1].rstrip("/")))
+
+    items = []
+    for label, href, value in cols:
+        external = "" if href.startswith("mailto:") else ' target="_blank" rel="noopener noreferrer"'
         items.append(
-            '<a href="%s" target="_blank" rel="noopener noreferrer" class="footer-link">Software &amp; Tech ↗</a>'
-            % esc(links["website"])
-        )
-    if links.get("instagram"):
-        items.append(
-            '<a href="%s" target="_blank" rel="noopener noreferrer" class="footer-link">Instagram ↗</a>'
-            % esc(links["instagram"])
-        )
-    if links.get("tiktok"):
-        items.append(
-            '<a href="%s" target="_blank" rel="noopener noreferrer" class="footer-link">TikTok ↗</a>'
-            % esc(links["tiktok"])
+            f'<a class="contact-col" href="{esc(href)}"{external}>'
+            f'<span class="contact-label">{label}</span><span class="contact-value">{esc(value)}</span></a>'
         )
     return "".join(items)
 
@@ -106,6 +106,8 @@ def build_editorial_card(reel, video_src, poster_src):
 
     return f"""
     <article class="gallery-card" data-reel="{rid}" data-category="{cat}">
+      <div class="mini-phone">
+      <span class="mini-island" aria-hidden="true"></span>
       <div class="video-box">
         <video data-reel="{rid}" src="{esc(video_src)}" poster="{esc(poster_src)}" loop playsinline preload="metadata" aria-label="{brand} - {title}"></video>
         <div class="video-overlay">
@@ -122,6 +124,7 @@ def build_editorial_card(reel, video_src, poster_src):
           <span class="video-duration-pill">{duration}</span>
           <div class="video-progress-track"><div class="video-progress-fill"></div></div>
         </div>
+      </div>
       </div>
       <div class="card-meta">
         <h3 class="card-brand-title">{brand}</h3>
@@ -177,7 +180,11 @@ def main():
     page = page.replace("{{PORTRAIT_URI}}", portrait_uri)
     page = page.replace("{{GALLERY_CARDS}}", "\n".join(gallery_cards))
     page = page.replace("{{EMAIL}}", esc(email))
-    page = page.replace("{{SOCIALS}}", build_socials(links))
+    page = page.replace("{{CONTACT_LINKS}}", build_contact_links(links, email))
+
+    # Photos the template links to directly (media/<name>) get published too
+    for ref in sorted(set(re.findall(r"media/[\w.-]+\.(?:jpe?g|png|webp|mp4)", page))):
+        publish(ref, media_index, missing)
 
     os.makedirs(os.path.dirname(OUT), exist_ok=True)
     with open(OUT, "w", encoding="utf-8") as fh:
