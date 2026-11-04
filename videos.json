@@ -176,5 +176,82 @@
       "featured": false,
       "status": "draft"
     }
+  ],
+
+  "_nota_es": "Videos de la versión en español (ugc-es.iamselenia.com). Salen de tiktok.com/@seleedev; 'tiktok' guarda el id original.",
+
+  "reels_es": [
+    {
+      "id": "reel-es-01",
+      "brand": "Cursor",
+      "title": "Volví a Cursor: sigue trabajando solo",
+      "category": "tech",
+      "file": "media/reel-es-01.mp4",
+      "poster": "media/reel-es-01.jpg",
+      "duration": "0:41",
+      "format": "Reseña",
+      "tiktok": "7685529237842939143",
+      "status": "published"
+    },
+    {
+      "id": "reel-es-02",
+      "brand": "Lovable vs Replit vs Bolt",
+      "title": "3 IAs, el mismo problema",
+      "category": "tech",
+      "file": "media/reel-es-02.mp4",
+      "poster": "media/reel-es-02.jpg",
+      "duration": "1:47",
+      "format": "Comparativa",
+      "tiktok": "7683685085178219794",
+      "status": "published"
+    },
+    {
+      "id": "reel-es-03",
+      "brand": "PulsePost",
+      "title": "Cómo nació PulsePost",
+      "category": "tech",
+      "file": "media/reel-es-03.mp4",
+      "poster": "media/reel-es-03.jpg",
+      "duration": "0:30",
+      "format": "Historia de producto",
+      "tiktok": "7685920239099366663",
+      "status": "published"
+    },
+    {
+      "id": "reel-es-04",
+      "brand": "Motor SEO",
+      "title": "Auditoría de mi web en tiempo real",
+      "category": "tech",
+      "file": "media/reel-es-04.mp4",
+      "poster": "media/reel-es-04.jpg",
+      "duration": "0:29",
+      "format": "Tutorial",
+      "tiktok": "7686274014112648456",
+      "status": "published"
+    },
+    {
+      "id": "reel-es-05",
+      "brand": "AI Visibility",
+      "title": "Cómo ven las IA a tu empresa (MCP en ChatGPT)",
+      "category": "tech",
+      "file": "media/reel-es-05.mp4",
+      "poster": "media/reel-es-05.jpg",
+      "duration": "1:00",
+      "format": "Tutorial en pantalla",
+      "tiktok": "7693959899860045074",
+      "status": "published"
+    },
+    {
+      "id": "reel-es-06",
+      "brand": "Estrategia con IA",
+      "title": "No estudié marketing: construí un sistema",
+      "category": "tech",
+      "file": "media/reel-es-06.mp4",
+      "poster": "media/reel-es-06.jpg",
+      "duration": "0:48",
+      "format": "Storytelling",
+      "tiktok": "7690403299878636807",
+      "status": "published"
+    }
   ]
 }

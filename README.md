@@ -8,9 +8,11 @@ subir a cualquier hosting o publicar como artifact. No hay servidor ni CDN.
 
 | Archivo | Para qué sirve |
 |---|---|
-| `videos.json` | Los datos: enlaces, cifras, títulos de los vídeos, huecos libres |
-| `template.html` | El diseño y todos los textos de la página |
-| `build.py` | Junta plantilla + vídeos + fotos y escribe `dist/` |
+| `videos.json` | Los datos: enlaces y vídeos. `reels` es la página en inglés, `reels_es` la de español |
+| `i18n.json` | Todos los textos de la página, en inglés (`en`) y español (`es`) |
+| `template.html` | El diseño. Los textos van como `{{t.clave}}` y salen de `i18n.json` |
+| `build.py` | Junta plantilla + vídeos + fotos y escribe `dist/` (inglés) y `dist/es/` (español) |
+| `vercel.json` | Hace que `ugc-es.iamselenia.com` muestre `dist/es/` |
 | `add_video.py` | Comprime un vídeo nuevo y le saca la miniatura |
 | `make_previews.py` | Saca el clip corto (el hook) que se ve dentro del teléfono del inicio |
 | `add_photos.py` | Prepara fotos para la cuadrícula de Instagram |
