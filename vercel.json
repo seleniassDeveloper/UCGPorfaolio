@@ -1,4 +1,11 @@
 {
   "buildCommand": "python3 build.py",
-  "outputDirectory": "dist"
+  "outputDirectory": "dist",
+  "rewrites": [
+    {
+      "source": "/",
+      "has": [{ "type": "host", "value": "ugc-es.iamselenia.com" }],
+      "destination": "/es/index.html"
+    }
+  ]
 }

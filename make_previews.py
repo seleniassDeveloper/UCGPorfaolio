@@ -33,7 +33,8 @@ def main():
         sys.exit("Falta ffmpeg. Instálalo con: brew install ffmpeg")
 
     with open(CONFIG, encoding="utf-8") as fh:
-        reels = json.load(fh).get("reels", [])
+        cfg = json.load(fh)
+    reels = cfg.get("reels", []) + cfg.get("reels_es", [])
     if args.ids:
         reels = [r for r in reels if r["id"] in args.ids]
     else:

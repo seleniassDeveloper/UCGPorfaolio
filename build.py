@@ -17,9 +17,16 @@ ROOT = os.path.dirname(os.path.abspath(__file__))
 TEMPLATE = os.path.join(ROOT, "template.html")
 CONFIG = os.path.join(ROOT, "videos.json")
 MEDIA = os.path.join(ROOT, "media")
-OUT = os.path.join(ROOT, "dist", "portfolio.html")
-OUT_INDEX = os.path.join(ROOT, "dist", "index.html")
-DIST_MEDIA = os.path.join(ROOT, "dist", "media")
+I18N = os.path.join(ROOT, "i18n.json")
+DIST = os.path.join(ROOT, "dist")
+DIST_MEDIA = os.path.join(DIST, "media")
+
+# One page per language. English is the root of ugc.iamselenia.com; Spanish lives in
+# dist/es/, which vercel.json serves as the root of ugc-es.iamselenia.com.
+LANGS = {
+    "en": {"reels": "reels", "handle": "instagram", "out": ["portfolio.html", "index.html"], "root_media": False},
+    "es": {"reels": "reels_es", "handle": "tiktok", "out": ["es/index.html"], "root_media": True},
+}
 
 ICON_HEART = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1.1L12 21l7.8-7.5 1-1.1a5.5 5.5 0 0 0 0-7.8z"/></svg>'
 ICON_COMMENT = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-12.2 7.5L3 21l2-5.6A8.4 8.4 0 1 1 21 11.5z"/></svg>'
@@ -60,14 +67,14 @@ def handle_from(links):
     return "@" + name if name else ""
 
 
-def build_contact_links(links, email):
+def build_contact_links(links, email, strings):
     """One column per way to reach Selenia: label on top, handle below."""
-    cols = [("Email", "mailto:" + email, email)]
+    cols = [(strings["contact_email"], "mailto:" + email, email)]
     for key, label in (("instagram", "Instagram"), ("tiktok", "TikTok")):
         if links.get(key):
             cols.append((label, links[key], handle_from({key: links[key]})))
     if links.get("website"):
-        cols.append(("Website", links["website"], links["website"].split("//", 1)[-1].rstrip("/")))
+        cols.append((strings["contact_website"], links["website"], links["website"].split("//", 1)[-1].rstrip("/")))
 
     items = []
     for label, href, value in cols:
@@ -111,11 +118,11 @@ def build_editorial_card(reel, video_src, poster_src):
       <div class="video-box">
         <video data-reel="{rid}" src="{esc(video_src)}" poster="{esc(poster_src)}" loop playsinline preload="metadata" aria-label="{brand} - {title}"></video>
         <div class="video-overlay">
-          <button class="sound-toggle-btn" type="button" aria-label="Toggle sound">
+          <button class="sound-toggle-btn" type="button" aria-label="{{{{t.sound_label}}}}">
             <svg class="sound-icon-muted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5L6 9H2v6h4l5 4V5z"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
             <svg class="sound-icon-unmuted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5L6 9H2v6h4l5 4V5z"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
           </button>
-          <button class="play-trigger-btn" type="button" aria-label="Play video">
+          <button class="play-trigger-btn" type="button" aria-label="{{{{t.play_label}}}}">
             <span class="play-glyph">
               <svg class="play-icon" viewBox="0 0 24 24" fill="currentColor"><polygon points="6 3 20 12 6 21 6 3"/></svg>
               <svg class="pause-icon" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
@@ -134,25 +141,11 @@ def build_editorial_card(reel, video_src, poster_src):
     """
 
 
-def main():
-    with open(CONFIG, encoding="utf-8") as fh:
-        cfg = json.load(fh)
-
-    creator = cfg.get("creator", {})
-    links = cfg.get("links", {})
-    all_reels = cfg.get("reels", [])
-
-    published_reels = [r for r in all_reels if r.get("status") == "published"]
-
-    os.makedirs(DIST_MEDIA, exist_ok=True)
-    media_index = index_media()
-    missing = []
-    no_preview = []
-    handle = handle_from(links)
-
+def render(strings, reels, links, handle, media_index, missing, no_preview):
+    """Fill the template for one language and return the page."""
     gallery_cards = []
     phone_slides = []
-    for reel in published_reels:
+    for reel in reels:
         rid = reel["id"]
         video_src = publish(reel.get("file") or f"media/{rid}.mp4", media_index, missing)
         poster_src = publish(reel.get("poster") or f"media/{rid}.jpg", media_index, missing)
@@ -170,31 +163,66 @@ def main():
         gallery_cards.append(build_editorial_card(reel, video_src, poster_src))
         phone_slides.append(build_phone_slide(reel, phone_src, poster_src, handle))
 
-    portrait_uri = esc(publish(creator.get("portrait", "media/retrato.jpg"), media_index, missing))
     email = (links.get("email") or "seleniadeveloper@gmail.com").strip()
 
     with open(TEMPLATE, encoding="utf-8") as fh:
         page = fh.read()
 
     page = page.replace("{{PHONE_SLIDES}}", "".join(phone_slides))
-    page = page.replace("{{PORTRAIT_URI}}", portrait_uri)
     page = page.replace("{{GALLERY_CARDS}}", "\n".join(gallery_cards))
     page = page.replace("{{EMAIL}}", esc(email))
-    page = page.replace("{{CONTACT_LINKS}}", build_contact_links(links, email))
+    page = page.replace("{{CONTACT_LINKS}}", build_contact_links(links, email, strings))
+
+    # Texts: {{t.key}} comes from i18n.json (already HTML, so not escaped again)
+    def text(match):
+        key = match.group(1)
+        if key not in strings:
+            sys.exit(f"i18n.json: missing key '{key}' for language '{strings.get('lang')}'")
+        return strings[key]
+
+    page = re.sub(r"\{\{t\.(\w+)\}\}", text, page)
 
     # Photos the template links to directly (media/<name>) get published too
     for ref in sorted(set(re.findall(r"media/[\w.-]+\.(?:jpe?g|png|webp|mp4)", page))):
         publish(ref, media_index, missing)
 
-    os.makedirs(os.path.dirname(OUT), exist_ok=True)
-    with open(OUT, "w", encoding="utf-8") as fh:
-        fh.write(page)
-    with open(OUT_INDEX, "w", encoding="utf-8") as fh:
-        fh.write(page)
+    return page, len(gallery_cards)
 
-    size_kb = os.path.getsize(OUT) / 1024.0
-    print(f"dist/portfolio.html + dist/index.html -> {size_kb:.1f} KB (High-speed progressive streaming)")
-    print(f"Published videos in editorial gallery: {len(gallery_cards)}")
+
+def main():
+    with open(CONFIG, encoding="utf-8") as fh:
+        cfg = json.load(fh)
+    with open(I18N, encoding="utf-8") as fh:
+        i18n = json.load(fh)
+
+    creator = cfg.get("creator", {})
+    links = cfg.get("links", {})
+
+    os.makedirs(DIST_MEDIA, exist_ok=True)
+    media_index = index_media()
+    missing = []
+    no_preview = []
+
+    # og:image of both pages
+    publish(creator.get("portrait", "media/retrato.jpg"), media_index, missing)
+
+    for lang, setup in LANGS.items():
+        reels = [r for r in cfg.get(setup["reels"], []) if r.get("status") == "published"]
+        handle = handle_from({setup["handle"]: links.get(setup["handle"])}) or handle_from(links)
+        page, count = render(i18n[lang], reels, links, handle, media_index, missing, no_preview)
+
+        # Pages below the root (dist/es/) point at the shared media/ folder from the site root
+        if setup["root_media"]:
+            page = re.sub(r'(src|poster|data-src|data-poster|href)="media/', r'\1="/media/', page)
+
+        for rel in setup["out"]:
+            out = os.path.join(DIST, rel)
+            os.makedirs(os.path.dirname(out), exist_ok=True)
+            with open(out, "w", encoding="utf-8") as fh:
+                fh.write(page)
+        size_kb = len(page.encode("utf-8")) / 1024.0
+        print(f"[{lang}] {' + '.join('dist/' + r for r in setup['out'])} -> {size_kb:.1f} KB, {count} videos")
+
     if no_preview:
         print("Phone feed uses the full video for: %s  (run: python3 make_previews.py)" % ", ".join(no_preview))
     if missing:

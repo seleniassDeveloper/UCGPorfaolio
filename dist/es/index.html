@@ -1,0 +1,1963 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Selenia Sánchez — Creadora UGC / Tech, IA y viajes</title>
+<meta name="description" content="Selenia Sánchez — Creadora UGC e ingeniera de software. Contenido auténtico y humano para apps, IA, SaaS y marcas de viajes.">
+<meta property="og:title" content="Selenia Sánchez — Creadora UGC / Tech, IA y viajes">
+<meta property="og:description" content="Contenido que se siente humano. Creado por alguien que entiende la tecnología detrás del producto.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://ugc-es.iamselenia.com">
+<meta property="og:locale" content="es_ES">
+<meta property="og:image" content="https://ugc.iamselenia.com/media/retrato.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Selenia Sánchez — Creadora UGC / Tech, IA y viajes">
+<meta name="twitter:description" content="Contenido que se siente humano. Creado por alguien que entiende la tecnología detrás del producto.">
+<meta name="twitter:image" content="https://ugc.iamselenia.com/media/retrato.jpg">
+<link rel="canonical" href="https://ugc-es.iamselenia.com">
+<link rel="alternate" hreflang="en" href="https://ugc.iamselenia.com">
+<link rel="alternate" hreflang="es" href="https://ugc-es.iamselenia.com">
+<meta name="theme-color" content="#A9C4E3">
+
+<!-- Typography: Anton (display), Mrs Saint Delafield (script accents), Manrope (UI) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Mrs+Saint+Delafield&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="/media/hero-cutout.png">
+
+<style>
+/* ==========================================================================
+   POWDER-BLUE PORTFOLIO — SELENIA SÁNCHEZ
+   Palette: #A9C4E3 (blue), #EEF2F7 (ice), #FFFFFF (display type),
+            #22395A (ink, small text), #161514 (phone bezels)
+   Typography: Anton (display), Mrs Saint Delafield (script), Manrope (UI)
+   ========================================================================== */
+
+:root {
+  --blue: #A9C4E3;
+  --blue-deep: #93B3DA;
+  --ice: #EEF2F7;
+  --white: #FFFFFF;
+  --ink: #22395A;
+  --ink-soft: #46628A;
+  --line: rgba(255, 255, 255, 0.6);
+  --line-ice: rgba(34, 57, 90, 0.14);
+  --bezel: #161514;
+
+  --font-display: "Anton", Impact, "Arial Narrow", sans-serif;
+  --font-script: "Mrs Saint Delafield", "Brush Script MT", cursive;
+  --font-sans: "Manrope", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  --transition-fast: 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-smooth: 0.32s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: var(--blue);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background-color: var(--blue);
+  color: var(--ink);
+  overflow-x: hidden;
+  width: 100%;
+}
+
+img, video {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: color var(--transition-fast), opacity var(--transition-fast);
+}
+
+button {
+  font-family: inherit;
+  color: inherit;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+ul, ol {
+  list-style: none;
+}
+
+:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 3px;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.container {
+  width: min(1240px, 100% - 4rem);
+  margin-inline: auto;
+}
+
+@media (max-width: 768px) {
+  .container {
+    width: min(100% - 2.5rem, 1240px);
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    width: min(100% - 2rem, 1240px);
+  }
+}
+
+/* Shared type */
+.display {
+  font-family: var(--font-display);
+  font-weight: 400;
+  text-transform: uppercase;
+  line-height: 0.9;
+  letter-spacing: 0.005em;
+  color: var(--white);
+}
+
+.script {
+  font-family: var(--font-script);
+  font-weight: 400;
+  line-height: 1;
+  color: var(--white);
+}
+
+.section-title {
+  font-size: clamp(2.8rem, 6.4vw, 5.6rem);
+}
+
+.eyebrow {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+/* ==========================================================================
+   NAVIGATION
+   ========================================================================== */
+.site-nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: rgba(169, 196, 227, 0.9);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--line);
+}
+
+.nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding-block: 1rem;
+}
+
+.nav-brand {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--white);
+  white-space: nowrap;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 1.8rem;
+}
+
+.nav-link {
+  font-size: 0.74rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+.nav-link:hover {
+  opacity: 0.65;
+}
+
+.nav-cta {
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: var(--ink);
+  background: var(--white);
+  padding: 0.6rem 1rem;
+  border-radius: 999px;
+  transition: background-color var(--transition-fast), color var(--transition-fast);
+}
+
+.nav-cta:hover {
+  background: var(--ink);
+  color: var(--white);
+}
+
+@media (max-width: 680px) {
+  .nav-brand {
+    font-size: 1rem;
+  }
+  .nav-links {
+    gap: 1rem;
+  }
+  .nav-link.hide-mobile {
+    display: none;
+  }
+}
+
+@media (max-width: 420px) {
+  .nav-link--work {
+    display: none;
+  }
+}
+
+/* ==========================================================================
+   HERO — "PORTFOLIO" behind the cut-out portrait
+   ========================================================================== */
+.hero {
+  position: relative;
+  height: min(88vh, 860px);
+  min-height: 560px;
+  overflow: hidden;
+  border-bottom: 1px solid var(--line);
+}
+
+.hero-word {
+  position: absolute;
+  z-index: 1;
+  top: 3.5%;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-size: clamp(5rem, 21.5vw, 20rem);
+  line-height: 0.86;
+  white-space: nowrap;
+}
+
+html[lang="es"] .hero-word {
+  font-size: clamp(4.5rem, 19.4vw, 18rem);
+}
+
+.hero-cutout {
+  position: absolute;
+  z-index: 2;
+  left: 50%;
+  bottom: 0;
+  height: 92%;
+  width: auto;
+  max-width: none;
+  transform: translateX(-50%);
+  /* soften the straight side edges of the original photo */
+  -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 3%, #000 97%, transparent 100%);
+  mask-image: linear-gradient(90deg, transparent 0, #000 3%, #000 97%, transparent 100%);
+}
+
+.hero-script {
+  position: absolute;
+  z-index: 3;
+  top: 56%;
+  font-size: clamp(2.4rem, 4.8vw, 4.4rem);
+  white-space: nowrap;
+}
+
+/* half the cut-out's width (≈0.21 × hero height) plus a gap */
+.hero-script--left { right: calc(50% + min(18.6vh, 182px) + 1.5rem); transform: rotate(-5deg); }
+.hero-script--right { left: calc(50% + min(18.6vh, 182px) + 1.5rem); transform: rotate(-5deg); }
+
+.hero-foot {
+  position: absolute;
+  z-index: 3;
+  bottom: 6%;
+  max-width: 220px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  line-height: 1.7;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+.hero-foot--left { left: max(2rem, calc((100% - 1240px) / 2)); }
+.hero-foot--right { right: max(2rem, calc((100% - 1240px) / 2)); text-align: right; }
+
+.hero-foot--right::before {
+  content: "";
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  margin-right: 0.5rem;
+  border-radius: 50%;
+  background: #4F9A6A;
+  box-shadow: 0 0 0 3px rgba(79, 154, 106, 0.2);
+  vertical-align: 1px;
+}
+
+@media (max-width: 760px) {
+  .hero {
+    height: min(160vw, 640px);
+    min-height: 0;
+  }
+  /* Two stacked lines, poster style, so the head overlaps "FOLIO" */
+  .hero-word,
+  html[lang="es"] .hero-word {
+    top: 3%;
+    font-size: 36vw;
+    line-height: 0.84;
+  }
+  .hero-word span:not(.sr-only) {
+    display: block;
+  }
+  .hero-cutout {
+    height: 84%;
+  }
+  .hero-script {
+    top: auto;
+    font-size: 1.8rem;
+    color: var(--ink);
+  }
+  .hero-script--left { left: 3%; right: auto; bottom: 31%; }
+  .hero-script--right { right: 3%; left: auto; bottom: 21%; }
+  .hero-foot {
+    font-size: 0.62rem;
+    max-width: 130px;
+    bottom: 4%;
+  }
+  .hero-foot--left { left: 1rem; }
+  .hero-foot--right { right: 1rem; }
+}
+
+/* ==========================================================================
+   MY WORK — the reels inside phones, on the ice background
+   ========================================================================== */
+.work {
+  background: var(--ice);
+  padding-block: clamp(3.5rem, 7vw, 6rem);
+}
+
+.work-inner {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: clamp(1.5rem, 3vw, 3rem);
+}
+
+.work-title {
+  display: flex;
+  align-items: flex-end;
+  gap: 0.2rem;
+}
+
+.work-word {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  font-size: clamp(4.5rem, 8.5vw, 8rem);
+  color: var(--blue);
+}
+
+.work-script {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  font-size: clamp(2rem, 3.4vw, 3rem);
+  color: var(--blue-deep);
+  margin-bottom: 0.4rem;
+}
+
+.work-rail {
+  display: flex;
+  gap: clamp(0.9rem, 1.6vw, 1.4rem);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding: 0.5rem 0.25rem 1.25rem;
+  scrollbar-width: thin;
+  scrollbar-color: var(--blue) transparent;
+}
+
+.gallery-card {
+  flex: 1 0 180px;
+  max-width: 230px;
+  min-width: 0;
+  scroll-snap-align: start;
+  transition: transform var(--transition-fast);
+}
+
+.gallery-card:hover {
+  transform: translateY(-4px);
+}
+
+.mini-phone {
+  position: relative;
+  padding: 6px;
+  border-radius: 30px;
+  background: linear-gradient(150deg, #2F2C2A 0%, var(--bezel) 50%, #24211F 100%);
+  box-shadow:
+    inset 0 0 0 1.5px #46423E,
+    0 24px 40px -24px rgba(34, 57, 90, 0.55);
+}
+
+.mini-island {
+  position: absolute;
+  z-index: 4;
+  top: 13px;
+  left: 50%;
+  width: 34%;
+  height: 15px;
+  border-radius: 12px;
+  background: #050505;
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+.card-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.1rem;
+  padding-top: 0.9rem;
+  text-align: center;
+}
+
+.card-brand-title {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 1.15rem;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+.card-format {
+  font-size: 0.64rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+@media (max-width: 760px) {
+  .work-inner {
+    grid-template-columns: 1fr;
+  }
+  .work-word,
+  .work-script {
+    writing-mode: horizontal-tb;
+    transform: none;
+  }
+  .work-title {
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0 0.8rem;
+  }
+  .work-word,
+  .work-script {
+    white-space: nowrap;
+  }
+  .work-word {
+    font-size: 3.6rem;
+  }
+  .work-script {
+    font-size: 2rem;
+    margin: 0;
+  }
+  .gallery-card {
+    flex: 0 0 min(58vw, 230px);
+  }
+}
+
+/* ==========================================================================
+   VIDEO PLAYER (inside the work phones)
+   ========================================================================== */
+.video-box {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 9 / 18;
+  background-color: #1F1D1B;
+  border-radius: 24px;
+  overflow: hidden;
+  isolation: isolate;
+  -webkit-mask-image: -webkit-radial-gradient(white, black);
+}
+
+.video-box video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.video-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 2.1rem 0.6rem 0.7rem;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.25) 0%, rgba(0, 0, 0, 0) 22%, rgba(0, 0, 0, 0) 72%, rgba(0, 0, 0, 0.45) 100%);
+}
+
+.sound-toggle-btn {
+  pointer-events: auto;
+  align-self: flex-end;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.88);
+  color: var(--ink);
+  transition: transform var(--transition-fast);
+}
+
+.sound-toggle-btn:hover {
+  transform: scale(1.06);
+}
+
+.sound-toggle-btn svg {
+  width: 14px;
+  height: 14px;
+}
+
+.sound-icon-unmuted { display: none; }
+.sound-icon-muted { display: block; }
+.is-unmuted .sound-icon-unmuted { display: block; }
+.is-unmuted .sound-icon-muted { display: none; }
+
+.play-trigger-btn {
+  pointer-events: auto;
+  align-self: center;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.92);
+  color: var(--ink);
+  transition: transform var(--transition-fast), opacity var(--transition-fast);
+}
+
+.play-trigger-btn:hover {
+  transform: scale(1.08);
+}
+
+.play-glyph svg {
+  width: 16px;
+  height: 16px;
+  display: block;
+}
+
+.play-glyph .play-icon { margin-left: 2px; }
+.play-glyph .pause-icon { display: none; }
+
+.is-playing .play-trigger-btn {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.gallery-card.is-playing:hover .play-trigger-btn {
+  opacity: 0.85;
+  pointer-events: auto;
+}
+
+.is-playing .play-glyph .play-icon { display: none; }
+.is-playing .play-glyph .pause-icon { display: block; }
+
+.video-duration-pill {
+  position: absolute;
+  bottom: 0.8rem;
+  left: 0.8rem;
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  padding: 0.15rem 0.5rem;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.55);
+  color: var(--white);
+}
+
+.video-progress-track {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.video-progress-fill {
+  height: 100%;
+  width: 0%;
+  background: var(--white);
+  transition: width 0.1s linear;
+}
+
+/* ==========================================================================
+   CONTENT I'VE CREATED — formats list + the scrolling phone feed
+   ========================================================================== */
+.content {
+  padding-block: clamp(3.5rem, 7vw, 6rem);
+  border-bottom: 1px solid var(--line);
+  overflow: hidden;
+}
+
+.content-head {
+  padding-bottom: 1.6rem;
+  border-bottom: 1px solid var(--line);
+  margin-bottom: clamp(2rem, 4vw, 3rem);
+}
+
+.content-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  align-items: center;
+  gap: clamp(2rem, 5vw, 5rem);
+}
+
+.format-list li {
+  padding-block: 1rem;
+  border-bottom: 1px solid var(--line);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+.format-list li:first-child {
+  border-top: 1px solid var(--line);
+}
+
+/* Stage: polaroid + phone + dots + note */
+.hero-stage {
+  --phone-w: 270px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 620px;
+}
+
+.polaroid {
+  background: var(--white);
+  padding: 8px 8px 26px;
+  border-radius: 3px;
+  box-shadow: 0 18px 34px -20px rgba(34, 57, 90, 0.6);
+}
+
+.polaroid img {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+}
+
+.stage-polaroid {
+  position: absolute;
+  z-index: 1;
+  width: 170px;
+  top: 12%;
+  right: calc(50% + var(--phone-w) / 2 - 40px);
+  transform: rotate(-8deg);
+}
+
+.phone {
+  position: relative;
+  z-index: 2;
+  width: var(--phone-w);
+  aspect-ratio: 9 / 19;
+  padding: 10px;
+  border-radius: 46px;
+  background: linear-gradient(150deg, #33302E 0%, #191817 45%, #26231F 100%);
+  box-shadow:
+    inset 0 0 0 1.5px #4D4945,
+    inset 0 0 0 4px #121110,
+    0 40px 70px -28px rgba(34, 57, 90, 0.55),
+    0 16px 30px -18px rgba(34, 57, 90, 0.35);
+  animation: phone-float 7s ease-in-out infinite;
+}
+
+@keyframes phone-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-9px); }
+}
+
+.phone-btn {
+  position: absolute;
+  width: 3px;
+  background: #2B2826;
+  border-radius: 2px;
+}
+.phone-btn--action { left: -3px; top: 90px; height: 22px; }
+.phone-btn--vol-up { left: -3px; top: 128px; height: 42px; }
+.phone-btn--vol-down { left: -3px; top: 180px; height: 42px; }
+.phone-btn--power { right: -3px; top: 146px; height: 66px; }
+
+.phone-screen {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 37px;
+  overflow: hidden;
+  background: #121110;
+  cursor: pointer;
+  isolation: isolate;
+  -webkit-mask-image: -webkit-radial-gradient(white, black);
+}
+
+.phone-screen:focus-visible {
+  outline: 2px solid var(--white);
+  outline-offset: 4px;
+}
+
+.phone-screen::after {
+  content: "";
+  position: absolute;
+  z-index: 6;
+  left: 50%;
+  bottom: 7px;
+  width: 34%;
+  height: 4px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.85);
+  transform: translateX(-50%);
+}
+
+.phone-island {
+  position: absolute;
+  z-index: 6;
+  top: 10px;
+  left: 50%;
+  width: 78px;
+  height: 23px;
+  border-radius: 20px;
+  background: #050505;
+  transform: translateX(-50%);
+}
+
+.phone-status {
+  position: absolute;
+  z-index: 5;
+  top: 13px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-inline: 24px 20px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--white);
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+  pointer-events: none;
+}
+
+.phone-status-icons {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.phone-status-icons svg {
+  height: 10px;
+  width: auto;
+  fill: var(--white);
+}
+
+.feed-track {
+  height: 100%;
+  transition: transform 0.75s cubic-bezier(0.65, 0, 0.25, 1);
+  will-change: transform;
+}
+
+.feed-track.no-anim {
+  transition: none;
+}
+
+.feed-slide {
+  position: relative;
+  height: 100%;
+  background: #121110;
+}
+
+.feed-slide video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.feed-ui {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.22) 0%, rgba(0, 0, 0, 0) 16%, rgba(0, 0, 0, 0) 68%, rgba(0, 0, 0, 0.5) 100%);
+}
+
+.feed-actions {
+  position: absolute;
+  right: 11px;
+  bottom: 70px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  color: var(--white);
+}
+
+.feed-actions svg {
+  width: 22px;
+  height: 22px;
+  filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.35));
+}
+
+.feed-slide.is-active .feed-actions svg:first-child {
+  animation: heart-pop 0.6s 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+@keyframes heart-pop {
+  0% { transform: scale(1); fill: transparent; }
+  45% { transform: scale(1.28); }
+  100% { transform: scale(1); fill: #FF4D67; stroke: #FF4D67; }
+}
+
+.feed-caption {
+  position: absolute;
+  left: 13px;
+  right: 52px;
+  bottom: 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  color: var(--white);
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.35);
+}
+
+.feed-handle {
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+.feed-brand {
+  font-size: 0.68rem;
+  font-weight: 500;
+  opacity: 0.9;
+}
+
+.feed-progress {
+  position: absolute;
+  left: 13px;
+  right: 13px;
+  bottom: 16px;
+  height: 2px;
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.3);
+  overflow: hidden;
+}
+
+.feed-progress span {
+  display: block;
+  height: 100%;
+  width: 0;
+  background: var(--white);
+}
+
+.feed-slide.is-active .feed-progress span {
+  animation: feed-progress var(--slide-ms, 5500ms) linear forwards;
+}
+
+.phone.is-paused .feed-progress span {
+  animation-play-state: paused;
+}
+
+@keyframes feed-progress {
+  to { width: 100%; }
+}
+
+.feed-dots {
+  position: absolute;
+  z-index: 3;
+  top: 50%;
+  left: calc(50% + var(--phone-w) / 2 + 24px);
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  transform: translateY(-50%);
+}
+
+.feed-dot {
+  display: block;
+  width: 7px;
+  height: 7px;
+  border-radius: 7px;
+  border: 1.5px solid var(--white);
+  transition: height var(--transition-smooth), background-color var(--transition-fast);
+}
+
+.feed-dot:hover {
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.feed-dot.is-active {
+  height: 22px;
+  background-color: var(--white);
+}
+
+.stage-note {
+  position: absolute;
+  z-index: 3;
+  left: calc(50% + var(--phone-w) / 2 + 8px);
+  bottom: 12%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  font-size: 2.4rem;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.stage-note svg {
+  width: 70px;
+  height: 44px;
+  margin-left: -1.6rem;
+  transform: scaleX(-1);
+  stroke: var(--white);
+  fill: none;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+@media (max-width: 900px) {
+  .content-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 560px) {
+  .hero-stage {
+    --phone-w: 236px;
+    min-height: 540px;
+  }
+  .phone {
+    padding: 8px;
+    border-radius: 40px;
+  }
+  .phone-screen {
+    border-radius: 33px;
+  }
+  .phone-island {
+    width: 68px;
+    height: 20px;
+    top: 9px;
+  }
+  .phone-btn--action { top: 78px; }
+  .phone-btn--vol-up { top: 112px; height: 36px; }
+  .phone-btn--vol-down { top: 156px; height: 36px; }
+  .phone-btn--power { top: 128px; height: 56px; }
+  .stage-polaroid {
+    width: 120px;
+    top: 4%;
+    right: auto;
+    left: -0.5rem;
+  }
+  .feed-dots {
+    left: calc(50% + var(--phone-w) / 2 + 14px);
+  }
+  .stage-note {
+    display: none;
+  }
+}
+
+/* ==========================================================================
+   ABOUT ME
+   ========================================================================== */
+.about {
+  padding-block: clamp(3.5rem, 7vw, 6rem);
+  border-bottom: 1px solid var(--line);
+}
+
+.about-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-bottom: 1.6rem;
+  border-bottom: 1px solid var(--line);
+  margin-bottom: clamp(2rem, 4vw, 3rem);
+}
+
+.about-name {
+  font-size: clamp(1.3rem, 2.4vw, 2rem);
+  text-align: right;
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  align-items: center;
+  gap: clamp(2rem, 5vw, 5rem);
+}
+
+.about-copy p {
+  font-size: 0.86rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  line-height: 1.8;
+  text-transform: uppercase;
+  color: var(--ink);
+  max-width: 420px;
+  margin-bottom: 1.2rem;
+}
+
+.tag-line {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1.8rem;
+}
+
+.tag-line li {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 0.45rem 0.9rem;
+  border: 1px solid var(--white);
+  border-radius: 999px;
+  color: var(--ink);
+}
+
+.about-photos {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.9rem;
+}
+
+.about-photos img {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.about-photos img:last-child {
+  margin-top: 2.5rem;
+}
+
+@media (max-width: 860px) {
+  .about-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ==========================================================================
+   MOODBOARD
+   ========================================================================== */
+.mood {
+  padding: 6px 6px 0;
+  border-bottom: 1px solid var(--line);
+  overflow: hidden;
+}
+
+.mood-row {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 6px;
+}
+
+.mood-row img {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.mood-word {
+  font-size: clamp(4.4rem, 19.8vw, 18.5rem);
+  line-height: 0.82;
+  text-align: center;
+  white-space: nowrap;
+  padding-block: 0.06em 0.04em;
+}
+
+@media (max-width: 600px) {
+  .mood-row {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* ==========================================================================
+   QUOTE — script line among polaroids, on ice
+   ========================================================================== */
+.quote {
+  position: relative;
+  background: var(--ice);
+  padding-block: clamp(5rem, 11vw, 9rem);
+  overflow: hidden;
+  text-align: center;
+}
+
+.quote-watermark {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: clamp(6rem, 16vw, 15rem);
+  color: rgba(169, 196, 227, 0.16);
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.quote-text {
+  position: relative;
+  z-index: 2;
+  font-size: clamp(3.6rem, 8vw, 7rem);
+  line-height: 0.95;
+  color: var(--blue-deep);
+}
+
+.quote-sub {
+  position: relative;
+  z-index: 2;
+  margin-top: 1.4rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+.quote .polaroid {
+  position: absolute;
+  z-index: 1;
+  width: clamp(120px, 15vw, 200px);
+}
+
+.quote .p1 { top: 10%; left: 6%; transform: rotate(-9deg); }
+.quote .p2 { bottom: 9%; right: 21%; transform: rotate(-5deg); width: clamp(100px, 11vw, 150px); }
+.quote .p3 { top: 14%; right: 7%; transform: rotate(8deg); }
+
+@media (max-width: 760px) {
+  .quote {
+    padding-block: 15rem 4rem;
+  }
+  .quote .p1 { top: 2.5rem; left: 8%; }
+  .quote .p2 { display: none; }
+  .quote .p3 { top: 3.5rem; right: 8%; }
+}
+
+/* ==========================================================================
+   CONTACT
+   ========================================================================== */
+.contact {
+  padding-top: clamp(4rem, 8vw, 6.5rem);
+  text-align: center;
+}
+
+.contact-title {
+  font-size: clamp(3rem, 8vw, 6.8rem);
+  margin-bottom: 2rem;
+}
+
+.contact-photo {
+  width: 150px;
+  aspect-ratio: 1;
+  object-fit: cover;
+  margin: 0 auto clamp(2.5rem, 5vw, 3.5rem);
+  border-radius: 4px;
+  border: 6px solid var(--white);
+}
+
+.contact-cols {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.contact-col {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  padding: 1.6rem 1rem;
+  border-left: 1px solid var(--line);
+  transition: background-color var(--transition-fast);
+}
+
+.contact-col:first-child {
+  border-left: none;
+}
+
+.contact-col:hover {
+  background: rgba(255, 255, 255, 0.16);
+}
+
+.contact-label {
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--white);
+}
+
+.contact-value {
+  font-size: 0.86rem;
+  font-weight: 500;
+  color: var(--ink);
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 600px) {
+  .contact-cols {
+    grid-template-columns: 1fr 1fr;
+  }
+  .contact-col:nth-child(odd) {
+    border-left: none;
+  }
+  .contact-col:nth-child(n + 3) {
+    border-top: 1px solid var(--line);
+  }
+}
+
+.site-footer {
+  padding-block: 1.6rem;
+}
+
+.footer-inner {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- NAVIGATION -->
+<header class="site-nav" role="banner">
+  <div class="container nav-inner">
+    <a href="#top" class="nav-brand" aria-label="Selenia Sánchez — Volver arriba">Selenia Sánchez</a>
+    <nav aria-label="Navegación principal">
+      <ul class="nav-links">
+        <li><a href="#work" class="nav-link nav-link--work">Trabajo</a></li>
+        <li><a href="#about" class="nav-link hide-mobile">Sobre mí</a></li>
+        <li><a href="https://ugc.iamselenia.com" class="nav-link nav-lang" hreflang="en" aria-label="View in English">EN</a></li>
+        <li><a href="#contact" class="nav-cta">Hablemos ↗</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero" aria-label="Presentación">
+    <h1 class="display hero-word"><span class="sr-only">Selenia Sánchez — </span><span>Porta</span><span>folio</span></h1>
+    <img class="hero-cutout" src="/media/hero-cutout.png" alt="Selenia Sánchez" width="472" height="1024">
+    <span class="script hero-script hero-script--left" aria-hidden="true">creadora de contenido</span>
+    <span class="script hero-script hero-script--right" aria-hidden="true">creadora ugc</span>
+    <p class="hero-foot hero-foot--left">Creadora UGC<br>Tech, IA y viajes</p>
+    <p class="hero-foot hero-foot--right">Abierta a marcas<br>de habla hispana</p>
+  </section>
+
+  <!-- MY WORK -->
+  <section id="work" class="work" aria-labelledby="workTitle">
+    <div class="container work-inner">
+      <div class="work-title">
+        <h2 id="workTitle" class="display work-word">Mi trabajo</h2>
+        <span class="script work-script" aria-hidden="true">creadora de contenido</span>
+      </div>
+      <div class="work-rail">
+        
+    <article class="gallery-card" data-reel="reel-es-01" data-category="tech">
+      <div class="mini-phone">
+      <span class="mini-island" aria-hidden="true"></span>
+      <div class="video-box">
+        <video data-reel="reel-es-01" src="/media/reel-es-01.mp4" poster="/media/reel-es-01.jpg" loop playsinline preload="metadata" aria-label="Cursor - Volví a Cursor: sigue trabajando solo"></video>
+        <div class="video-overlay">
+          <button class="sound-toggle-btn" type="button" aria-label="Activar o quitar el sonido">
+            <svg class="sound-icon-muted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5L6 9H2v6h4l5 4V5z"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
+            <svg class="sound-icon-unmuted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5L6 9H2v6h4l5 4V5z"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
+          </button>
+          <button class="play-trigger-btn" type="button" aria-label="Reproducir video">
+            <span class="play-glyph">
+              <svg class="play-icon" viewBox="0 0 24 24" fill="currentColor"><polygon points="6 3 20 12 6 21 6 3"/></svg>
+              <svg class="pause-icon" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+            </span>
+          </button>
+          <span class="video-duration-pill">0:41</span>
+          <div class="video-progress-track"><div class="video-progress-fill"></div></div>
+        </div>
+      </div>
+      </div>
+      <div class="card-meta">
+        <h3 class="card-brand-title">Cursor</h3>
+        <span class="card-format">Reseña</span>
+      </div>
+    </article>
+    
+
+    <article class="gallery-card" data-reel="reel-es-02" data-category="tech">
+      <div class="mini-phone">
+      <span class="mini-island" aria-hidden="true"></span>
+      <div class="video-box">
+        <video data-reel="reel-es-02" src="/media/reel-es-02.mp4" poster="/media/reel-es-02.jpg" loop playsinline preload="metadata" aria-label="Lovable vs Replit vs Bolt - 3 IAs, el mismo problema"></video>
+        <div class="video-overlay">
+          <button class="sound-toggle-btn" type="button" aria-label="Activar o quitar el sonido">
+            <svg class="sound-icon-muted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5L6 9H2v6h4l5 4V5z"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
+            <svg class="sound-icon-unmuted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5L6 9H2v6h4l5 4V5z"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
+          </button>
+          <button class="play-trigger-btn" type="button" aria-label="Reproducir video">
+            <span class="play-glyph">
+              <svg class="play-icon" viewBox="0 0 24 24" fill="currentColor"><polygon points="6 3 20 12 6 21 6 3"/></svg>
+              <svg class="pause-icon" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+            </span>
+          </button>
+          <span class="video-duration-pill">1:47</span>
+          <div class="video-progress-track"><div class="video-progress-fill"></div></div>
+        </div>
+      </div>
+      </div>
+      <div class="card-meta">
+        <h3 class="card-brand-title">Lovable vs Replit vs Bolt</h3>
+        <span class="card-format">Comparativa</span>
+      </div>
+    </article>
+    
+
+    <article class="gallery-card" data-reel="reel-es-03" data-category="tech">
+      <div class="mini-phone">
+      <span class="mini-island" aria-hidden="true"></span>
+      <div class="video-box">
+        <video data-reel="reel-es-03" src="/media/reel-es-03.mp4" poster="/media/reel-es-03.jpg" loop playsinline preload="metadata" aria-label="PulsePost - Cómo nació PulsePost"></video>
+        <div class="video-overlay">
+          <button class="sound-toggle-btn" type="button" aria-label="Activar o quitar el sonido">
+            <svg class="sound-icon-muted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5L6 9H2v6h4l5 4V5z"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
+            <svg class="sound-icon-unmuted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5L6 9H2v6h4l5 4V5z"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
+          </button>
+          <button class="play-trigger-btn" type="button" aria-label="Reproducir video">
+            <span class="play-glyph">
+              <svg class="play-icon" viewBox="0 0 24 24" fill="currentColor"><polygon points="6 3 20 12 6 21 6 3"/></svg>
+              <svg class="pause-icon" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+            </span>
+          </button>
+          <span class="video-duration-pill">0:30</span>
+          <div class="video-progress-track"><div class="video-progress-fill"></div></div>
+        </div>
+      </div>
+      </div>
+      <div class="card-meta">
+        <h3 class="card-brand-title">PulsePost</h3>
+        <span class="card-format">Historia de producto</span>
+      </div>
+    </article>
+    
+
+    <article class="gallery-card" data-reel="reel-es-04" data-category="tech">
+      <div class="mini-phone">
+      <span class="mini-island" aria-hidden="true"></span>
+      <div class="video-box">
+        <video data-reel="reel-es-04" src="/media/reel-es-04.mp4" poster="/media/reel-es-04.jpg" loop playsinline preload="metadata" aria-label="Motor SEO - Auditoría de mi web en tiempo real"></video>
+        <div class="video-overlay">
+          <button class="sound-toggle-btn" type="button" aria-label="Activar o quitar el sonido">
+            <svg class="sound-icon-muted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5L6 9H2v6h4l5 4V5z"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
+            <svg class="sound-icon-unmuted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5L6 9H2v6h4l5 4V5z"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
+          </button>
+          <button class="play-trigger-btn" type="button" aria-label="Reproducir video">
+            <span class="play-glyph">
+              <svg class="play-icon" viewBox="0 0 24 24" fill="currentColor"><polygon points="6 3 20 12 6 21 6 3"/></svg>
+              <svg class="pause-icon" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+            </span>
+          </button>
+          <span class="video-duration-pill">0:29</span>
+          <div class="video-progress-track"><div class="video-progress-fill"></div></div>
+        </div>
+      </div>
+      </div>
+      <div class="card-meta">
+        <h3 class="card-brand-title">Motor SEO</h3>
+        <span class="card-format">Tutorial</span>
+      </div>
+    </article>
+    
+
+    <article class="gallery-card" data-reel="reel-es-05" data-category="tech">
+      <div class="mini-phone">
+      <span class="mini-island" aria-hidden="true"></span>
+      <div class="video-box">
+        <video data-reel="reel-es-05" src="/media/reel-es-05.mp4" poster="/media/reel-es-05.jpg" loop playsinline preload="metadata" aria-label="AI Visibility - Cómo ven las IA a tu empresa (MCP en ChatGPT)"></video>
+        <div class="video-overlay">
+          <button class="sound-toggle-btn" type="button" aria-label="Activar o quitar el sonido">
+            <svg class="sound-icon-muted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5L6 9H2v6h4l5 4V5z"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
+            <svg class="sound-icon-unmuted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5L6 9H2v6h4l5 4V5z"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
+          </button>
+          <button class="play-trigger-btn" type="button" aria-label="Reproducir video">
+            <span class="play-glyph">
+              <svg class="play-icon" viewBox="0 0 24 24" fill="currentColor"><polygon points="6 3 20 12 6 21 6 3"/></svg>
+              <svg class="pause-icon" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+            </span>
+          </button>
+          <span class="video-duration-pill">1:00</span>
+          <div class="video-progress-track"><div class="video-progress-fill"></div></div>
+        </div>
+      </div>
+      </div>
+      <div class="card-meta">
+        <h3 class="card-brand-title">AI Visibility</h3>
+        <span class="card-format">Tutorial en pantalla</span>
+      </div>
+    </article>
+    
+
+    <article class="gallery-card" data-reel="reel-es-06" data-category="tech">
+      <div class="mini-phone">
+      <span class="mini-island" aria-hidden="true"></span>
+      <div class="video-box">
+        <video data-reel="reel-es-06" src="/media/reel-es-06.mp4" poster="/media/reel-es-06.jpg" loop playsinline preload="metadata" aria-label="Estrategia con IA - No estudié marketing: construí un sistema"></video>
+        <div class="video-overlay">
+          <button class="sound-toggle-btn" type="button" aria-label="Activar o quitar el sonido">
+            <svg class="sound-icon-muted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5L6 9H2v6h4l5 4V5z"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
+            <svg class="sound-icon-unmuted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5L6 9H2v6h4l5 4V5z"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
+          </button>
+          <button class="play-trigger-btn" type="button" aria-label="Reproducir video">
+            <span class="play-glyph">
+              <svg class="play-icon" viewBox="0 0 24 24" fill="currentColor"><polygon points="6 3 20 12 6 21 6 3"/></svg>
+              <svg class="pause-icon" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+            </span>
+          </button>
+          <span class="video-duration-pill">0:48</span>
+          <div class="video-progress-track"><div class="video-progress-fill"></div></div>
+        </div>
+      </div>
+      </div>
+      <div class="card-meta">
+        <h3 class="card-brand-title">Estrategia con IA</h3>
+        <span class="card-format">Storytelling</span>
+      </div>
+    </article>
+    
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTENT I'VE CREATED -->
+  <section class="content" aria-labelledby="contentTitle">
+    <div class="container">
+      <div class="content-head">
+        <h2 id="contentTitle" class="display section-title">Contenido que he creado:</h2>
+      </div>
+      <div class="content-grid">
+        <ul class="format-list">
+          <li>Videos UGC para TikTok e Instagram</li>
+          <li>Comparativas de herramientas de IA</li>
+          <li>Reseñas de apps y software</li>
+          <li>Tutoriales en pantalla</li>
+          <li>Historias de producto</li>
+        </ul>
+
+        <!-- Drawn phone scrolling the hook of every reel -->
+        <div class="hero-stage">
+          <figure class="polaroid stage-polaroid" aria-hidden="true">
+            <img src="/media/content-1.jpg" alt="" loading="lazy">
+          </figure>
+
+          <div class="phone" id="phone">
+            <span class="phone-btn phone-btn--action" aria-hidden="true"></span>
+            <span class="phone-btn phone-btn--vol-up" aria-hidden="true"></span>
+            <span class="phone-btn phone-btn--vol-down" aria-hidden="true"></span>
+            <span class="phone-btn phone-btn--power" aria-hidden="true"></span>
+            <div class="phone-screen" id="phoneScreen" role="button" tabindex="0" aria-label="toca para ver" data-watch-before="Ver el video completo de " data-watch-after="">
+              <div class="phone-status" aria-hidden="true">
+                <span>9:41</span>
+                <span class="phone-status-icons">
+                  <svg viewBox="0 0 18 12"><rect x="0" y="8" width="3" height="4" rx="1"/><rect x="5" y="5.5" width="3" height="6.5" rx="1"/><rect x="10" y="3" width="3" height="9" rx="1"/><rect x="15" y="0" width="3" height="12" rx="1"/></svg>
+                  <svg viewBox="0 0 26 12"><rect x="0.75" y="0.75" width="21.5" height="10.5" rx="3" fill="none" stroke="#fff" stroke-width="1.2" opacity="0.6"/><rect x="2.5" y="2.5" width="15" height="7" rx="1.6"/><rect x="23.5" y="4" width="1.8" height="4" rx="0.9" opacity="0.6"/></svg>
+                </span>
+              </div>
+              <div class="phone-island" aria-hidden="true"></div>
+              <div class="feed-track" id="feedTrack">
+                
+            <div class="feed-slide" data-reel="reel-es-01" data-brand="Cursor">
+              <video data-src="/media/reel-es-01.preview.mp4" data-poster="/media/reel-es-01.jpg" muted playsinline preload="none" aria-hidden="true"></video>
+              <div class="feed-ui" aria-hidden="true">
+                <div class="feed-actions"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1.1L12 21l7.8-7.5 1-1.1a5.5 5.5 0 0 0 0-7.8z"/></svg><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-12.2 7.5L3 21l2-5.6A8.4 8.4 0 1 1 21 11.5z"/></svg><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4 20-7z"/></svg></div>
+                <div class="feed-caption">
+                  <span class="feed-handle">@seleedev</span>
+                  <span class="feed-brand">Cursor</span>
+                </div>
+                <div class="feed-progress"><span></span></div>
+              </div>
+            </div>
+            <div class="feed-slide" data-reel="reel-es-02" data-brand="Lovable vs Replit vs Bolt">
+              <video data-src="/media/reel-es-02.preview.mp4" data-poster="/media/reel-es-02.jpg" muted playsinline preload="none" aria-hidden="true"></video>
+              <div class="feed-ui" aria-hidden="true">
+                <div class="feed-actions"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1.1L12 21l7.8-7.5 1-1.1a5.5 5.5 0 0 0 0-7.8z"/></svg><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-12.2 7.5L3 21l2-5.6A8.4 8.4 0 1 1 21 11.5z"/></svg><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4 20-7z"/></svg></div>
+                <div class="feed-caption">
+                  <span class="feed-handle">@seleedev</span>
+                  <span class="feed-brand">Lovable vs Replit vs Bolt</span>
+                </div>
+                <div class="feed-progress"><span></span></div>
+              </div>
+            </div>
+            <div class="feed-slide" data-reel="reel-es-03" data-brand="PulsePost">
+              <video data-src="/media/reel-es-03.preview.mp4" data-poster="/media/reel-es-03.jpg" muted playsinline preload="none" aria-hidden="true"></video>
+              <div class="feed-ui" aria-hidden="true">
+                <div class="feed-actions"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1.1L12 21l7.8-7.5 1-1.1a5.5 5.5 0 0 0 0-7.8z"/></svg><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-12.2 7.5L3 21l2-5.6A8.4 8.4 0 1 1 21 11.5z"/></svg><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4 20-7z"/></svg></div>
+                <div class="feed-caption">
+                  <span class="feed-handle">@seleedev</span>
+                  <span class="feed-brand">PulsePost</span>
+                </div>
+                <div class="feed-progress"><span></span></div>
+              </div>
+            </div>
+            <div class="feed-slide" data-reel="reel-es-04" data-brand="Motor SEO">
+              <video data-src="/media/reel-es-04.preview.mp4" data-poster="/media/reel-es-04.jpg" muted playsinline preload="none" aria-hidden="true"></video>
+              <div class="feed-ui" aria-hidden="true">
+                <div class="feed-actions"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1.1L12 21l7.8-7.5 1-1.1a5.5 5.5 0 0 0 0-7.8z"/></svg><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-12.2 7.5L3 21l2-5.6A8.4 8.4 0 1 1 21 11.5z"/></svg><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4 20-7z"/></svg></div>
+                <div class="feed-caption">
+                  <span class="feed-handle">@seleedev</span>
+                  <span class="feed-brand">Motor SEO</span>
+                </div>
+                <div class="feed-progress"><span></span></div>
+              </div>
+            </div>
+            <div class="feed-slide" data-reel="reel-es-05" data-brand="AI Visibility">
+              <video data-src="/media/reel-es-05.preview.mp4" data-poster="/media/reel-es-05.jpg" muted playsinline preload="none" aria-hidden="true"></video>
+              <div class="feed-ui" aria-hidden="true">
+                <div class="feed-actions"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1.1L12 21l7.8-7.5 1-1.1a5.5 5.5 0 0 0 0-7.8z"/></svg><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-12.2 7.5L3 21l2-5.6A8.4 8.4 0 1 1 21 11.5z"/></svg><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4 20-7z"/></svg></div>
+                <div class="feed-caption">
+                  <span class="feed-handle">@seleedev</span>
+                  <span class="feed-brand">AI Visibility</span>
+                </div>
+                <div class="feed-progress"><span></span></div>
+              </div>
+            </div>
+            <div class="feed-slide" data-reel="reel-es-06" data-brand="Estrategia con IA">
+              <video data-src="/media/reel-es-06.preview.mp4" data-poster="/media/reel-es-06.jpg" muted playsinline preload="none" aria-hidden="true"></video>
+              <div class="feed-ui" aria-hidden="true">
+                <div class="feed-actions"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1.1L12 21l7.8-7.5 1-1.1a5.5 5.5 0 0 0 0-7.8z"/></svg><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-12.2 7.5L3 21l2-5.6A8.4 8.4 0 1 1 21 11.5z"/></svg><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4 20-7z"/></svg></div>
+                <div class="feed-caption">
+                  <span class="feed-handle">@seleedev</span>
+                  <span class="feed-brand">Estrategia con IA</span>
+                </div>
+                <div class="feed-progress"><span></span></div>
+              </div>
+            </div>
+              </div>
+            </div>
+          </div>
+
+          <ol class="feed-dots" id="feedDots" aria-label="Elige un video"></ol>
+
+          <div class="script stage-note" aria-hidden="true">
+            <span>toca para ver</span>
+            <svg viewBox="0 0 74 46"><path d="M4 6c10 22 30 32 58 30"/><path d="M53 28l10 8-11 6"/></svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT ME -->
+  <section id="about" class="about" aria-labelledby="aboutTitle">
+    <div class="container">
+      <div class="about-head">
+        <h2 id="aboutTitle" class="display section-title">Sobre mí</h2>
+        <span class="display about-name">Selenia Sánchez</span>
+      </div>
+      <div class="about-grid">
+        <div class="about-copy">
+          <p>Creadora UGC e ingeniera de software.</p>
+          <p>Construyo productos digitales, así que hago que la tecnología compleja se sienta simple.</p>
+          <ul class="tag-line" aria-label="Enfoque">
+            <li>Tech</li>
+            <li>IA</li>
+            <li>SaaS</li>
+            <li>Viajes</li>
+            <li>9:16 · 1080p</li>
+          </ul>
+        </div>
+        <div class="about-photos">
+          <img src="/media/about-1.jpg" alt="Retrato de Selenia Sánchez" loading="lazy">
+          <img src="/media/about-2.jpg" alt="Selenia Sánchez grabando un video UGC" loading="lazy">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MOODBOARD -->
+  <section class="mood" aria-label="Moodboard">
+    <div class="mood-row">
+      <img src="/media/mood-1.jpg" alt="" loading="lazy">
+      <img src="/media/mood-2.jpg" alt="" loading="lazy">
+      <img src="/media/mood-3.jpg" alt="" loading="lazy">
+      <img src="/media/mood-4.jpg" alt="" loading="lazy">
+    </div>
+    <p class="display mood-word" aria-hidden="true">Moodboard</p>
+  </section>
+
+  <!-- QUOTE -->
+  <section class="quote" aria-label="Contenido que se siente humano">
+    <span class="script quote-watermark" aria-hidden="true">se siente humano</span>
+    <figure class="polaroid p1" aria-hidden="true"><img src="/media/polaroid-1.jpg" alt="" loading="lazy"></figure>
+    <figure class="polaroid p2" aria-hidden="true"><img src="/media/polaroid-2.jpg" alt="" loading="lazy"></figure>
+    <figure class="polaroid p3" aria-hidden="true"><img src="/media/polaroid-3.jpg" alt="" loading="lazy"></figure>
+    <h2 class="script quote-text">Contenido que<br>se siente humano</h2>
+    <p class="quote-sub">Creado por alguien que entiende la tecnología detrás del producto</p>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="contact" aria-labelledby="contactTitle">
+    <div class="container">
+      <h2 id="contactTitle" class="display contact-title">Trabajemos juntos</h2>
+      <img class="contact-photo" src="/media/contact.jpg" alt="Selenia Sánchez" loading="lazy">
+      <div class="contact-cols">
+        <a class="contact-col" href="mailto:seleniadeveloper@gmail.com"><span class="contact-label">Correo</span><span class="contact-value">seleniadeveloper@gmail.com</span></a><a class="contact-col" href="https://www.instagram.com/seleniasanchez/" target="_blank" rel="noopener noreferrer"><span class="contact-label">Instagram</span><span class="contact-value">@seleniasanchez</span></a><a class="contact-col" href="https://www.tiktok.com/@seleedev" target="_blank" rel="noopener noreferrer"><span class="contact-label">TikTok</span><span class="contact-value">@seleedev</span></a><a class="contact-col" href="https://iamselenia.com" target="_blank" rel="noopener noreferrer"><span class="contact-label">Web</span><span class="contact-value">iamselenia.com</span></a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer" role="contentinfo">
+  <div class="container footer-inner">
+    <span>© 2026 Selenia Sánchez</span>
+    <span>UGC · Tech, IA y viajes</span>
+  </div>
+</footer>
+
+<!-- SCRIPT SYSTEM: Zero external dependencies, Blob video streaming, audio control -->
+<script>
+(function(){
+  // Progressive video streaming: videos have native src pointing to media/*.mp4
+  // If window.__REELS blob fallback is provided, use it
+  if (window.__REELS) {
+    var DATA = window.__REELS;
+    Object.keys(DATA).forEach(function(id){
+      var src = DATA[id], url = src;
+      try {
+        var bin = atob(src.slice(src.indexOf(",") + 1));
+        var bytes = new Uint8Array(bin.length);
+        for (var i = 0; i < bin.length; i++) { bytes[i] = bin.charCodeAt(i); }
+        url = URL.createObjectURL(new Blob([bytes], { type: "video/mp4" }));
+        document.querySelectorAll('video[data-reel="' + id + '"]').forEach(function(v){
+          v.src = url;
+        });
+      } catch(e) {}
+    });
+  }
+
+  var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var globalUnmuted = false;
+  var lockedCard = null; // a card the visitor clicked; hover previews leave it alone
+
+  // Work phones: hover preview, click to play with sound
+  var allCards = document.querySelectorAll(".gallery-card");
+  allCards.forEach(function(card){
+    var v = card.querySelector("video");
+    var playBtn = card.querySelector(".play-trigger-btn");
+    var soundBtn = card.querySelector(".sound-toggle-btn");
+    var progressBar = card.querySelector(".video-progress-fill");
+    if (!v) return;
+
+    var isLocked = false;
+    var playPromise = null;
+
+    function lock(on){
+      isLocked = on;
+      if (on) { lockedCard = card; }
+      else if (lockedCard === card) { lockedCard = null; }
+    }
+
+    // Progress bar update
+    v.addEventListener("timeupdate", function(){
+      if (v.duration && progressBar) {
+        var pct = (v.currentTime / v.duration) * 100;
+        progressBar.style.width = pct + "%";
+      }
+    });
+
+    function startPlay(withSound){
+      // Stop every other card
+      allCards.forEach(function(other){
+        if (other !== card && other.__reset) other.__reset();
+      });
+
+      v.muted = !withSound;
+      card.classList.toggle("is-unmuted", withSound);
+
+      playPromise = v.play();
+      if (playPromise !== undefined) {
+        playPromise.then(function(){
+          card.classList.add("is-playing");
+        }).catch(function(){
+          if (withSound) {
+            v.muted = true;
+            card.classList.remove("is-unmuted");
+            v.play().then(function(){
+              card.classList.add("is-playing");
+            }).catch(function(){});
+          }
+        });
+      }
+    }
+
+    function stopPlay(resetTime){
+      function halt(){
+        v.pause();
+        if (resetTime) {
+          v.currentTime = 0;
+          if (progressBar) progressBar.style.width = "0%";
+        }
+      }
+      if (playPromise) {
+        playPromise.then(halt).catch(halt);
+      } else {
+        halt();
+      }
+      card.classList.remove("is-playing");
+    }
+
+    card.__reset = function(){
+      lock(false);
+      if (!v.paused || v.currentTime > 0) stopPlay(true);
+    };
+
+    // Desktop hover preview (subtle & non-intrusive)
+    card.addEventListener("mouseenter", function(){
+      if (!isLocked && !lockedCard) {
+        startPlay(globalUnmuted);
+      }
+    });
+
+    card.addEventListener("mouseleave", function(){
+      if (!isLocked) {
+        stopPlay(true);
+      }
+    });
+
+    // Click to lock play with sound or pause
+    if (playBtn) {
+      playBtn.addEventListener("click", function(e){
+        if (e.target.closest(".sound-toggle-btn")) return;
+        if (v.paused) {
+          lock(true);
+          globalUnmuted = true;
+          startPlay(true);
+        } else if (!isLocked && v.muted) {
+          lock(true);
+          globalUnmuted = true;
+          v.muted = false;
+          card.classList.add("is-unmuted");
+        } else {
+          lock(false);
+          stopPlay(false);
+        }
+      });
+    }
+
+    // Audio toggle
+    if (soundBtn) {
+      soundBtn.addEventListener("click", function(e){
+        e.stopPropagation();
+        e.preventDefault();
+        v.muted = !v.muted;
+        globalUnmuted = !v.muted;
+        card.classList.toggle("is-unmuted", !v.muted);
+        if (!v.muted && v.paused) {
+          lock(true);
+          startPlay(true);
+        }
+      });
+    }
+
+    v.addEventListener("play", function(){
+      card.classList.add("is-playing");
+    });
+    v.addEventListener("pause", function(){
+      if (!isLocked) {
+        card.classList.remove("is-playing");
+      }
+    });
+  });
+
+  // PHONE FEED: shows the hook of every reel and scrolls to the next one, like a For You page
+  var phone = document.getElementById("phone");
+  var screen = document.getElementById("phoneScreen");
+  var track = document.getElementById("feedTrack");
+  var dotsWrap = document.getElementById("feedDots");
+  if (phone && screen && track) {
+    var SLIDE_MS = 5500;
+    var slides = Array.prototype.slice.call(track.querySelectorAll(".feed-slide"));
+    var total = slides.length;
+    var current = 0;
+    var timer = null;
+    var inView = true;
+
+    phone.style.setProperty("--slide-ms", SLIDE_MS + "ms");
+
+    // A copy of the first slide at the end lets the loop wrap around without scrolling back up
+    if (total > 1) {
+      track.appendChild(slides[0].cloneNode(true));
+    }
+    var frames = track.querySelectorAll(".feed-slide");
+
+    function hydrate(slide){
+      var fv = slide && slide.querySelector("video");
+      if (!fv || fv.getAttribute("src")) return;
+      if (fv.dataset.poster) fv.poster = fv.dataset.poster;
+      fv.muted = true;
+      fv.preload = "auto";
+      fv.src = fv.dataset.src;
+    }
+
+    function play(fv){
+      var p = fv.play();
+      if (p && p.catch) p.catch(function(){});
+    }
+
+    var dots = slides.map(function(slide, i){
+      var li = document.createElement("li");
+      var b = document.createElement("button");
+      b.type = "button";
+      b.className = "feed-dot";
+      b.setAttribute("aria-label", slide.dataset.brand || ("Video " + (i + 1)));
+      b.addEventListener("click", function(){ goTo(i); });
+      li.appendChild(b);
+      if (dotsWrap) dotsWrap.appendChild(li);
+      return b;
+    });
+
+    function schedule(){
+      clearTimeout(timer);
+      if (reduceMotion || !inView || document.hidden || total < 2) return;
+      timer = setTimeout(function(){ goTo(current + 1); }, SLIDE_MS);
+    }
+
+    function goTo(i, instant, keepTime){
+      clearTimeout(timer);
+      var from = frames[current].querySelector("video");
+      var startAt = keepTime && from ? from.currentTime : 0;
+      current = i;
+      phone.classList.remove("is-paused");
+      track.classList.toggle("no-anim", !!instant);
+      track.style.transform = "translateY(" + (-i * 100) + "%)";
+
+      Array.prototype.forEach.call(frames, function(frame, k){
+        var fv = frame.querySelector("video");
+        frame.classList.remove("is-active");
+        if (k !== i && fv && !fv.paused) fv.pause();
+      });
+
+      var active = frames[i];
+      void active.offsetWidth; // restart the progress line
+      active.classList.add("is-active");
+      hydrate(active);
+      hydrate(frames[i + 1]);
+      var av = active.querySelector("video");
+      if (av) {
+        av.currentTime = startAt;
+        play(av);
+      }
+
+      var real = i % total;
+      dots.forEach(function(d, k){ d.classList.toggle("is-active", k === real); });
+      screen.setAttribute("aria-label", screen.dataset.watchBefore + (slides[real].dataset.brand || "") + screen.dataset.watchAfter);
+
+      // On the copy of the first slide, jump back to the real one once the scroll ends
+      if (i === total) {
+        setTimeout(function(){
+          if (current === total) goTo(0, true, true);
+        }, 800);
+      }
+      schedule();
+    }
+
+    function pause(){
+      clearTimeout(timer);
+      phone.classList.add("is-paused");
+      var fv = frames[current].querySelector("video");
+      if (fv) fv.pause();
+    }
+
+    // Tap the phone: jump to that reel in My Work and play it with sound
+    function openFull(){
+      var id = slides[current % total].dataset.reel;
+      var card = document.querySelector('.gallery-card[data-reel="' + id + '"]');
+      if (!card) return;
+      var btn = card.querySelector(".play-trigger-btn");
+      var cv = card.querySelector("video");
+      if (btn && cv && cv.paused) btn.click();
+      card.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "center", inline: "center" });
+    }
+    screen.addEventListener("click", openFull);
+    screen.addEventListener("keydown", function(e){
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        openFull();
+      }
+    });
+
+    if (total) goTo(0, true);
+
+    // Only run the feed while the phone is on screen
+    if ("IntersectionObserver" in window) {
+      new IntersectionObserver(function(entries){
+        inView = entries[0].isIntersecting;
+        if (inView) { goTo(current, true); } else { pause(); }
+      }, { threshold: 0.2 }).observe(phone);
+    }
+    document.addEventListener("visibilitychange", function(){
+      if (document.hidden) { pause(); } else if (inView) { goTo(current, true); }
+    });
+  }
+})();
+</script>
+</body>
+</html>
