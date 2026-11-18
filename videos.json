@@ -47,6 +47,19 @@
       "status": "published"
     },
     {
+      "id": "reel-12",
+      "brand": "Lingopie",
+      "title": "How Many French Words Can I Learn From One Scene?",
+      "category": "tech",
+      "file": "media/reel-12.mp4",
+      "poster": "media/reel-12.jpg",
+      "duration": "0:30",
+      "format": "Learning Challenge",
+      "structureLabel": "Problem Hook / Screen Demo / Result",
+      "featured": true,
+      "status": "published"
+    },
+    {
       "id": "reel-05",
       "brand": "Lovable",
       "title": "AI Full-Stack App Builder",
